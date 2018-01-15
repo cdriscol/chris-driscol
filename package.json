@@ -5,5 +5,29 @@
   "main": "index.js",
   "repository": "git@github.com:cdriscol/chris-driscol.git",
   "author": "chris@driscolsoftware.com",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint *.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "prettier": {
+    "printWidth": 79,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config-4catalyzer-react": "^0.3.3",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-react": "^7.5.1",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.10.2"
+  }
 }
