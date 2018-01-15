@@ -1,0 +1,9 @@
+{
+  "name": "chris-driscol",
+  "version": "1.0.0",
+  "description": "Source code for https://chrisdriscol.com",
+  "main": "index.js",
+  "repository": "git@github.com:cdriscol/chris-driscol.git",
+  "author": "chris@driscolsoftware.com",
+  "license": "MIT"
+}
