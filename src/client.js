@@ -11,6 +11,8 @@ import {
   routeConfig,
 } from './routes';
 
+import './styles/base.css';
+
 (async () => {
   // eslint-disable-next-line no-underscore-dangle
   const fetcher = new ClientFetcher('/graphql', window.__RELAY_PAYLOADS__);
