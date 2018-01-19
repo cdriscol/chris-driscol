@@ -14,19 +14,20 @@ I built this site with some technologies that I have come to really like, includ
 ## Folder structure
     .
     ├── ...
-    ├── app                     # App
-    │   ├── index.js            # Entry point
-    │   ├── client              # Client app
-    │   │   ├── index.js        # Client app entry point
+    ├── src                     # Source code for client and server
+    │   ├── server.js           # Entry point for app
+    │   ├── client.js           # Entry point for client app
+    │   ├── components          # React components
     │   │   └── ...             # Other client app items
-    │   ├── server              # Server app
-    │   │   ├── index.js        # Server app entry point
+    │   ├── graphql             # GraphQL
+    │   │   ├── index.js        # GraphQL entry point
     │   │   └── ...             # Other server app items
     │   └── ...                 # Other app things
     └── ...                     # Other project items
 
 
 ## Run it local
+Among some other targets in the `Makefile` there is one that will spin up the entire app locally:
 ```bash
 $ make local
 ```
