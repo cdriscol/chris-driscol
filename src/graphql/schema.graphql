@@ -48,4 +48,15 @@ type Viewer implements Node {
   skills: Skills
   experience: [Experience]
   about: About
+  work: [Work]
+}
+
+type Work {
+  title: String
+  description: String
+  location: String
+  link: String
+  date: String
+  imageUrl: String
+  technologies: [String]
 }
