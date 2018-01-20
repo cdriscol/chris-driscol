@@ -59,6 +59,12 @@ type Skills {
   loves: [String]
 }
 
+type Social {
+  linkedIn: String
+  github: String
+  email: String
+}
+
 type Viewer implements Node {
   # The ID of an object
   id: ID!
@@ -67,6 +73,7 @@ type Viewer implements Node {
   experience: [Experience]
   about: About
   work: [Work]
+  social: Social
 }
 
 type Work {

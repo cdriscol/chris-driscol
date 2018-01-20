@@ -3,3 +3,4 @@ export SkillsModel from './skills';
 export ExperienceModel from './experience';
 export AboutModel from './about';
 export WorkModel from './work';
+export SocialModel from './social';
