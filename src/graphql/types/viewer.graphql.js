@@ -12,9 +12,10 @@ const ViewerType = new GraphQLObjectType({
   name: 'Viewer',
   fields: {
     id: globalIdField(),
-    status: {
+    title: {
       type: GraphQLString,
-      resolve: () => 'OK',
+      resolve: () =>
+        'Chris Driscol | Senior Full Stack Engineer in Boulder Colorado',
     },
     skills: {
       type: SkillsType,

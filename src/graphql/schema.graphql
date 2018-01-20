@@ -44,7 +44,7 @@ type Skills {
 type Viewer implements Node {
   # The ID of an object
   id: ID!
-  status: String
+  title: String
   skills: Skills
   experience: [Experience]
   about: About
