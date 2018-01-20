@@ -2,6 +2,14 @@ schema {
   query: Root
 }
 
+type About {
+  description: String
+  imageUrl: String
+  imageCaption: String
+  imageTitle: String
+  tagLine: String
+}
+
 type Experience {
   duration: String
   title: String
@@ -39,4 +47,5 @@ type Viewer implements Node {
   status: String
   skills: Skills
   experience: [Experience]
+  about: About
 }
