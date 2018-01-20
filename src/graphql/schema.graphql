@@ -18,8 +18,16 @@ type Root {
   ): Node
 }
 
+type Skills {
+  languages: [String]
+  technologies: [String]
+  tools: [String]
+  loves: [String]
+}
+
 type Viewer implements Node {
   # The ID of an object
   id: ID!
   status: String
+  skills: Skills
 }
