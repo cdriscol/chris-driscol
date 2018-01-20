@@ -13,4 +13,5 @@ export default () => [
   'Digital Ocean',
   'Webpack',
   'React Storybook',
+  'Open Source',
 ];
