@@ -6,8 +6,11 @@ export default new GraphQLObjectType({
     title: {
       type: GraphQLString,
     },
-    description: {
+    subTitle: {
       type: GraphQLString,
+    },
+    description: {
+      type: new GraphQLList(GraphQLString),
     },
     location: {
       type: GraphQLString,
