@@ -1,3 +1,5 @@
+// TODO: Update info about me
+
 export default () => ({
   description: [
     `I grew up near and went to college at the <strong>University of Iowa</strong> in Iowa City, IA. I graduated college in 4 years earning my <strong>B.S. in Computer Science.</strong>`,
