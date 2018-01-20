@@ -1,10 +1,10 @@
-import { GraphQLString, GraphQLObjectType } from 'graphql';
+import { GraphQLString, GraphQLObjectType, GraphQLList } from 'graphql';
 
 export default new GraphQLObjectType({
   name: 'About',
   fields: {
     description: {
-      type: GraphQLString,
+      type: new GraphQLList(GraphQLString),
     },
     imageUrl: {
       type: GraphQLString,
