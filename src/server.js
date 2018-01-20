@@ -16,11 +16,11 @@ import {
 } from './routes';
 import { schema } from './graphql';
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use('/graphql', graphQLHTTP({ schema }));
+app.use('/graphql', graphQLHTTP({ schema, graphiql: true }));
 
 const webpackConfig = {
   entry: ['babel-polyfill', './src/client'],
