@@ -7,5 +7,6 @@ export default () => ({
   ],
   imageCaption: 'Senior Full-Stack Engineer',
   imageTitle: 'Chris Driscol',
+  imageUrl: 'public/me.jpg',
   tagLine: `I <i class="fa fa-heart"></i> working on <strong>Agile teams</strong> motivated by <strong>delivering customer value</strong> early and often.`,
 });
