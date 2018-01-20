@@ -1,7 +1,7 @@
 import { GraphQLString, GraphQLList, GraphQLObjectType } from 'graphql';
 import { SkillsModel } from '../database';
 
-const ViewerType = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Skills',
   fields: {
     languages: {
@@ -22,5 +22,3 @@ const ViewerType = new GraphQLObjectType({
     },
   },
 });
-
-export default ViewerType;

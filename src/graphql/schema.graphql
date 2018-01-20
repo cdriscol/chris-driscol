@@ -2,6 +2,14 @@ schema {
   query: Root
 }
 
+type Experience {
+  duration: String
+  title: String
+  location: String
+  description: String
+  imageUrl: String
+}
+
 # An object with an ID
 interface Node {
   # The id of the object.
@@ -30,4 +38,5 @@ type Viewer implements Node {
   id: ID!
   status: String
   skills: Skills
+  experience: [Experience]
 }
