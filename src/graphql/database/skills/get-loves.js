@@ -1,1 +1,16 @@
-export default () => [];
+export default () => [
+  'JavaScript',
+  'React',
+  'Relay',
+  'GraphQL',
+  'Node',
+  'MongoDB',
+  'Groovy',
+  'Material Design',
+  'Bootstrap',
+  'HTML',
+  'WebStorm',
+  'Digital Ocean',
+  'Webpack',
+  'React Storybook',
+];

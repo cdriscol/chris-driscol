@@ -1,1 +1,19 @@
-export default () => [];
+export default () => [
+  'JavaScript',
+  'C#',
+  'Java',
+  'Groovy',
+  'HTML',
+  'CSS3',
+  'SCSS',
+  'PHP',
+  'Ruby',
+  'Python',
+  'SQL',
+  'Apex',
+  'VisualForce',
+  'Lightning',
+  'VB',
+  'VB6',
+  'XAML',
+];

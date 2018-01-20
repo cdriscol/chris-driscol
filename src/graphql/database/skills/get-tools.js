@@ -1,1 +1,22 @@
-export default () => [];
+export default () => [
+  'OSX',
+  'Windows',
+  'Linux',
+  'AWS',
+  'TravisCI',
+  'CircleCI',
+  'Jenkins',
+  'Github',
+  'Digital Ocean',
+  'Kubernetes',
+  'WebStorm',
+  'Atom.io',
+  'Sublime Text',
+  'Gulp',
+  'Grunt',
+  'Webpack',
+  'IntelliJ',
+  'Visual Studio',
+  'TFS',
+  'Eclipse',
+];
