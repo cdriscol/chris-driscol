@@ -1,5 +1,6 @@
 schema {
   query: Root
+  mutation: Mutation
 }
 
 type About {
@@ -10,12 +11,29 @@ type About {
   tagLine: String
 }
 
+input ContactMeInput {
+  email: String!
+  name: String!
+  subject: String!
+  body: String!
+  clientMutationId: String
+}
+
+type ContactMePayload {
+  success: Boolean
+  clientMutationId: String
+}
+
 type Experience {
   duration: String
   title: String
   location: String
   description: String
   imageUrl: String
+}
+
+type Mutation {
+  contactMe(input: ContactMeInput!): ContactMePayload
 }
 
 # An object with an ID
