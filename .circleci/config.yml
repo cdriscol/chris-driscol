@@ -34,6 +34,6 @@ jobs:
 
       - run:
           name: deploy
-          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP 'cd /opt/chrisdriscol && git fetch origin && git reset --hard origin/master && docker-compose up --build -d
+          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP 'cd /opt/chrisdriscol && git fetch origin && git reset --hard origin/master && docker-compose up --build -d'
 
 
