@@ -4,7 +4,7 @@ import TypeModelResolver from './type-model-resolver';
 import { nodeField } from './node-interface';
 
 export default new GraphQLObjectType({
-  name: 'Root',
+  name: 'ROOT',
   fields: {
     viewer: {
       type: ViewerType,

@@ -1,5 +1,5 @@
 schema {
-  query: Root
+  query: ROOT
   mutation: Mutation
 }
 
@@ -42,7 +42,7 @@ interface Node {
   id: ID!
 }
 
-type Root {
+type ROOT {
   viewer: Viewer
 
   # Fetches an object given its ID
@@ -78,7 +78,8 @@ type Viewer implements Node {
 
 type Work {
   title: String
-  description: String
+  subTitle: String
+  description: [String]
   location: String
   link: String
   date: String
