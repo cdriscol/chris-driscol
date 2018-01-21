@@ -12,6 +12,7 @@
     "relay-compiler": "relay-compiler --src src --schema src/graphql/schema.graphql",
     "update-schema": "babel-node tools/update-schema.js",
     "clean": "rimraf dist",
+    "relay": "yarn update-schema && yarn relay-compiler",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "start": "yarn relay-compiler && cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
