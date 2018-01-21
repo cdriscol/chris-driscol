@@ -1,4 +1,4 @@
-FROM node
+FROM node:8
 MAINTAINER Chris Driscol <chris@driscolsoftware.com>
 
 RUN mkdir -p /usr/src/app
