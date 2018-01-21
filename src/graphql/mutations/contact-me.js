@@ -1,3 +1,5 @@
+// TODO: Hook up with sparkpost
+
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLNonNull, GraphQLBoolean } from 'graphql';
 
@@ -14,5 +16,5 @@ export default mutationWithClientMutationId({
       type: GraphQLBoolean,
     },
   },
-  mutateAndGetPayload: ({ email, name, subject, body }) => ({ success: true }),
+  mutateAndGetPayload: () => ({ success: true }),
 });
