@@ -10,11 +10,12 @@
     "lint": "eslint *.js src tools",
     "relay-compiler": "relay-compiler --src src --schema src/graphql/schema.graphql",
     "update-schema": "babel-node tools/update-schema.js",
+    "clean": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "start": "yarn relay-compiler && cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
     "start:prod": "yarn relay-compiler && cross-env NODE_ENV=production node index.js",
-    "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod"
+    "bs": "yarn clean && yarn build && yarn build:server && yarn start:prod"
   },
   "lint-staged": {
     "*.js": [
@@ -27,6 +28,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "cross-env": "^5.1.3",
