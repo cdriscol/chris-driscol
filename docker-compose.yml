@@ -5,6 +5,7 @@ web:
   restart: always
   volumes:
    - .:/usr/src/app/
+   - /usr/src/app/node_modules
   environment:
    NODE_ENV: production
    PORT: 8080
