@@ -49,6 +49,13 @@ module.exports = {
         loader: 'babel',
       },
       {
+        test: /react-icons\/(.)*(.js)$/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react'],
+        },
+      },
+      {
         test: /\.(jpe?g|gif|png|svg)$/i,
         loader: 'url-loader?limit=10000',
       },
