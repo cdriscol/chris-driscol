@@ -2,6 +2,7 @@ import BrowserProtocol from 'farce/lib/BrowserProtocol';
 import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { ClientFetcher } from './fetcher';
 import {
@@ -10,8 +11,6 @@ import {
   render,
   routeConfig,
 } from './routes';
-
-import './styles/base.css';
 
 (async () => {
   // eslint-disable-next-line no-underscore-dangle

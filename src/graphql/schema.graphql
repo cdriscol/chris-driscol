@@ -69,6 +69,7 @@ type Viewer implements Node {
   # The ID of an object
   id: ID!
   title: String
+  description: String
   skills: Skills
   experience: [Experience]
   about: About

@@ -22,7 +22,17 @@ export function createResolver(fetcher) {
 }
 
 export const routeConfig = makeRouteConfig(
-  <Route path="/" Component={App}>
+  <Route
+    path="/"
+    Component={App}
+    query={graphql`
+      query routes_App_Query {
+        viewer {
+          ...app_viewer
+        }
+      }
+    `}
+  >
     <Route
       path=""
       Component={HomePage}
