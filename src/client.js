@@ -3,6 +3,7 @@ import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import './styles';
 
 import { ClientFetcher } from './fetcher';
 import {

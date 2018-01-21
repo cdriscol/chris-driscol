@@ -1,9 +1,17 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import { graphql, createFragmentContainer } from 'react-relay';
+import Navigation from '../navigation';
+import Header from '../header';
 
+// eslint-disable-next-line
 function HomePage({ viewer }) {
-  return <div>{viewer.title}</div>;
+  return (
+    <div>
+      <Navigation />
+      <Header />
+    </div>
+  );
 }
 
 HomePage.propTypes = {

@@ -1,3 +1,16 @@
-.test {
-  background: red;
+* {
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #444;
+  webkit-tap-highlight-color: #fed136;
 }

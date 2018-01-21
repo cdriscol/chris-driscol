@@ -33,10 +33,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         exclude: /node_modules/,
         loader:
-          'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
+          'style-loader!css-loader!sass-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
       },
       {
         test: /\.css$/,
