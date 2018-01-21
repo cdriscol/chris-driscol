@@ -11,6 +11,18 @@ I built this site with some technologies that I have come to really like, includ
 - Relay Modern
 - Material UI
 
+## Available Commands
+
+1. `yarn start` - starts the development server with hot reloading enabled
+
+1. `yarn update-schema` - updates graphql schema file
+
+1. `yarn relay-compiler` - runs the relay compiler to generate files
+
+1. `yarn lint` - runs linter to check for lint errors
+
+1. `yarn bs` - bundles the code and starts the production server
+
 ## Folder structure
     .
     ├── ...
