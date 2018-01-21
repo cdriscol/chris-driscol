@@ -11,6 +11,7 @@ export default () => [
   'material-ui',
   '.Net',
   'WPF',
+  'GreenSock',
   'WCF',
   'MVC',
   'jQuery',

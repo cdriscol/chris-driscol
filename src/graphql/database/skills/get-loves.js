@@ -4,6 +4,7 @@ export default () => [
   'Relay',
   'GraphQL',
   'Node',
+  'GreenSock',
   'MongoDB',
   'Groovy',
   'Material Design',
