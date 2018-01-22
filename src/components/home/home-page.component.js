@@ -6,6 +6,7 @@ import Header from '../header';
 import About from '../about';
 import Skills from '../skills';
 import Experience from '../experience';
+import Portfolio from '../portfolio';
 
 // eslint-disable-next-line
 function HomePage({ viewer }) {
@@ -16,6 +17,7 @@ function HomePage({ viewer }) {
       <About about={viewer.about} />
       <Skills skills={viewer.skills} />
       <Experience experiences={viewer.experience} />
+      <Portfolio works={viewer.work} />
     </div>
   );
 }
@@ -44,6 +46,9 @@ export default createFragmentContainer(
       }
       experience {
         ...experience_experiences
+      }
+      work {
+        ...portfolio_works
       }
     }
   `,

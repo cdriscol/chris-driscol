@@ -52,7 +52,11 @@ function Experience({ experiences }) {
 }
 
 Experience.propTypes = {
-  experiences: PropTypes.arrayOf(PropTypes.object),
+  experiences: PropTypes.arrayOf(
+    PropTypes.shape({
+      imageUrl: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 export default createFragmentContainer(

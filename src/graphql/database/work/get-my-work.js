@@ -47,7 +47,7 @@ export default () => [
   ),
   buildWork(
     'public/images/work/lms_views.jpg',
-    'AgileU OnDemand Learning',
+    'AgileU OnDemand LMS',
     'Agile OnDemand Learning Management System (LMS) built on Drupal.',
     '2014 - 2015',
     'Rally Software',
