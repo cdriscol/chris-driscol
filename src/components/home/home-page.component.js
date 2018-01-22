@@ -7,6 +7,7 @@ import About from '../about';
 import Skills from '../skills';
 import Experience from '../experience';
 import Portfolio from '../portfolio';
+import Contact from '../contact';
 
 // eslint-disable-next-line
 function HomePage({ viewer }) {
@@ -18,6 +19,7 @@ function HomePage({ viewer }) {
       <Skills skills={viewer.skills} />
       <Experience experiences={viewer.experience} />
       <Portfolio works={viewer.work} />
+      <Contact viewer={viewer} />
     </div>
   );
 }
@@ -35,6 +37,7 @@ export default createFragmentContainer(
   graphql`
     fragment homePage_viewer on Viewer {
       title
+      ...contact_viewer
       about {
         ...about_about
       }

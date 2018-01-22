@@ -1,0 +1,51 @@
+.contact {
+  background-color: #222;
+  background-image: url(../../../public/images/map-image.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contact .section-heading,
+.contact .section-subheading {
+  color: white;
+}
+
+.contact .form-group {
+  margin-bottom: 25px;
+}
+
+.contact .form-group textarea {
+  padding: 20px;
+}
+
+.contact .form-group textarea.form-control {
+  height: 236px;
+}
+
+.contact .form-group input {
+  padding: 20px;
+}
+
+.contact .form-group input.form-control {
+  height: auto;
+}
+
+.contact .form-control:focus {
+  border-color: #fed136;
+  box-shadow: none;
+}
+
+.contact::-webkit-input-placeholder,
+.contact:-moz-placeholder,
+.contact::-moz-placeholder,
+.contact:-ms-input-placeholder {
+ font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+ text-transform: uppercase;
+ font-weight: 700;
+ color: #bbb;
+}
+
+.contact .text-danger {
+  font-size: 16px;
+  color: #e74c3c;
+}

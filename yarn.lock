@@ -2406,6 +2406,10 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
+email-regex@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/email-regex/-/email-regex-2.0.0.tgz#df1cd754ea7c42f8d6eaabcb1288041ec4696c22"
+
 emoji-regex@^6.1.0:
   version "6.5.1"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-6.5.1.tgz#9baea929b155565c11ea41c6626eaa65cef992c2"
@@ -6503,7 +6507,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2:
+request@2, request@^2.79.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -7029,6 +7033,13 @@ sourcemapped-stacktrace@^1.1.6:
   resolved "https://registry.yarnpkg.com/sourcemapped-stacktrace/-/sourcemapped-stacktrace-1.1.8.tgz#6b7a3f1a6fb15f6d40e701e23ce404553480d688"
   dependencies:
     source-map "0.5.6"
+
+sparkpost@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/sparkpost/-/sparkpost-2.1.2.tgz#efeee98fa091598b4d6d72b32e487d7a86c7e95c"
+  dependencies:
+    lodash "^4.17.2"
+    request "^2.79.0"
 
 spdx-correct@~1.0.0:
   version "1.0.2"

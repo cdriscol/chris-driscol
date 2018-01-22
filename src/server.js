@@ -7,20 +7,20 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../webpack.config.dev';
+import webpackConfig from '../webpack.config.dev';
 
-const PORT = process.env.PORT || 8080;
+import config from './config';
 
 // Initialize the Express App
 const app = new Express();
 
 // Run Webpack dev server in development mode
 if (process.env.NODE_ENV === 'development') {
-  const compiler = webpack(config);
+  const compiler = webpack(webpackConfig);
   app.use(
     webpackDevMiddleware(compiler, {
       noInfo: true,
-      publicPath: config.output.publicPath,
+      publicPath: webpackConfig.output.publicPath,
     }),
   );
   app.use(webpackHotMiddleware(compiler));
@@ -51,7 +51,7 @@ app.use('/public', Express.static('public'));
 
 app.use(async (req, res) => {
   const head = Helmet.rewind();
-  const fetcher = new ServerFetcher(`http://localhost:${PORT}/graphql`);
+  const fetcher = new ServerFetcher(`http://localhost:${config.port}/graphql`);
 
   const { redirect, status, element } = await getFarceResult({
     url: req.url,
@@ -116,8 +116,8 @@ app.use(async (req, res) => {
 `);
 });
 
-app.listen(PORT, error => {
-  if (!error) console.log(`App is listening on port ${PORT}..`);
+app.listen(config.port, error => {
+  if (!error) console.log(`App is listening on port ${config.port}..`);
 });
 
 export default app;
