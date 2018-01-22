@@ -8,6 +8,7 @@ import Skills from '../skills';
 import Experience from '../experience';
 import Portfolio from '../portfolio';
 import Contact from '../contact';
+import Footer from '../footer';
 
 // eslint-disable-next-line
 function HomePage({ viewer }) {
@@ -20,6 +21,7 @@ function HomePage({ viewer }) {
       <Experience experiences={viewer.experience} />
       <Portfolio works={viewer.work} />
       <Contact viewer={viewer} />
+      <Footer social={viewer.social} />
     </div>
   );
 }
@@ -43,6 +45,7 @@ export default createFragmentContainer(
       }
       social {
         ...navigation_social
+        ...footer_social
       }
       skills {
         ...skills_skills
