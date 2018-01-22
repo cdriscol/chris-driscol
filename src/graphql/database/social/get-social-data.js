@@ -1,5 +1,5 @@
 export default () => ({
-  linkedIn: 'http://www.linkedin.com/in/chrisdriscol/',
+  linkedIn: 'https://www.linkedin.com/in/chrisdriscol/',
   github: 'https://github.com/cdriscol',
   email: 'chris@driscolsoftware.com',
 });

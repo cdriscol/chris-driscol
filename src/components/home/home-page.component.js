@@ -9,7 +9,7 @@ import About from '../about';
 function HomePage({ viewer }) {
   return (
     <div>
-      <Navigation />
+      <Navigation social={viewer.social} />
       <Header />
       <About about={viewer.about} />
     </div>
@@ -20,6 +20,7 @@ HomePage.propTypes = {
   viewer: PropTypes.shape({
     title: PropTypes.string,
     about: PropTypes.object,
+    social: PropTypes.object,
   }),
 };
 
@@ -30,6 +31,9 @@ export default createFragmentContainer(
       title
       about {
         ...about_about
+      }
+      social {
+        ...navigation_social
       }
     }
   `,

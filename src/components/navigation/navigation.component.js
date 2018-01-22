@@ -1,9 +1,20 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link, animateScroll as scroll } from 'react-scroll';
 import './navigation.css';
+import FaLinkedIn from 'react-icons/lib/fa/linkedin';
+import FaGithub from 'react-icons/lib/fa/github-alt';
+import { createFragmentContainer, graphql } from 'react-relay';
 
 class Navigation extends React.Component {
+  static propTypes = {
+    social: PropTypes.shape({
+      linkedIn: PropTypes.string.isRequired,
+      github: PropTypes.string.isRequired,
+    }),
+  };
+
   state = {
     didScroll: false,
     shrink: false,
@@ -34,6 +45,7 @@ class Navigation extends React.Component {
   };
 
   render() {
+    const { social } = this.props;
     const hideNavToggle = () => {
       const showingMobileMenu =
         this.toggleRef &&
@@ -123,11 +135,22 @@ class Navigation extends React.Component {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/chrisdriscol/"
+                  href={social.linkedIn}
                   rel="noopener noreferrer"
                   target="_blank"
+                  title="LinkedIn"
                 >
-                  <i className={classNames('fa', 'fa-linkedin')} />
+                  <FaLinkedIn />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={social.github}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Github"
+                >
+                  <FaGithub />
                 </a>
               </li>
             </ul>
@@ -138,4 +161,12 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+export default createFragmentContainer(
+  Navigation,
+  graphql`
+    fragment navigation_social on Social {
+      github
+      linkedIn
+    }
+  `,
+);
