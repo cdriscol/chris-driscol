@@ -44,24 +44,38 @@ class Navigation extends React.Component {
     if (this.state.shrink !== shrink) this.setState({ shrink });
   };
 
+  hideNavToggle = () => {
+    const showingMobileMenu =
+      this.toggleRef &&
+      this.toggleRef.getAttribute('aria-expanded') === 'true';
+    if (!showingMobileMenu) return;
+    this.toggleRef.click();
+  };
+
+  scrollToTop = event => {
+    event.preventDefault();
+    scroll.scrollToTop({
+      duration: 1500,
+      smooth: 'easeInOutQuart',
+    });
+    this.hideNavToggle();
+  };
+
+  renderNavLink = (to, label) => (
+    <Link
+      onClick={this.hideNavToggle}
+      to={to}
+      activeClass="active"
+      spy
+      smooth="easeInOutQuart"
+      duration={1500}
+    >
+      {label}
+    </Link>
+  );
+
   render() {
     const { social } = this.props;
-    const hideNavToggle = () => {
-      const showingMobileMenu =
-        this.toggleRef &&
-        this.toggleRef.getAttribute('aria-expanded') === 'true';
-      if (!showingMobileMenu) return;
-      this.toggleRef.click();
-    };
-
-    const scrollToTop = event => {
-      event.preventDefault();
-      scroll.scrollToTop({
-        duration: 1500,
-        smooth: 'easeInOutQuart',
-      });
-      hideNavToggle();
-    };
 
     return (
       <nav
@@ -93,7 +107,7 @@ class Navigation extends React.Component {
                 tabIndex={0}
                 role="button"
                 className={classNames('navbar-brand page-scroll')}
-                onClick={scrollToTop}
+                onClick={this.scrollToTop}
               >
                 Chris Driscol
               </a>
@@ -105,34 +119,15 @@ class Navigation extends React.Component {
           >
             <ul className={classNames('nav', 'navbar-nav', 'navbar-right')}>
               <li className="hidden">
-                <a href="" onClick={scrollToTop}>
+                <a href="" onClick={this.scrollToTop}>
                   {}
                 </a>
               </li>
-              <li>
-                <Link
-                  onClick={hideNavToggle}
-                  to="aboutme"
-                  activeClass="active"
-                  spy
-                  smooth="easeInOutQuart"
-                  duration={1500}
-                >
-                  About me
-                </Link>
-              </li>
-              <li>
-                <a href="#skills">Skills</a>
-              </li>
-              <li>
-                <a href="#experience">Experience</a>
-              </li>
-              <li>
-                <a href="#portfolio">My work</a>
-              </li>
-              <li>
-                <a href="#contactme">Say hi</a>
-              </li>
+              <li>{this.renderNavLink('aboutme', 'About me')}</li>
+              <li>{this.renderNavLink('skills', 'Skills')}</li>
+              <li>{this.renderNavLink('experience', 'Experience')}</li>
+              <li>{this.renderNavLink('portfolio', 'My work')}</li>
+              <li>{this.renderNavLink('contactme', 'Say hi')}</li>
               <li>
                 <a
                   href={social.linkedIn}

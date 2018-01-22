@@ -68,6 +68,7 @@
     "react-icons": "^2.2.7",
     "react-relay": "^1.4.1",
     "react-scroll": "^1.7.6",
+    "react-typed": "^1.0.8",
     "relay-compiler": "^1.4.1",
     "relay-runtime": "^1.4.1",
     "sass-loader": "^6.0.6",

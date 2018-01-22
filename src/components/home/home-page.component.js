@@ -4,6 +4,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import Navigation from '../navigation';
 import Header from '../header';
 import About from '../about';
+import Skills from '../skills';
 
 // eslint-disable-next-line
 function HomePage({ viewer }) {
@@ -12,6 +13,7 @@ function HomePage({ viewer }) {
       <Navigation social={viewer.social} />
       <Header />
       <About about={viewer.about} />
+      <Skills skills={viewer.skills} />
     </div>
   );
 }
@@ -34,6 +36,9 @@ export default createFragmentContainer(
       }
       social {
         ...navigation_social
+      }
+      skills {
+        ...skills_skills
       }
     }
   `,
