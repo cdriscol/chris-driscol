@@ -95,6 +95,11 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
       },
     }),
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+    }),
   ],
 
   postcss: () => [

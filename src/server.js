@@ -87,7 +87,7 @@ app.use(async (req, res) => {
           : ''
       }
     </head>
-    <body id="page-top">
+    <body>
       <div id="root">${ReactDOMServer.renderToString(element)}</div>
       <script>
         window.__RELAY_PAYLOADS__ = ${serialize(fetcher, { isJSON: true })};

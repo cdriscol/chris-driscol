@@ -60,6 +60,7 @@
 }
 
 .navbar-default .nav li a {
+  cursor: pointer;
   font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 400;
@@ -73,14 +74,14 @@
   outline: 0;
 }
 
-.navbar-default .navbar-nav>.active>a {
+.navbar-default .nav li a.active {
   color: white;
   background-color: #fed136;
   border-radius: 3px;
 }
 
-.navbar-default .navbar-nav>.active>a:hover,
-.navbar-default .navbar-nav>.active>a:focus {
+.navbar-default .nav li a.active:hover,
+.navbar-default .nav li a.active:focus {
   color: white;
   background-color: #fec503;
 }

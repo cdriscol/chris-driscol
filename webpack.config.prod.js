@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const cssnext = require('postcss-cssnext');
@@ -30,12 +29,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader',
-        ),
+        loader:
+          'style-loader!css-loader!sass-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
       },
       {
         test: /\.css$/,
@@ -46,6 +43,13 @@ module.exports = {
         test: /\.jsx*$/,
         exclude: /node_modules/,
         loader: 'babel',
+      },
+      {
+        test: /react-icons\/(.)*(.js)$/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react'],
+        },
       },
       {
         test: /\.(jpe?g|gif|png|svg)$/i,
@@ -85,7 +89,7 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.js',
     }),
-    new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
+    // new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
     new ManifestPlugin({
       basePath: '/',
     }),
@@ -98,6 +102,11 @@ module.exports = {
         warnings: false,
       },
     }),
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+    }),
   ],
 
   postcss: () => [
@@ -105,7 +114,7 @@ module.exports = {
     cssnext({
       browsers: ['last 2 versions', 'IE > 10'],
     }),
-    cssnano({ autoprefixer: false }),
+    cssnano({ safe: true }),
     postcssReporter({ clearMessages: true }),
   ],
 };
