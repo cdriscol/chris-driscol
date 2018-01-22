@@ -1,11 +1,12 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link, animateScroll as scroll } from 'react-scroll';
-import './navigation.css';
+import { animateScroll as scroll } from 'react-scroll';
 import FaLinkedIn from 'react-icons/lib/fa/linkedin';
 import FaGithub from 'react-icons/lib/fa/github-alt';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { ScrollLink } from '../common';
+import './navigation.css';
 
 class Navigation extends React.Component {
   static propTypes = {
@@ -62,16 +63,9 @@ class Navigation extends React.Component {
   };
 
   renderNavLink = (to, label) => (
-    <Link
-      onClick={this.hideNavToggle}
-      to={to}
-      activeClass="active"
-      spy
-      smooth="easeInOutQuart"
-      duration={1500}
-    >
+    <ScrollLink onClick={this.hideNavToggle} to={to} activeClass="active" spy>
       {label}
-    </Link>
+    </ScrollLink>
   );
 
   render() {

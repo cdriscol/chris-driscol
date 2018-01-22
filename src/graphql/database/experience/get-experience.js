@@ -19,7 +19,7 @@ export default () => [
     'public/images/about/1.jpg',
     '2001 - 2002',
     'High School',
-    `It was a TI-83+ calculator, my brother had shown me a game called Beerhunt he installed on his smart calculator. Once I realized I could hack the source code directly on the calculator, I reverse engineered the price of a beer and claimed the high score. At this point, I was hooked on everything computer science.`,
+    `It was a TI-83+ calculator, my brother had shown me a game called Beerhunt he installed on his <i>smart</i> calculator.  Once I realized I could hack the source code directly on the calculator, I reverse engineered the price of a beer and claimed the high score.  At this point, I was hooked on everything computer science.`,
   ),
   buildExperience(
     'public/images/about/2.jpg',
@@ -50,7 +50,7 @@ export default () => [
     'Enterprise Software Engineer',
   ),
   buildExperience(
-    'public/images/about/6.jpg',
+    'public/images/about/6.png',
     'Fall 2015 - Present',
     'CommercialTribe, Denver, CO',
     `Lead development efforts on new features using MEAN stack. Implement and coach XP best practices. Advocate for agile culture.`,
