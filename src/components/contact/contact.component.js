@@ -4,7 +4,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
-import emailRegex from 'email-regex';
+import isEmail from 'validator/lib/isEmail';
 import './contact.css';
 import contactMutation from './contact.mutation';
 
@@ -26,7 +26,7 @@ class Contact extends React.Component {
     if (!name) nameError = 'Please enter your name.';
     if (!body) bodyError = 'Please enter a message.';
     if (!from) emailError = 'Please enter your email.';
-    if (!emailRegex({ exact: true }).test(from)) {
+    if (!isEmail(from)) {
       emailError = 'Please enter a valid email.';
     }
     if (!subject) subjectError = 'Please enter a subject.';
