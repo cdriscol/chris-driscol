@@ -114,7 +114,7 @@ module.exports = {
     cssnext({
       browsers: ['last 2 versions', 'IE > 10'],
     }),
-    cssnano({ safe: true }),
+    cssnano({ safe: true, autoprefixer: false }),
     postcssReporter({ clearMessages: true }),
   ],
 };
