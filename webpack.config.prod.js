@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const cssnext = require('postcss-cssnext');
@@ -29,15 +30,20 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
         exclude: /node_modules/,
-        loader:
-          'style-loader!css-loader!sass-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader?localIdentName=[hash:base64]&importLoaders=1!postcss-loader',
+        ),
       },
       {
         test: /\.css$/,
         include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader?localIdentName=[hash:base64]&importLoaders=1!postcss-loader',
+        ),
       },
       {
         test: /\.jsx*$/,
@@ -89,7 +95,7 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.js',
     }),
-    // new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
+    new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
     new ManifestPlugin({
       basePath: '/',
     }),
