@@ -1,7 +1,6 @@
 FROM node:8
 MAINTAINER Chris Driscol <chris@driscolsoftware.com>
 
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock /usr/src/app/
