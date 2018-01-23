@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: deploy
-          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP 'cd /opt/chrisdriscol && eval `ssh-agent -s` && ssh-add ~/.ssh/github_rsa && git fetch origin && git reset --hard origin/master && docker-compose up --build -d'
+          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP 'cd /opt/chrisdriscol && eval `ssh-agent -s` && ssh-add ~/.ssh/github_rsa && git fetch origin && git reset --hard origin/master && docker-compose up --force-recreate -d'
       - run:
           name: prune
           command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP 'docker system prune -f'
