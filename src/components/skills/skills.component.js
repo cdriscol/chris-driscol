@@ -28,7 +28,7 @@ function Skills({ skills }) {
             </div>
           </div>
           <div className={classNames('container', 'ilove')}>
-            I <FaHeart style={{ color: 'pink' }} />
+            I <FaHeart style={{ color: 'pink' }} />{' '}
             <Typed strings={skills.loves} loop typeSpeed={100} />
           </div>
         </div>
