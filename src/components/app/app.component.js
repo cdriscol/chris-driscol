@@ -6,21 +6,9 @@ import { createFragmentContainer, graphql } from 'react-relay';
 
 const App = ({ children, viewer }) => (
   <div>
-    <Helmet
-      title={viewer.title}
-      titleTemplate="%s"
-      meta={[
-        { charset: 'utf-8' },
-        {
-          'http-equiv': 'X-UA-Compatible',
-          content: 'IE=edge',
-        },
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1',
-        },
-      ]}
-    >
+    <Helmet title={viewer.title} titleTemplate="%s">
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={viewer.description} />
 
       <meta property="og:site_name" content={viewer.title} />
