@@ -1,13 +1,26 @@
 {
-  "presets": ["react", "es2015", "stage-0"],
+  "presets": [
+    "flow",
+    "react",
+    "es2015",
+    "stage-0"
+  ],
   "plugins": [
     "transform-regenerator",
     ["relay", { "schema": "src/data/schema.graphql" }],
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    ["flow-react-proptypes", { "ignoreNodeModules": true }]
   ],
   "env": {
     "production": {
-      "presets": ["es2015", "react", "react-optimize", "es2015-native-modules", "stage-0"]
+      "presets": [
+        "flow",
+        "es2015",
+        "react",
+        "react-optimize",
+        "es2015-native-modules",
+        "stage-0"
+      ]
     }
   }
 }

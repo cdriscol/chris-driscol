@@ -1,15 +1,18 @@
 {
   "extends": [
+    "plugin:flowtype/recommended",
     "4catalyzer-react",
     "prettier"
   ],
   "plugins": [
+    "flowtype",
     "prettier"
   ],
   "env": {
     "browser": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "flowtype/require-valid-file-annotation": [2, "always"]
   }
 }

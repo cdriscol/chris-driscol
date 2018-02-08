@@ -3,13 +3,13 @@ Source code for https://chrisdriscol.com
 
 ## Dependencies
 I built this site with some technologies that I have come to really like, including (but not limited to):
-- Docker
-- Node
-- MongoDB
 - GraphQL
 - React
 - Relay Modern
-- Material UI
+- Docker
+- Node
+- MongoDB
+- Flow
 
 ## Available Commands
 
