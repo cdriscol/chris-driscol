@@ -1,4 +1,4 @@
-# Chris Driscol [![CircleCI](https://circleci.com/gh/cdriscol/chris-driscol/tree/master.svg?style=svg)](https://circleci.com/gh/cdriscol/chris-driscol/tree/master)
+# Chris Driscol [![CircleCI](https://img.shields.io/circleci/project/github/cdriscol/chris-driscol/master.svg)](https://circleci.com/gh/cdriscol/chris-driscol/tree/master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![flow](https://img.shields.io/badge/flow-v0.65.0-E8BD36.svg)](https://flow.org) [![node](https://img.shields.io/badge/node-%3E=8.9.0-brightgreen.svg)](https://nodejs.org)
 Source code for https://chrisdriscol.com
 
 ## Dependencies
