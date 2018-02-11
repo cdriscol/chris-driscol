@@ -22,3 +22,7 @@ declare module 'graphql-relay' {
 declare module 'material-ui' {
   declare module.exports: any;
 }
+
+declare module '@storybook/addon-actions/register' {
+  declare module.exports: any;
+}
