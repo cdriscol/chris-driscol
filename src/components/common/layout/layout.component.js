@@ -88,7 +88,6 @@ export default function Layout(props: Props) {
   };
 
   const needsIeWrapper = () => {
-    // TODO: Find min height in array, computed style, etc
     return style && Number.isFinite(style.minHeight);
   };
 

@@ -1,5 +1,4 @@
 // @flow
-// TODO: Layout form with flex
 
 import React from 'react';
 import classNames from 'classnames';
