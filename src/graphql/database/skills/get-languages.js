@@ -5,7 +5,7 @@ export default (): Array<string> => [
   'Java',
   'Groovy',
   'HTML',
-  'CSS3',
+  'CSS',
   'SCSS',
   'PHP',
   'Ruby',
