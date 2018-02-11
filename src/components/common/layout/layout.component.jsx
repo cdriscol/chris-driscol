@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import combineStyles from '../combine-styles';
 import { isIE, getBrowserMajorVersion } from './browser';
 import styles from './layout.styles';
 import MinHeightFix from './min-height-fix.component';
@@ -66,16 +67,6 @@ export default function Layout(props: Props) {
 
   // https://github.com/philipwalton/flexbugs#4-flex-shorthand-declarations-with-unitless-flex-basis-values-are-ignored
   const getFlexBasisFix = () => flex && isIE11OrLower && styles.flexBasisAuto;
-
-  const combineStyles = (styles: Array<?{} | ?boolean>): {} => {
-    return styles.reduce((style, nextStyle) => {
-      if (!nextStyle || typeof nextStyle !== 'object') return style;
-      return {
-        ...style,
-        ...nextStyle,
-      };
-    }, {});
-  };
 
   const renderFlexChild = isWrapped => {
     return (
