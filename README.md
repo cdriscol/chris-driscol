@@ -1,4 +1,4 @@
-# Chris Driscol
+# Chris Driscol [![CircleCI](https://circleci.com/gh/cdriscol/chris-driscol/tree/master.svg?style=svg)](https://circleci.com/gh/cdriscol/chris-driscol/tree/master)
 Source code for https://chrisdriscol.com
 
 ## Dependencies

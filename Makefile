@@ -14,9 +14,12 @@ ci:
 	yarn && yarn relay && yarn lint && yarn flow
 
 docker-storybook:
-	docker-compose run web yarn && yarn storybook
+	docker-compose up --build -d storybook
+
+storybook:
+	yarn && yarn storybook
 
 docker-web:
-	docker-compose up --build -d
+	docker-compose up --build -d web
 
 .PHONY: lint docker-storybook ci docker-web flow

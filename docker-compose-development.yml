@@ -3,10 +3,20 @@ web:
   dockerfile: Dockerfile-development
   ports:
    - "8080:8080"
-   - "9001:9001"
   volumes:
    - .:/usr/src/app/
   environment:
    NODE_ENV: development
    PORT: 8080
    SPARKPOST_KEY: ${SPARKPOST_KEY}
+
+web:
+  build: .
+  dockerfile: Dockerfile-development
+  ports:
+   - "9001:9001"
+  volumes:
+   - .:/usr/src/app/
+  environment:
+   NODE_ENV: development
+  command: make storybook
