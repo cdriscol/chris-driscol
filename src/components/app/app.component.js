@@ -37,7 +37,10 @@ const App = ({ children, viewer }: Props) => (
         name="twitter:image"
         content="https://chrisdriscol.com/public/images/header-bg.jpg"
       />
-
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Source+Code+Pro:400,700"
+        rel="stylesheet"
+      />
       <link
         rel="apple-touch-icon"
         sizes="57x57"

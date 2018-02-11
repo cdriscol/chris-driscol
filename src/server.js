@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 import graphQLHTTP from 'express-graphql';
+import expressPlayground from 'graphql-playground-middleware-express';
 
 import serialize from 'serialize-javascript';
 import { getFarceResult } from 'found/lib/server/index';
@@ -49,7 +50,8 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(express.static(path.resolve(__dirname, '../dist/client')));
 
-app.use('/graphql', graphQLHTTP({ schema, graphiql: true }));
+app.use('/graphql', graphQLHTTP({ schema }));
+app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
 app.use('/public', express.static('public'));
 
 // $FlowFixMe
