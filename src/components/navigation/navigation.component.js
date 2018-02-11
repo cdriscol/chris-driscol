@@ -46,7 +46,7 @@ class Navigation extends React.Component<Props, State> {
 
   scrollPage = () => {
     this.didScroll = false;
-    const scrollY = window.pageYOffset;
+    const scrollY = window.pageYOffset || 0;
     const shrink = scrollY >= 300;
     if (this.state.shrink !== shrink) this.setState({ shrink });
   };
