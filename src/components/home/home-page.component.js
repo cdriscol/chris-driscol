@@ -19,32 +19,32 @@ function HomePage({ viewer }: Props) {
   return (
     <div>
       {
-        /* $FlowFixMe: https://github.com/facebook/relay/issues/2316 */
+        /* $FlowIssue: https://github.com/facebook/relay/issues/2316 */
         <Navigation social={viewer.social} />
       }
       <Header />
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <About about={viewer.about} />
       }
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <Skills skills={viewer.skills} />
       }
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <Experience experiences={viewer.experience} />
       }
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <Portfolio works={viewer.work} />
       }
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <Contact viewer={viewer} />
       }
       {
-        /* $FlowFixMe */
+        /* $FlowIssue */
         <Footer social={viewer.social} />
       }
     </div>
