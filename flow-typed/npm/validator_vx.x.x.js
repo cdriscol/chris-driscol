@@ -1,4 +1,4 @@
-// flow-typed signature: c4adf3115004d3bcbfdac198e3da70e9
+// flow-typed signature: 04577c17763152dda3095fe8594dc1b4
 // flow-typed version: <<STUB>>/validator_v^9.2.0/flow_v0.65.0
 
 /**
@@ -83,10 +83,6 @@ declare module 'validator/lib/isCurrency' {
 }
 
 declare module 'validator/lib/isDataURI' {
-  declare module.exports: any;
-}
-
-declare module 'validator/lib/isDate' {
   declare module.exports: any;
 }
 
@@ -368,9 +364,6 @@ declare module 'validator/lib/isCurrency.js' {
 }
 declare module 'validator/lib/isDataURI.js' {
   declare module.exports: $Exports<'validator/lib/isDataURI'>;
-}
-declare module 'validator/lib/isDate.js' {
-  declare module.exports: $Exports<'validator/lib/isDate'>;
 }
 declare module 'validator/lib/isDecimal.js' {
   declare module.exports: $Exports<'validator/lib/isDecimal'>;

@@ -1,8 +1,9 @@
 //@flow
 import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
 import Helmet from 'react-helmet';
 import { ErrorBoundary } from '../common';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { Analytics } from '../analytics';
 import type { app_viewer } from './__generated__/app_viewer.graphql';
 
 type Props = {
@@ -117,7 +118,9 @@ const App = ({ children, viewer }: Props) => (
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" />
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" />
     </Helmet>
-    <ErrorBoundary>{children}</ErrorBoundary>
+    <Analytics>
+      <ErrorBoundary>{children}</ErrorBoundary>
+    </Analytics>
   </div>
 );
 
