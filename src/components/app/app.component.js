@@ -19,6 +19,10 @@ const App = ({ children, viewer }: Props) => (
       <meta name="robots" content="noindex, nofollow" />
 
       <meta name="description" content={viewer.description} />
+      <meta
+        name="google-site-verification"
+        content="R2ugoW2o9U7kLx2-Xtmmb-kA8lJGqsqvqvGv2NKCxrI"
+      />
 
       <meta property="og:site_name" content={viewer.title} />
       <meta property="og:title" content={viewer.title} />
