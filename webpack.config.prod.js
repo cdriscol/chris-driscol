@@ -1,4 +1,5 @@
 // @flow
+const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -7,7 +8,6 @@ const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 const cssnano = require('cssnano');
-const path = require('path');
 
 module.exports = {
   devtool: 'hidden-source-map',

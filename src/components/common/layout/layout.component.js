@@ -2,8 +2,8 @@
 import * as React from 'react';
 import combineStyles from '../combine-styles';
 import { isIE, getBrowserMajorVersion } from './browser';
-import styles from './layout.styles';
 import MinHeightFix from './min-height-fix.component';
+import styles from './layout.styles';
 import supportedAligns from './supported-aligns';
 
 const isIE11OrLower = isIE() && getBrowserMajorVersion() <= 11;

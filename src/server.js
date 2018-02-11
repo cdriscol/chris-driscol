@@ -1,8 +1,15 @@
 // @flow
+import path from 'path';
 import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-import path from 'path';
+
+import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
+import graphQLHTTP from 'express-graphql';
+
+import serialize from 'serialize-javascript';
+import { getFarceResult } from 'found/lib/server/index';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -27,19 +34,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-import ReactDOMServer from 'react-dom/server';
-import Helmet from 'react-helmet';
 import { schema } from './graphql';
-import graphQLHTTP from 'express-graphql';
 import {
   createResolver,
   historyMiddlewares,
   render,
   routeConfig,
 } from './routes';
-import serialize from 'serialize-javascript';
 import { ServerFetcher } from './fetcher';
-import { getFarceResult } from 'found/lib/server/index';
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
