@@ -1,14 +1,35 @@
+// @flow
 // TODO: Layout form with flex
 
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql, Environment } from 'react-relay';
 import isEmail from 'validator/lib/isEmail';
 import './contact.css';
 import contactMutation from './contact.mutation';
+import type { contact_viewer } from './__generated__/contact_viewer.graphql';
 
-class Contact extends React.Component {
+type Props = {
+  relay: {
+    environment: Environment,
+  },
+  viewer: contact_viewer,
+};
+
+type State = {
+  name: string,
+  body: string,
+  from: string,
+  subject: string,
+  sent?: ?boolean,
+  nameError?: ?string,
+  bodyError?: ?string,
+  emailError?: ?string,
+  subjectError?: ?string,
+  error?: string,
+};
+
+class Contact extends React.Component<Props, State> {
   state = {
     name: '',
     body: '',
@@ -36,10 +57,12 @@ class Contact extends React.Component {
     contactMutation.commit(
       this.props.relay.environment,
       {
-        name,
-        body,
-        from,
-        subject,
+        input: {
+          name,
+          body,
+          from,
+          subject,
+        },
       },
       {
         onCompleted: () => this.setState({ sent: true }),
@@ -189,12 +212,6 @@ class Contact extends React.Component {
     );
   }
 }
-
-Contact.propTypes = {
-  relay: PropTypes.shape({
-    environment: PropTypes.object,
-  }),
-};
 
 export default createFragmentContainer(
   Contact,

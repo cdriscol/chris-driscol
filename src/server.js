@@ -1,4 +1,5 @@
-import Express from 'express';
+// @flow
+import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import path from 'path';
@@ -12,7 +13,7 @@ import webpackConfig from '../webpack.config.dev';
 import config from './config';
 
 // Initialize the Express App
-const app = new Express();
+const app = express();
 
 // Run Webpack dev server in development mode
 if (process.env.NODE_ENV === 'development') {
@@ -44,11 +45,12 @@ import { getFarceResult } from 'found/lib/server/index';
 app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(Express.static(path.resolve(__dirname, '../dist/client')));
+app.use(express.static(path.resolve(__dirname, '../dist/client')));
 
 app.use('/graphql', graphQLHTTP({ schema, graphiql: true }));
-app.use('/public', Express.static('public'));
+app.use('/public', express.static('public'));
 
+// $FlowFixMe
 app.use(async (req, res) => {
   const head = Helmet.rewind();
   const fetcher = new ServerFetcher(`http://localhost:${config.port}/graphql`);
@@ -66,8 +68,9 @@ app.use(async (req, res) => {
     return;
   }
 
-  const assetsManifest =
-    process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
+  const assetsManifest = process.env.webpackAssets
+    ? JSON.parse(process.env.webpackAssets)
+    : {};
   const chunkManifest =
     process.env.webpackChunkAssets &&
     JSON.parse(process.env.webpackChunkAssets);
@@ -116,7 +119,7 @@ app.use(async (req, res) => {
 `);
 });
 
-app.listen(config.port, error => {
+app.listen(config.port, (error: ?Error) => {
   if (!error) console.log(`App is listening on port ${config.port}..`);
 });
 

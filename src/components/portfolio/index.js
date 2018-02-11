@@ -1,1 +1,4 @@
-export default from './portfolio.component';
+// @flow
+import PortfolioComponent from './portfolio.component';
+
+export default PortfolioComponent;

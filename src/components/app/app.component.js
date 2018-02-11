@@ -1,10 +1,16 @@
-import React from 'react';
+//@flow
+import * as React from 'react';
 import Helmet from 'react-helmet';
-import * as PropTypes from 'prop-types';
 import { ErrorBoundary } from '../common';
 import { createFragmentContainer, graphql } from 'react-relay';
+import type { app_viewer } from './__generated__/app_viewer.graphql';
 
-const App = ({ children, viewer }) => (
+type Props = {
+  viewer: app_viewer,
+  children: React.Node,
+};
+
+const App = ({ children, viewer }: Props) => (
   <div>
     <Helmet title={viewer.title} titleTemplate="%s">
       <meta charSet="utf-8" />
@@ -114,14 +120,6 @@ const App = ({ children, viewer }) => (
     <ErrorBoundary>{children}</ErrorBoundary>
   </div>
 );
-
-App.propTypes = {
-  children: PropTypes.node,
-  viewer: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }),
-};
 
 export default createFragmentContainer(
   App,

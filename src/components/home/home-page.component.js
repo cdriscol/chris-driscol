@@ -1,5 +1,5 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import { graphql, createFragmentContainer } from 'react-relay';
 import Navigation from '../navigation';
 import Header from '../header';
@@ -9,30 +9,47 @@ import Experience from '../experience';
 import Portfolio from '../portfolio';
 import Contact from '../contact';
 import Footer from '../footer';
+import type { homePage_viewer } from './__generated__/homePage_viewer.graphql';
 
-// eslint-disable-next-line
-function HomePage({ viewer }) {
+type Props = {
+  viewer: homePage_viewer,
+};
+
+function HomePage({ viewer }: Props) {
   return (
     <div>
-      <Navigation social={viewer.social} />
+      {
+        /* $FlowFixMe: https://github.com/facebook/relay/issues/2316 */
+        <Navigation social={viewer.social} />
+      }
       <Header />
-      <About about={viewer.about} />
-      <Skills skills={viewer.skills} />
-      <Experience experiences={viewer.experience} />
-      <Portfolio works={viewer.work} />
-      <Contact viewer={viewer} />
-      <Footer social={viewer.social} />
+      {
+        /* $FlowFixMe */
+        <About about={viewer.about} />
+      }
+      {
+        /* $FlowFixMe */
+        <Skills skills={viewer.skills} />
+      }
+      {
+        /* $FlowFixMe */
+        <Experience experiences={viewer.experience} />
+      }
+      {
+        /* $FlowFixMe */
+        <Portfolio works={viewer.work} />
+      }
+      {
+        /* $FlowFixMe */
+        <Contact viewer={viewer} />
+      }
+      {
+        /* $FlowFixMe */
+        <Footer social={viewer.social} />
+      }
     </div>
   );
 }
-
-HomePage.propTypes = {
-  viewer: PropTypes.shape({
-    title: PropTypes.string,
-    about: PropTypes.object,
-    social: PropTypes.object,
-  }),
-};
 
 export default createFragmentContainer(
   HomePage,

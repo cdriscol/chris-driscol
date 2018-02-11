@@ -1,1 +1,4 @@
-export default from './footer.component';
+// @flow
+import FooterComponent from './footer.component';
+
+export default FooterComponent;

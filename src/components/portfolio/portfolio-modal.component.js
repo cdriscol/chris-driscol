@@ -1,11 +1,17 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
 import FaTimes from 'react-icons/lib/fa/times-circle';
 import './portfolio-modal.css';
+import type { portfolioModal_work } from './__generated__/portfolioModal_work.graphql';
 
-function PortfolioModal({ work, onClose }) {
+type Props = {
+  work: portfolioModal_work,
+  onClose: () => void,
+};
+
+function PortfolioModal({ work, onClose }: Props) {
   return (
     <div className={classNames('portfolio-modal')}>
       <div className="modal-content">
@@ -33,11 +39,12 @@ function PortfolioModal({ work, onClose }) {
                   src={work.imageUrl}
                   alt=""
                 />
-                {work.description.map(desc => (
-                  <p key={desc} dangerouslySetInnerHTML={{ __html: desc }} />
-                ))}
+                {work.description &&
+                  work.description.map(desc => (
+                    <p key={desc} dangerouslySetInnerHTML={{ __html: desc }} />
+                  ))}
                 <h4 className="modal-tech">technologies</h4>
-                <p>{work.technologies.join(', ')}</p>
+                <p>{work.technologies && work.technologies.join(', ')}</p>
                 <ul className="list-inline">
                   <li>Date: {work.date}</li>
                   <li>{work.location}</li>
@@ -68,20 +75,6 @@ function PortfolioModal({ work, onClose }) {
     </div>
   );
 }
-
-PortfolioModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  work: PropTypes.shape({
-    title: PropTypes.string,
-    technologies: PropTypes.arrayOf(PropTypes.string),
-    date: PropTypes.string,
-    description: PropTypes.arrayOf(PropTypes.string),
-    subTitle: PropTypes.string,
-    location: PropTypes.string,
-    imageUrl: PropTypes.string,
-    link: PropTypes.string,
-  }),
-};
 
 export default createFragmentContainer(
   PortfolioModal,

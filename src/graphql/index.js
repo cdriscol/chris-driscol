@@ -1,1 +1,2 @@
-export schema from './schema';
+// @flow
+export { default as schema } from './schema';

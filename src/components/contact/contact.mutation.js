@@ -1,4 +1,7 @@
-import { commitMutation, graphql } from 'react-relay';
+// @flow
+import { commitMutation, graphql, Environment } from 'react-relay';
+import type { MutationConfigType } from './relay-flow-types';
+import type { contactMutationVariables } from './__generated__/contactMutation.graphql';
 
 const mutation = graphql`
   mutation contactMutation($input: ContactMeInput!) {
@@ -8,16 +11,12 @@ const mutation = graphql`
   }
 `;
 
-let nextClientMutationId = 0;
-function commit(environment, input = {}, config = {}) {
-  const clientMutationId = nextClientMutationId++;
-  const variables = {
-    input: {
-      ...input,
-      clientMutationId,
-    },
-  };
-
+function commit(
+  environment: Environment,
+  variables: contactMutationVariables,
+  config: MutationConfigType = {},
+) {
+  /* $FlowFixMe */
   return commitMutation(environment, {
     ...config,
     mutation,

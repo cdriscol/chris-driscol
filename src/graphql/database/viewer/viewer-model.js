@@ -1,11 +1,14 @@
+// @flow
 export default class ViewerModel extends Object {
-  constructor(id) {
+  id: string;
+  skills: {};
+  constructor(id: string) {
     super();
     this.id = id;
     this.skills = {};
   }
 
-  static findById(id) {
+  static findById(id: string) {
     return new ViewerModel(id);
   }
 }

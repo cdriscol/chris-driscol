@@ -1,4 +1,5 @@
-export default () => [
+// @flow
+export default (): Array<string> => [
   'React',
   'Relay',
   'Redux',

@@ -1,16 +1,17 @@
-import { GraphQLString, GraphQLObjectType } from 'graphql';
+// @flow
+import { GraphQLString, GraphQLObjectType, GraphQLNonNull } from 'graphql';
 
 export default new GraphQLObjectType({
   name: 'Social',
   fields: {
     linkedIn: {
-      type: GraphQLString,
+      type: GraphQLNonNull(GraphQLString),
     },
     github: {
-      type: GraphQLString,
+      type: GraphQLNonNull(GraphQLString),
     },
     email: {
-      type: GraphQLString,
+      type: GraphQLNonNull(GraphQLString),
     },
   },
 });

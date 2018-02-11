@@ -1,6 +1,7 @@
-export ViewerModel from './viewer';
-export SkillsModel from './skills';
-export ExperienceModel from './experience';
-export AboutModel from './about';
-export WorkModel from './work';
-export SocialModel from './social';
+// @flow
+export { default as ViewerModel } from './viewer';
+export { default as SkillsModel } from './skills';
+export { default as ExperienceModel } from './experience';
+export { default as AboutModel } from './about';
+export { default as WorkModel } from './work';
+export { default as SocialModel } from './social';

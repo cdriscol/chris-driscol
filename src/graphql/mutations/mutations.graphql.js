@@ -1,3 +1,4 @@
+// @flow
 import { GraphQLObjectType } from 'graphql';
 import contactMe from './contact-me';
 

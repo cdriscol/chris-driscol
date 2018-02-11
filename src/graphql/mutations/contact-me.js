@@ -1,3 +1,4 @@
+// @flow
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLNonNull, GraphQLBoolean } from 'graphql';
 import { sendEmail } from '../../util';

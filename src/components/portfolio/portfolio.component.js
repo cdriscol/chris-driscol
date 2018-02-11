@@ -1,14 +1,20 @@
+// // @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
 import PortfolioItem from './portfolio-item.component';
 import './portfolio.css';
+import type { portfolio_works } from './__generated__/portfolio_works.graphql';
 
-function Portfolio({ works }) {
-  const workItems = works.map(work => (
-    <PortfolioItem key={work.title} work={work} />
-  ));
+type Props = {
+  works: portfolio_works,
+};
+
+function Portfolio({ works }: Props) {
+  const workItems = works.map(work => {
+    /* $FlowFixMe */
+    return <PortfolioItem key={work.title} work={work} />;
+  });
   const renderItems = [];
   for (let i = 0; i < workItems.length; i++) {
     renderItems.push(workItems[i]);
@@ -37,14 +43,6 @@ function Portfolio({ works }) {
     </section>
   );
 }
-
-Portfolio.propTypes = {
-  works: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-    }),
-  ),
-};
 
 export default createFragmentContainer(
   Portfolio,

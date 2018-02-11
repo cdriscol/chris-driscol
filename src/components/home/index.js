@@ -1,1 +1,2 @@
-export HomePage from './home-page.component';
+// @flow
+export { default as HomePage } from './home-page.component';

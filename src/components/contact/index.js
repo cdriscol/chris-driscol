@@ -1,1 +1,4 @@
-export default from './contact.component';
+// @flow
+import ContactComponent from './contact.component';
+
+export default ContactComponent;

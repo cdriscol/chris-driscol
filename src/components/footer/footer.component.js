@@ -1,12 +1,17 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './footer.css';
 import { createFragmentContainer, graphql } from 'react-relay';
 import FaLinkedIn from 'react-icons/lib/fa/linkedin';
 import FaGithub from 'react-icons/lib/fa/github-alt';
+import type { footer_social } from './__generated__/footer_social.graphql';
 
-function Footer({ social }) {
+type Props = {
+  social: footer_social,
+};
+
+function Footer({ social }: Props) {
   return (
     <footer>
       <div className="container">
@@ -43,14 +48,6 @@ function Footer({ social }) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  social: PropTypes.shape({
-    github: PropTypes.string.isRequired,
-    linkedIn: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }),
-};
 
 export default createFragmentContainer(
   Footer,

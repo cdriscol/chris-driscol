@@ -1,3 +1,4 @@
+// @flow
 // TODO: Update info about me
 
 export default () => ({

@@ -1,3 +1,4 @@
+// @flow
 // TODO: Add more work here (amerika wedding, CT, fake 5k?, etc)
 
 const buildWork = (

@@ -1,12 +1,13 @@
 {
   "presets": [
-    "flow",
     "react",
     "es2015",
-    "stage-0"
+    "stage-0",
+    "flow"
   ],
   "plugins": [
     "transform-regenerator",
+    "transform-react-jsx-source",
     ["relay", { "schema": "src/data/schema.graphql" }],
     "react-hot-loader/babel",
     ["flow-react-proptypes", { "ignoreNodeModules": true }]
@@ -14,12 +15,12 @@
   "env": {
     "production": {
       "presets": [
-        "flow",
         "es2015",
         "react",
         "react-optimize",
         "es2015-native-modules",
-        "stage-0"
+        "stage-0",
+        "flow"
       ]
     }
   }

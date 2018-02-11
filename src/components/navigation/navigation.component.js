@@ -1,5 +1,5 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import classNames from 'classnames';
 import { animateScroll as scroll } from 'react-scroll';
 import FaLinkedIn from 'react-icons/lib/fa/linkedin';
@@ -7,14 +7,20 @@ import FaGithub from 'react-icons/lib/fa/github-alt';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { ScrollLink } from '../common';
 import './navigation.css';
+import type { navigation_social } from './__generated__/navigation_social.graphql';
 
-class Navigation extends React.Component {
-  static propTypes = {
-    social: PropTypes.shape({
-      linkedIn: PropTypes.string.isRequired,
-      github: PropTypes.string.isRequired,
-    }),
-  };
+type Props = {
+  social: navigation_social,
+};
+
+type State = {
+  shrink: boolean,
+};
+
+class Navigation extends React.Component<Props, State> {
+  didScroll: boolean;
+  timeout: any;
+  toggleRef: ?HTMLButtonElement;
 
   state = {
     didScroll: false,
@@ -40,7 +46,7 @@ class Navigation extends React.Component {
 
   scrollPage = () => {
     this.didScroll = false;
-    const scrollY = window.pageYOffset || document.documentElement;
+    const scrollY = window.pageYOffset;
     const shrink = scrollY >= 300;
     if (this.state.shrink !== shrink) this.setState({ shrink });
   };
@@ -50,7 +56,7 @@ class Navigation extends React.Component {
       this.toggleRef &&
       this.toggleRef.getAttribute('aria-expanded') === 'true';
     if (!showingMobileMenu) return;
-    this.toggleRef.click();
+    this.toggleRef && this.toggleRef.click();
   };
 
   scrollToTop = event => {

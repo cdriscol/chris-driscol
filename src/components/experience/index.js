@@ -1,1 +1,4 @@
-export default from './experience.component';
+// @flow
+import ExperienceComponent from './experience.component';
+
+export default ExperienceComponent;

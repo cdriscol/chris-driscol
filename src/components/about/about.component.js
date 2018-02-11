@@ -1,11 +1,16 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import classNames from 'classnames';
 import './about.css';
 import FaHeart from 'react-icons/lib/fa/heart';
 import { createFragmentContainer, graphql } from 'react-relay';
+import type { about_about } from './__generated__/about_about.graphql';
 
-function About({ about }) {
+type Props = {
+  about: about_about,
+};
+
+function About({ about }: Props) {
   const renderDescription = str => (
     <p key={str} className="large" dangerouslySetInnerHTML={{ __html: str }} />
   );
@@ -54,15 +59,6 @@ function About({ about }) {
     </section>
   );
 }
-
-About.propTypes = {
-  about: PropTypes.shape({
-    imageUrl: PropTypes.string.isRequired,
-    imageTitle: PropTypes.string.isRequired,
-    imageCaption: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }),
-};
 
 export default createFragmentContainer(
   About,

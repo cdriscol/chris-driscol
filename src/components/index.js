@@ -1,1 +1,4 @@
-export { Navigation } from './navigation';
+// @flow
+import Navigation from './navigation';
+
+export { Navigation };

@@ -1,1 +1,4 @@
-export default from './skills.component';
+// @flow
+import SkillsComponent from './skills.component';
+
+export default SkillsComponent;

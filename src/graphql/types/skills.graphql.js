@@ -1,23 +1,29 @@
-import { GraphQLString, GraphQLList, GraphQLObjectType } from 'graphql';
+// @flow
+import {
+  GraphQLString,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLNonNull,
+} from 'graphql';
 import { SkillsModel } from '../database';
 
 export default new GraphQLObjectType({
   name: 'Skills',
   fields: {
     languages: {
-      type: new GraphQLList(GraphQLString),
+      type: GraphQLNonNull(new GraphQLList(GraphQLNonNull(GraphQLString))),
       resolve: () => SkillsModel.getLanguages(),
     },
     technologies: {
-      type: new GraphQLList(GraphQLString),
+      type: GraphQLNonNull(new GraphQLList(GraphQLNonNull(GraphQLString))),
       resolve: () => SkillsModel.getTechnologies(),
     },
     tools: {
-      type: new GraphQLList(GraphQLString),
+      type: GraphQLNonNull(new GraphQLList(GraphQLNonNull(GraphQLString))),
       resolve: () => SkillsModel.getTools(),
     },
     loves: {
-      type: new GraphQLList(GraphQLString),
+      type: GraphQLNonNull(new GraphQLList(GraphQLNonNull(GraphQLString))),
       resolve: () => SkillsModel.getLoves(),
     },
   },

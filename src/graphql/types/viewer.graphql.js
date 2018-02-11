@@ -1,4 +1,10 @@
-import { GraphQLString, GraphQLObjectType, GraphQLList } from 'graphql';
+// @flow
+import {
+  GraphQLString,
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLNonNull,
+} from 'graphql';
 import { globalIdField } from 'graphql-relay';
 import {
   ViewerModel,
@@ -20,32 +26,32 @@ const ViewerType = new GraphQLObjectType({
   fields: {
     id: globalIdField(),
     title: {
-      type: GraphQLString,
+      type: GraphQLNonNull(GraphQLString),
       resolve: () =>
         'Chris Driscol | Senior Full Stack Engineer in Boulder Colorado',
     },
     description: {
-      type: GraphQLString,
+      type: GraphQLNonNull(GraphQLString),
       resolve: () =>
         `Hi, I'm Chris Driscol, an experienced full stack software engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
     },
     skills: {
-      type: SkillsType,
+      type: GraphQLNonNull(SkillsType),
     },
     experience: {
-      type: new GraphQLList(ExperienceType),
+      type: GraphQLNonNull(new GraphQLList(ExperienceType)),
       resolve: () => ExperienceModel.getExperience(),
     },
     about: {
-      type: AboutType,
+      type: GraphQLNonNull(AboutType),
       resolve: () => AboutModel.getAboutMe(),
     },
     work: {
-      type: new GraphQLList(WorkType),
+      type: GraphQLNonNull(new GraphQLList(WorkType)),
       resolve: () => WorkModel.getMyWork(),
     },
     social: {
-      type: SocialType,
+      type: GraphQLNonNull(SocialType),
       resolve: () => SocialModel.getSocialData(),
     },
   },

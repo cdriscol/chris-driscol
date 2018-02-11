@@ -1,9 +1,15 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
+import type { timelineItem_experience } from './__generated__/timelineItem_experience.graphql';
 
-function TimelineItem({ inverted, experience }) {
+type Props = {
+  inverted: ?boolean,
+  experience: timelineItem_experience,
+};
+
+function TimelineItem({ inverted, experience }: Props) {
   return (
     <li className={inverted ? 'timeline-inverted' : ''}>
       <div className="timeline-image">
@@ -29,15 +35,8 @@ function TimelineItem({ inverted, experience }) {
   );
 }
 
-TimelineItem.propTypes = {
-  inverted: PropTypes.bool,
-  experience: PropTypes.shape({
-    duration: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-  }),
+TimelineItem.defaultProps = {
+  inverted: false,
 };
 
 export default createFragmentContainer(

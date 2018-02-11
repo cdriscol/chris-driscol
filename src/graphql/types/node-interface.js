@@ -1,3 +1,4 @@
+// @flow
 import { fromGlobalId, nodeDefinitions } from 'graphql-relay';
 import TypeModelResolver from './type-model-resolver';
 

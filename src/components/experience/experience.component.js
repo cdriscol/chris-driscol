@@ -1,12 +1,24 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { ScrollLink } from '../common';
 import TimeLineItem from './timeline-item.component';
 import './timeline.css';
+import type { experience_experiences } from './__generated__/experience_experiences.graphql';
 
-function Experience({ experiences }) {
+type Props = {
+  experiences: experience_experiences,
+};
+
+function Experience({ experiences }: Props) {
+  const renderItem = (item: any, index: number) => {
+    /* $FlowFixMe */
+    return (
+      <TimeLineItem key={index} inverted={index % 2 === 1} experience={item} />
+    );
+  };
+
   return (
     <section className="home-section" id="experience">
       <div className="container">
@@ -21,13 +33,7 @@ function Experience({ experiences }) {
         <div className="row">
           <div className="col-lg-12">
             <ul className="timeline">
-              {experiences.map((item, index) => (
-                <TimeLineItem
-                  key={item.imageUrl}
-                  inverted={index % 2 === 1}
-                  experience={item}
-                />
-              ))}
+              {experiences.map(renderItem)}
               <li
                 className={classNames('timeline-inverted', 'timeline-final')}
               >
@@ -50,14 +56,6 @@ function Experience({ experiences }) {
     </section>
   );
 }
-
-Experience.propTypes = {
-  experiences: PropTypes.arrayOf(
-    PropTypes.shape({
-      imageUrl: PropTypes.string.isRequired,
-    }),
-  ),
-};
 
 export default createFragmentContainer(
   Experience,

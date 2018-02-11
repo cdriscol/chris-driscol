@@ -1,13 +1,18 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FaHeart from 'react-icons/lib/fa/heart';
 import { createFragmentContainer, graphql } from 'react-relay';
 import Typed from 'react-typed';
 import './skills.css';
 import SkillsBlock from './skills-block.component';
+import type { skills_skills } from './__generated__/skills_skills.graphql';
 
-function Skills({ skills }) {
+type Props = {
+  skills: skills_skills,
+};
+
+function Skills({ skills }: Props) {
   return (
     <section className={classNames('home-section', 'skills')} id="skills">
       <div className="container">
@@ -36,15 +41,6 @@ function Skills({ skills }) {
     </section>
   );
 }
-
-Skills.propTypes = {
-  skills: PropTypes.shape({
-    loves: PropTypes.arrayOf(PropTypes.string).isRequired,
-    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
-    tools: PropTypes.arrayOf(PropTypes.string).isRequired,
-    technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }),
-};
 
 export default createFragmentContainer(
   Skills,

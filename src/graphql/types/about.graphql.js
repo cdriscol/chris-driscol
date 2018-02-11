@@ -1,10 +1,16 @@
-import { GraphQLString, GraphQLObjectType, GraphQLList } from 'graphql';
+// @flow
+import {
+  GraphQLString,
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLNonNull,
+} from 'graphql';
 
 export default new GraphQLObjectType({
   name: 'About',
   fields: {
     description: {
-      type: new GraphQLList(GraphQLString),
+      type: GraphQLNonNull(new GraphQLList(GraphQLString)),
     },
     imageUrl: {
       type: GraphQLString,

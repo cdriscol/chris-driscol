@@ -1,1 +1,2 @@
-export MutationQuery from './mutations.graphql';
+// @flow
+export { default as MutationQuery } from './mutations.graphql';

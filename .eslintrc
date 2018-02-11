@@ -1,11 +1,13 @@
 {
   "extends": [
     "plugin:flowtype/recommended",
-    "4catalyzer-react",
-    "prettier"
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
   ],
   "plugins": [
     "flowtype",
+    "react",
     "prettier"
   ],
   "env": {
@@ -13,6 +15,10 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "react/prefer-stateless-function": 2,
+    "react/prop-types": [1, { "skipUndeclared": true }],
+    "react/display-name": 2,
+    "camelcase": 0,
     "flowtype/require-valid-file-annotation": [2, "always"]
   }
 }

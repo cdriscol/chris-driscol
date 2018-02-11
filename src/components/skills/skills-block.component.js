@@ -1,8 +1,13 @@
+// @flow
 import React from 'react';
 import classNames from 'classnames';
-import * as PropTypes from 'prop-types';
 
-const SkillBlock = ({ title, skills }) => (
+type Props = {
+  title: string,
+  skills: $ReadOnlyArray<string>,
+};
+
+const SkillBlock = ({ title, skills }: Props) => (
   <div className={classNames('col-xs-12', 'col-md-4')}>
     <h3 className={classNames('text-center', 'color-silver')}>{title}</h3>
     <p
@@ -12,10 +17,5 @@ const SkillBlock = ({ title, skills }) => (
     </p>
   </div>
 );
-
-SkillBlock.propTypes = {
-  title: PropTypes.string.isRequired,
-  skills: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default SkillBlock;

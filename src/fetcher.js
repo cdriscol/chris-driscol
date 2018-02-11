@@ -1,6 +1,9 @@
+// @flow
 import 'isomorphic-fetch';
 
 class FetcherBase {
+  url: string;
+
   constructor(url) {
     this.url = url;
   }
@@ -18,13 +21,14 @@ class FetcherBase {
 }
 
 export class ServerFetcher extends FetcherBase {
-  constructor(url) {
-    super(url);
+  payloads: Array<any>;
 
+  constructor(url: string) {
+    super(url);
     this.payloads = [];
   }
 
-  async fetch(...args) {
+  async fetch(...args: Array<any>) {
     const i = this.payloads.length;
     this.payloads.push(null);
     const payload = await super.fetch(...args);
@@ -38,13 +42,15 @@ export class ServerFetcher extends FetcherBase {
 }
 
 export class ClientFetcher extends FetcherBase {
-  constructor(url, payloads) {
+  payloads: Array<any>;
+
+  constructor(url: string, payloads: Array<any>) {
     super(url);
 
     this.payloads = payloads;
   }
 
-  async fetch(...args) {
+  async fetch(...args: Array<any>) {
     if (this.payloads.length) {
       return this.payloads.shift();
     }

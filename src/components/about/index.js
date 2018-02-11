@@ -1,1 +1,4 @@
-export default from './about.component';
+// @flow
+import AboutComponent from './about.component';
+
+export default AboutComponent;

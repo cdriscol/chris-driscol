@@ -1,3 +1,4 @@
+// @flow
 import fs from 'fs';
 import { printSchema } from 'graphql/utilities';
 import path from 'path';

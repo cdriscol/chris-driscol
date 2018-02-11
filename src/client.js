@@ -1,7 +1,9 @@
+// @flow
 import BrowserProtocol from 'farce/lib/BrowserProtocol';
 import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// $FlowFixMe
 import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery/dist/jquery';
 import 'bootstrap/dist/js/bootstrap';

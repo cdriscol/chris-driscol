@@ -1,4 +1,13 @@
+// @flow
 // TODO: Add Driscol Software projects, update CT data
+
+type ExperienceType = {
+  imageUrl: string,
+  duration: string,
+  location: string,
+  description: string,
+  title?: string,
+};
 
 const buildExperience = (
   imageUrl,
@@ -6,7 +15,7 @@ const buildExperience = (
   location,
   description,
   title,
-) => ({
+): ExperienceType => ({
   imageUrl,
   duration,
   location,
@@ -14,7 +23,7 @@ const buildExperience = (
   title,
 });
 
-export default () => [
+export default (): Array<ExperienceType> => [
   buildExperience(
     'public/images/about/1.jpg',
     '2001 - 2002',

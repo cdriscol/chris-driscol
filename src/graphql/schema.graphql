@@ -4,7 +4,7 @@ schema {
 }
 
 type About {
-  description: [String]
+  description: [String]!
   imageUrl: String
   imageCaption: String
   imageTitle: String
@@ -43,7 +43,7 @@ interface Node {
 }
 
 type ROOT {
-  viewer: Viewer
+  viewer: Viewer!
 
   # Fetches an object given its ID
   node(
@@ -53,28 +53,28 @@ type ROOT {
 }
 
 type Skills {
-  languages: [String]
-  technologies: [String]
-  tools: [String]
-  loves: [String]
+  languages: [String!]!
+  technologies: [String!]!
+  tools: [String!]!
+  loves: [String!]!
 }
 
 type Social {
-  linkedIn: String
-  github: String
-  email: String
+  linkedIn: String!
+  github: String!
+  email: String!
 }
 
 type Viewer implements Node {
   # The ID of an object
   id: ID!
-  title: String
-  description: String
-  skills: Skills
-  experience: [Experience]
-  about: About
-  work: [Work]
-  social: Social
+  title: String!
+  description: String!
+  skills: Skills!
+  experience: [Experience]!
+  about: About!
+  work: [Work]!
+  social: Social!
 }
 
 type Work {

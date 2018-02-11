@@ -1,1 +1,4 @@
-export default from './header.component';
+// @flow
+import HeaderComponent from './header.component';
+
+export default HeaderComponent;

@@ -1,3 +1,4 @@
+// @flow
 import queryMiddleware from 'farce/lib/queryMiddleware';
 import createRender from 'found/lib/createRender';
 import makeRouteConfig from 'found/lib/makeRouteConfig';
@@ -12,7 +13,7 @@ export const historyMiddlewares = [queryMiddleware];
 import { App } from './components/app';
 import { HomePage } from './components/home';
 
-export function createResolver(fetcher) {
+export function createResolver(fetcher: any) {
   const environment = new Environment({
     network: Network.create((...args) => fetcher.fetch(...args)),
     store: new Store(new RecordSource()),

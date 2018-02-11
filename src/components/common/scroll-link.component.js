@@ -1,8 +1,12 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import { Link } from 'react-scroll';
 
-function ScrollLink({ children, ...extraProps }) {
+type Props = {
+  children: React.Node,
+};
+
+export default function ScrollLink({ children, ...extraProps }: Props) {
   return (
     <Link
       style={{ cursor: 'pointer' }}
@@ -14,9 +18,3 @@ function ScrollLink({ children, ...extraProps }) {
     </Link>
   );
 }
-
-ScrollLink.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default ScrollLink;

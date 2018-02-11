@@ -1,3 +1,4 @@
+// @flow
 import './buttons.css';
 import './fonts.css';
 import './selection.css';

@@ -1,1 +1,2 @@
-export sendEmail from './send-email';
+// @flow
+export { default as sendEmail } from './send-email';

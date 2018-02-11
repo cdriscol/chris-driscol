@@ -1,12 +1,21 @@
+// @flow
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
 import FaPlus from 'react-icons/lib/fa/plus';
-import PortfolioModal from './portfolio-modal.component';
 import { Dialog, Fade } from 'material-ui';
+import { default as PortfolioModal } from './portfolio-modal.component';
+import type { portfolioItem_work } from './__generated__/portfolioItem_work.graphql';
 
-class PortfolioItem extends React.Component {
+type State = {
+  open: boolean,
+};
+
+type Props = {
+  work: portfolioItem_work,
+};
+
+class PortfolioItem extends React.Component<Props, State> {
   state = {
     open: false,
   };
@@ -40,23 +49,18 @@ class PortfolioItem extends React.Component {
           open={this.state.open}
           transition={Fade}
         >
-          <PortfolioModal
-            work={work}
-            onClose={() => this.setState({ open: false })}
-          />
+          {
+            /* $FlowFixMe */
+            <PortfolioModal
+              work={work}
+              onClose={() => this.setState({ open: false })}
+            />
+          }
         </Dialog>
       </div>
     );
   }
 }
-
-PortfolioItem.propTypes = {
-  work: PropTypes.shape({
-    title: PropTypes.string,
-    location: PropTypes.string,
-    imageUrl: PropTypes.string,
-  }),
-};
 
 export default createFragmentContainer(
   PortfolioItem,
