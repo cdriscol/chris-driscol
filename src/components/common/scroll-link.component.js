@@ -15,6 +15,7 @@ export default function ScrollLink({ children, ...extraProps }: Props) {
     });
   return (
     <Link
+      offset={-70}
       style={{ cursor: 'pointer' }}
       smooth="easeInOutQuart"
       duration={1500}
