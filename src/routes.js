@@ -10,8 +10,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 export const historyMiddlewares = [queryMiddleware];
 
-import { App } from './components/app';
-import { HomePage } from './components/home';
+import { App, HomePage } from './components';
 
 export function createResolver(fetcher: any) {
   const environment = new Environment({

@@ -5,10 +5,11 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import { ScrollLink } from '../common';
 import TimeLineItem from './timeline-item.component';
 import './timeline.css';
-import type { experience_experiences } from './__generated__/experience_experiences.graphql';
 
 type Props = {
-  experiences: experience_experiences,
+  experiences: $ReadOnlyArray<{|
+    +imageUrl: ?string,
+  |}>,
 };
 
 function Experience({ experiences }: Props) {

@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
 import PortfolioItem from './portfolio-item.component';
 import './portfolio.css';
-import type { portfolio_works } from './__generated__/portfolio_works.graphql';
 
 type Props = {
-  works: portfolio_works,
+  works: $ReadOnlyArray<{|
+    +title: ?string,
+  |}>,
 };
 
 function Portfolio({ works }: Props) {

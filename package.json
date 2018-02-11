@@ -52,7 +52,7 @@
     "farce": "^0.2.5",
     "file-loader": "^1.1.6",
     "found": "^0.3.7",
-    "found-relay": "^0.3.0-alpha.10",
+    "found-relay": "^0.3.0-alpha.11",
     "graphql": "^0.12.3",
     "graphql-relay": "^0.5.4",
     "invariant": "^2.2.2",
