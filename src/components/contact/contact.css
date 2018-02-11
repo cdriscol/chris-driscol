@@ -10,6 +10,10 @@
   color: white;
 }
 
+.contact form {
+  margin-bottom: 100px;
+}
+
 .contact .form-group {
   margin-bottom: 25px;
 }
