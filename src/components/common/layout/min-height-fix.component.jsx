@@ -1,21 +1,23 @@
+// @flow
 // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, css } from '../../styles/with-styles';
-import componentStyles from './layout.styles';
-import { propTypes as layoutPropTypes } from './props';
+import * as React from 'react';
+import styles from './layout.styles';
 
-const MinHeightFix = ({ children, style, styles }) => (
-	<div {...css([styles.column, style])}>
-		{ children }
-	</div>
-);
-
-MinHeightFix.propTypes = {
-	children: PropTypes.node.isRequired,
-	style: layoutPropTypes.style,
-	styles: PropTypes.object
+type Props = {
+  style?: {},
+  children: React.Node,
 };
 
-export default withStyles(componentStyles)(MinHeightFix);
+const MinHeightFix = ({ children, style }: Props) => (
+  <div
+    style={{
+      ...styles.column,
+      ...(style || {}),
+    }}
+  >
+    {children}
+  </div>
+);
+
+export default MinHeightFix;
