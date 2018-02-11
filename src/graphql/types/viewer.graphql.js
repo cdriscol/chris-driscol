@@ -27,13 +27,12 @@ const ViewerType = new GraphQLObjectType({
     id: globalIdField(),
     title: {
       type: GraphQLNonNull(GraphQLString),
-      resolve: () =>
-        'Chris Driscol | Senior Full Stack Engineer in Boulder Colorado',
+      resolve: () => 'Chris Driscol | Lead Full Stack Engineer in Colorado',
     },
     description: {
       type: GraphQLNonNull(GraphQLString),
       resolve: () =>
-        `Hi, I'm Chris Driscol, an experienced full stack software engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
+        `Hi, I'm Chris Driscol, a lead full stack software engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
     },
     skills: {
       type: GraphQLNonNull(SkillsType),
