@@ -14,7 +14,7 @@ build:
 	yarn && yarn relay && yarn build && yarn build:server
 
 ci:
-	yarn && yarn relay && yarn lint && yarn flow && yarn test
+	yarn && yarn relay && yarn lint && yarn flow && yarn test-coverage
 
 docker-storybook:
 	docker-compose up --build -d storybook
