@@ -1,5 +1,4 @@
 // @flow
-
 import React from 'react';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql, Environment } from 'react-relay';
@@ -9,7 +8,7 @@ import contactMutation from './contact.mutation';
 import type { contact_viewer } from './__generated__/contact_viewer.graphql';
 
 type Props = {
-  relay: {
+  relay?: {
     environment: Environment,
   },
   viewer: contact_viewer,
@@ -52,7 +51,7 @@ class Contact extends React.Component<Props, State> {
     if (!subject) subjectError = 'Please enter a subject.';
     this.setState({ nameError, bodyError, emailError, subjectError });
     const isError = nameError || bodyError || emailError || subjectError;
-    if (isError) return;
+    if (isError || !this.props.relay) return;
     contactMutation.commit(
       this.props.relay.environment,
       {

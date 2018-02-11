@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<header>
+  <div
+    className="container"
+  >
+    <div
+      className="intro-text"
+    >
+      <div
+        className="intro-lead-in"
+      >
+        Welcome To My Website!
+      </div>
+      <div
+        className="intro-heading"
+      >
+        It's Nice To Meet You
+      </div>
+      <a
+        className="page-scroll btn btn-xl"
+        href="#aboutme"
+      >
+        Learn about me
+      </a>
+    </div>
+  </div>
+</header>
+`;

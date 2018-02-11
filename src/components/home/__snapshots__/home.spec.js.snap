@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <Navigation
+    social={Object {}}
+  />
+  <Header />
+  <About
+    about={Object {}}
+  />
+  <Skills
+    skills={Object {}}
+  />
+  <Experience
+    experiences={Array []}
+  />
+  <Portfolio
+    works={Array []}
+  />
+  <Contact
+    viewer={
+      Object {
+        "about": Object {},
+        "experience": Array [],
+        "skills": Object {},
+        "social": Object {},
+        "work": Array [],
+      }
+    }
+  />
+  <Footer
+    social={Object {}}
+  />
+</div>
+`;

@@ -26,3 +26,7 @@ declare module 'material-ui' {
 declare module '@storybook/addon-actions/register' {
   declare module.exports: any;
 }
+
+declare module 'react-test-renderer/shallow' {
+  declare module.exports: any;
+}
