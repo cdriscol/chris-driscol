@@ -20,7 +20,12 @@ exports[`renders correctly 1`] = `
       </div>
       <a
         className="page-scroll btn btn-xl"
-        href="#aboutme"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
       >
         Learn about me
       </a>
