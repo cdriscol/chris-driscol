@@ -3,6 +3,7 @@ web:
   dockerfile: Dockerfile-development
   ports:
    - "8080:8080"
+   - "9001:9001"
   volumes:
    - .:/usr/src/app/
   environment:

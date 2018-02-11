@@ -10,4 +10,5 @@ COPY . /usr/src/app
 ENV NODE_ENV production
 
 EXPOSE 8080
+EXPOSE 9001
 CMD ["yarn", "bs"]

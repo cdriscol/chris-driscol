@@ -1,6 +1,22 @@
-lint: yarn lint
-
 local:
 	yarn && yarn update-schema && yarn relay-compiler && yarn start
 
-.PHONY: lint
+lint:
+	yarn && yarn lint
+
+flow:
+	yarn && yarn flow
+
+build:
+	yarn && yarn relay && yarn build && yarn build:server
+
+ci:
+	yarn && yarn relay && yarn lint && yarn flow
+
+docker-storybook:
+	docker-compose run web yarn && yarn storybook
+
+docker-web:
+	docker-compose up --build -d
+
+.PHONY: lint docker-storybook ci docker-web flow
