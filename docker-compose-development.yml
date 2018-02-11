@@ -12,7 +12,7 @@ web:
 
 web:
   build: .
-  dockerfile: Dockerfile-development
+  dockerfile: Dockerfile-storybook
   ports:
    - "9001:9001"
   volumes:

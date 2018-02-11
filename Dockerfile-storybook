@@ -7,7 +7,7 @@ COPY package.json yarn.lock /usr/src/app/
 RUN yarn
 COPY . /usr/src/app
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
-EXPOSE 8080
-CMD ["yarn", "bs"]
+EXPOSE 9001
+CMD ["yarn", "storybook"]
