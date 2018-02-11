@@ -14,6 +14,7 @@
     "update-schema": "babel-node tools/update-schema.js",
     "clean": "rimraf dist",
     "test": "jest",
+    "test-update": "jest -u",
     "relay": "yarn update-schema && yarn relay-compiler",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",

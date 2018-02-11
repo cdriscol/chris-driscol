@@ -4,6 +4,9 @@ local:
 lint:
 	yarn && yarn lint
 
+test:
+	yarn && yarn test
+
 flow:
 	yarn && yarn flow
 
@@ -11,7 +14,7 @@ build:
 	yarn && yarn relay && yarn build && yarn build:server
 
 ci:
-	yarn && yarn relay && yarn lint && yarn flow
+	yarn && yarn relay && yarn lint && yarn flow && yarn test
 
 docker-storybook:
 	docker-compose up --build -d storybook
@@ -22,4 +25,4 @@ storybook:
 docker-web:
 	docker-compose up --build -d web
 
-.PHONY: lint docker-storybook ci docker-web flow
+.PHONY: lint docker-storybook ci docker-web flow test
