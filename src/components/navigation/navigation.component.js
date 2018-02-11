@@ -2,6 +2,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { animateScroll as scroll } from 'react-scroll';
+import ReactGA from 'react-ga';
 import FaLinkedIn from 'react-icons/lib/fa/linkedin';
 import FaGithub from 'react-icons/lib/fa/github-alt';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -68,11 +69,20 @@ class Navigation extends React.Component<Props, State> {
     this.hideNavToggle();
   };
 
-  renderNavLink = (to, label) => (
-    <ScrollLink onClick={this.hideNavToggle} to={to} activeClass="active" spy>
-      {label}
-    </ScrollLink>
-  );
+  renderNavLink = (to, label) => {
+    const handleClick = () => {
+      ReactGA.event({
+        category: 'Navigation',
+        action: label,
+      });
+      this.hideNavToggle();
+    };
+    return (
+      <ScrollLink onClick={handleClick} to={to} activeClass="active" spy>
+        {label}
+      </ScrollLink>
+    );
+  };
 
   render() {
     const { social } = this.props;
