@@ -9,6 +9,7 @@ exports[`renders correctly 1`] = `
   <About
     about={Object {}}
   />
+  <BuiltWith />
   <Skills
     skills={Object {}}
   />

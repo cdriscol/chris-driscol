@@ -9,6 +9,7 @@ import Experience from '../experience';
 import Portfolio from '../portfolio';
 import Contact from '../contact';
 import Footer from '../footer';
+import BuiltWith from '../built-with';
 import type { homePage_viewer } from './__generated__/homePage_viewer.graphql';
 
 type Props = {
@@ -27,6 +28,7 @@ function HomePage({ viewer }: Props) {
         /* $FlowIssue */
         <About about={viewer.about} />
       }
+      <BuiltWith />
       {
         /* $FlowIssue */
         <Skills skills={viewer.skills} />
