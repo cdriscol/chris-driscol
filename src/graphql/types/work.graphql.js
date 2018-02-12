@@ -24,6 +24,9 @@ export default new GraphQLObjectType({
     link: {
       type: GraphQLString,
     },
+    video: {
+      type: GraphQLString,
+    },
     date: {
       type: GraphQLString,
     },

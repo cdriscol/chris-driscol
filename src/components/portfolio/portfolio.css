@@ -11,7 +11,7 @@
   display: block;
   position: relative;
   max-width: 400px;
-  max-height: 214px;
+  height: 215px;
   margin: 0 auto;
   background: white;
 }
@@ -19,6 +19,21 @@
 .portfolio-link img {
   max-height: 214px;
   margin: 0 auto;
+}
+
+.portfolio-link .video {
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+
+.portfolio-link .video iframe {
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 }
 
 .portfolio-hover {

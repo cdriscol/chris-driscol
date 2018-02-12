@@ -9,6 +9,7 @@ const buildWork = (
   technologies,
   description,
   link,
+  video,
 ) => ({
   title,
   subTitle,
@@ -18,12 +19,41 @@ const buildWork = (
   technologies,
   description,
   link,
+  video,
 });
 
 export default () => [
   buildWork(
+    'public/images/work/ct_views.png',
+    'CommercialTribe',
+    'New product and feature development in React, GraphQL, React-Native, Redux, and Relay Modern.',
+    '2015-Present',
+    'CommercialTribe',
+    [
+      'React',
+      'React-Native',
+      'Material UI',
+      'Relay',
+      'Redux',
+      'draft-js',
+      'Flow',
+      'GraphQL',
+      'MongoDB',
+      'WebRTC',
+      'Kubernetes',
+      'Github',
+    ],
+    [
+      'Working with a team of engineers, my responsibility is to ensure completion of new product and feature requests.  I work with business and product teams to create a feature backlog that gets broken into stories with my team and executed on.',
+      'My days can range from going heads-down all day on a technical problem, to working with every developer on my team to help complete our commitments, to meeting with business to understand and break down new market opportunities.',
+      'In the last year, we have been transitioning away from Angular into React and GraphQL. I have been spending a lot of my time building out a React component library and helping defining our GraphQL schema objects.',
+    ],
+    'https://www.commercialtribe.com/',
+    'veGb2LARzsE',
+  ),
+  buildWork(
     'public/images/work/cu_views.png',
-    'University of Colorado Alumni Community',
+    'University Alumni Community',
     'An alumni community for the University of Colorado for students to register, update their contact information, and stay in contact with the university.',
     '2017',
     'Driscol Software LLC',

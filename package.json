@@ -85,6 +85,7 @@
     "react-relay": "^1.5.0-rc.1",
     "react-scroll": "^1.7.6",
     "react-typed": "^1.0.8",
+    "react-youtube": "^7.5.0",
     "relay-compiler": "^1.5.0-rc.1",
     "relay-runtime": "^1.5.0-rc.1",
     "sass-loader": "^6.0.6",

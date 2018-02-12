@@ -83,6 +83,7 @@ type Work {
   description: [String]
   location: String
   link: String
+  video: String
   date: String
   imageUrl: String
   technologies: [String]

@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { createFragmentContainer, graphql } from 'react-relay';
+import YouTube from 'react-youtube';
 import FaTimes from 'react-icons/lib/fa/times-circle';
 import './portfolio-modal.css';
 import type { portfolioModal_work } from './__generated__/portfolioModal_work.graphql';
@@ -34,11 +35,25 @@ function PortfolioModal({ work, onClose }: Props) {
                   className={classNames('item-intro', 'text-muted')}
                   dangerouslySetInnerHTML={{ __html: work.subTitle }}
                 />
-                <img
-                  className={classNames('img-responsive', 'img-centered')}
-                  src={work.imageUrl}
-                  alt=""
-                />
+                {!work.video && (
+                  <img
+                    className={classNames('img-responsive', 'img-centered')}
+                    src={work.imageUrl}
+                    alt=""
+                  />
+                )}
+                {work.video && (
+                  <div className={'video'}>
+                    <YouTube
+                      videoId={work.video}
+                      opts={{
+                        playerVars: {
+                          autoplay: 1,
+                        },
+                      }}
+                    />
+                  </div>
+                )}
                 {work.description &&
                   work.description.map(desc => (
                     <p key={desc} dangerouslySetInnerHTML={{ __html: desc }} />
@@ -88,6 +103,7 @@ export default createFragmentContainer(
       location
       imageUrl
       link
+      video
     }
   `,
 );
