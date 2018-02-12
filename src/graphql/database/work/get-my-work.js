@@ -23,6 +23,29 @@ const buildWork = (
 
 export default () => [
   buildWork(
+    'public/images/work/ec_wedding.png',
+    'Wedding RSVP Site',
+    'A wedding website for a friend with RSVP and details.',
+    '2017',
+    'Side Project',
+    [
+      'React',
+      'Webpack',
+      'Node',
+      'Redux',
+      'Isomorophic',
+      'Babel',
+      'GreenSock',
+      'Express',
+      'CircleCI',
+      'Github',
+    ],
+    [
+      `Built this project in the "MERN Stack" starting with a boilerplate project.  I used a boilerplate to cut down on time to deploy as my friend only gave me only 48 hours to complete the site before his guests received their RSVP cards.`,
+    ],
+    'https://github.com/cdriscol/amerikawedding2017',
+  ),
+  buildWork(
     'public/images/work/community_views.jpg',
     'Rally Community',
     'Custom designed community built on the Force.com platform.',

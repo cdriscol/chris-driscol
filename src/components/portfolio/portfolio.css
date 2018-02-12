@@ -11,6 +11,13 @@
   display: block;
   position: relative;
   max-width: 400px;
+  max-height: 214px;
+  margin: 0 auto;
+  background: white;
+}
+
+.portfolio-link img {
+  max-height: 214px;
   margin: 0 auto;
 }
 
