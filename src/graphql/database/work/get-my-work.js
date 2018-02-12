@@ -1,5 +1,4 @@
 // @flow
-// TODO: Add more work here (amerika wedding, CT, fake 5k?, etc)
 
 const buildWork = (
   imageUrl,
@@ -22,6 +21,30 @@ const buildWork = (
 });
 
 export default () => [
+  buildWork(
+    'public/images/work/cu_views.png',
+    'University of Colorado Alumni Community',
+    'An alumni community for the University of Colorado for students to register, update their contact information, and stay in contact with the university.',
+    '2017',
+    'Driscol Software LLC',
+    [
+      'Force.com',
+      'JavaScript',
+      'VisualForce',
+      'Apex',
+      'HTML5',
+      'CSS3',
+      'Bootstrap 3',
+      'ESLint',
+      'MavensMate',
+      'Trello',
+    ],
+    [
+      'Through my LLC, I had already done some minor engagements with the University of Colorado when I was asked if I could provide an estimate to deliver on an Alumni Community.',
+      'I drew on my previous experience building a community on the Force.com platform, and took the contract. We ran this project using a Trello board and scrum practices.  I delivered working software in just a matter of weeks, repeated that process, and deployed the site in just a few months.',
+    ],
+    'https://alumnicommunity.cu.edu',
+  ),
   buildWork(
     'public/images/work/ec_wedding.png',
     'Wedding RSVP Site',
