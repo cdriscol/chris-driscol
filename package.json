@@ -35,7 +35,7 @@
     "trailingComma": "all"
   },
   "resolutions": {
-    "graphql": "^0.12.3"
+    "graphql": "^0.13.0"
   },
   "dependencies": {
     "@storybook/addon-actions": "^3.3.12",
@@ -68,7 +68,7 @@
     "found": "^0.3.7",
     "found-relay": "^0.3.0-alpha.11",
     "graphiql": "^0.11.11",
-    "graphql": "^0.12.3",
+    "graphql": "^0.13.0",
     "graphql-relay": "^0.5.4",
     "invariant": "^2.2.2",
     "isomorphic-fetch": "^2.2.1",
