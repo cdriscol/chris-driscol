@@ -34,6 +34,9 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
+  "resolutions": {
+    "graphql": "^0.12.3"
+  },
   "dependencies": {
     "@storybook/addon-actions": "^3.3.12",
     "@storybook/addon-info": "^3.3.12",
