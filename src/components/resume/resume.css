@@ -47,10 +47,20 @@ body,
   border-color: #172a3a;
 }
 
-.resume .graphiql-container .title {
+.graphiql-container .execute-options,
+.graphiql-container .toolbar-menu-items,
+.graphiql-container .toolbar-select-options {
+  background: #09141e;
+}
+
+.resume .graphiql-container .title a {
   font-size: 32px;
   color: #fed136;
   font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+}
+
+.resume .graphiql-container .title a:hover {
+  text-decoration: none;
 }
 
 .graphiql-container .variable-editor-title {
