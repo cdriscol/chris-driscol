@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import Component from './app.component';
 
 const fixtures = {
-  viewer: {
+  chris: {
     title: 'title',
     description: 'description',
   },

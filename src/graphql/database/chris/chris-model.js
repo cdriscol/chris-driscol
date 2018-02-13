@@ -1,5 +1,5 @@
 // @flow
-export default class ViewerModel extends Object {
+export default class ChrisModel extends Object {
   id: string;
   skills: {};
   constructor(id: string) {
@@ -9,6 +9,6 @@ export default class ViewerModel extends Object {
   }
 
   static findById(id: string) {
-    return new ViewerModel(id);
+    return new ChrisModel(id);
   }
 }

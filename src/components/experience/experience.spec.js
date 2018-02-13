@@ -16,7 +16,7 @@ const createMockExperience = () => {
 };
 
 const fixtures = {
-  viewer: {},
+  chris: {},
   experiences: [
     createMockExperience(),
     createMockExperience(),

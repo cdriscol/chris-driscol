@@ -20,7 +20,7 @@ exports[`renders correctly 1`] = `
     works={Array []}
   />
   <Contact
-    viewer={
+    chris={
       Object {
         "about": Object {},
         "experience": Array [],

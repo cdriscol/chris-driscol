@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import Component from './contact.component';
 
 const fixtures = {
-  viewer: {},
+  chris: {},
   relay: {
     environment: {},
   },

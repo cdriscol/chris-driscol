@@ -27,8 +27,8 @@ export const routeConfig = makeRouteConfig(
     Component={App}
     query={graphql`
       query routes_App_Query {
-        viewer {
-          ...app_viewer
+        chris {
+          ...app_chris
         }
       }
     `}
@@ -38,8 +38,8 @@ export const routeConfig = makeRouteConfig(
       Component={HomePage}
       query={graphql`
         query routes_HomePage_Query {
-          viewer {
-            ...homePage_viewer
+          chris {
+            ...homePage_chris
           }
         }
       `}

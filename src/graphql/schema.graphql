@@ -11,6 +11,18 @@ type About {
   tagLine: String
 }
 
+type Chris implements Node {
+  # The ID of an object
+  id: ID!
+  title: String!
+  description: String!
+  skills: Skills!
+  experience: [Experience]!
+  about: About!
+  work: [Work]!
+  social: Social!
+}
+
 input ContactMeInput {
   from: String!
   name: String!
@@ -43,7 +55,7 @@ interface Node {
 }
 
 type ROOT {
-  viewer: Viewer!
+  chris: Chris!
 
   # Fetches an object given its ID
   node(
@@ -63,18 +75,6 @@ type Social {
   linkedIn: String!
   github: String!
   email: String!
-}
-
-type Viewer implements Node {
-  # The ID of an object
-  id: ID!
-  title: String!
-  description: String!
-  skills: Skills!
-  experience: [Experience]!
-  about: About!
-  work: [Work]!
-  social: Social!
 }
 
 type Work {

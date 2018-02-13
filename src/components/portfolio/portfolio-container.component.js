@@ -5,7 +5,7 @@ import Portfolio from './portfolio.component';
 import type { portfolioContainerQuery } from './__generated__/portfolioContainerQuery.graphql';
 
 type Props = {
-  viewer: portfolioContainerQuery,
+  chris: portfolioContainerQuery,
 };
 
 const { Environment, Network, RecordSource, Store } = require('relay-runtime');
@@ -27,7 +27,7 @@ export default function PortfolioContainer() {
       environment={environment}
       query={graphql`
         query portfolioContainerQuery {
-          viewer {
+          chris {
             work {
               ...portfolio_works
             }
@@ -36,10 +36,8 @@ export default function PortfolioContainer() {
       `}
       variables={{}}
       render={({ props }) => {
-        if (!props || !props.viewer || !props.viewer.work) return null;
-        return (
-          <Portfolio works={props && props.viewer && props.viewer.work} />
-        );
+        if (!props || !props.chris || !props.chris.work) return null;
+        return <Portfolio works={props && props.chris && props.chris.work} />;
       }}
     />
   );

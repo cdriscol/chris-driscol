@@ -4,29 +4,29 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import Helmet from 'react-helmet';
 import { ErrorBoundary } from '../common';
 import { Analytics } from '../analytics';
-import type { app_viewer } from './__generated__/app_viewer.graphql';
+import type { app_chris } from './__generated__/app_chris.graphql';
 
 type Props = {
-  viewer: app_viewer,
+  chris: app_chris,
   children: React.Node,
 };
 
-const App = ({ children, viewer }: Props) => (
+const App = ({ children, chris }: Props) => (
   <div>
-    <Helmet title={viewer.title} titleTemplate="%s">
+    <Helmet title={chris.title} titleTemplate="%s">
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="robots" content="noindex, nofollow" />
 
-      <meta name="description" content={viewer.description} />
+      <meta name="description" content={chris.description} />
       <meta
         name="google-site-verification"
         content="R2ugoW2o9U7kLx2-Xtmmb-kA8lJGqsqvqvGv2NKCxrI"
       />
 
-      <meta property="og:site_name" content={viewer.title} />
-      <meta property="og:title" content={viewer.title} />
-      <meta property="og:description" content={viewer.description} />
+      <meta property="og:site_name" content={chris.title} />
+      <meta property="og:title" content={chris.title} />
+      <meta property="og:description" content={chris.description} />
       <meta property="og:url" content="https://chrisdriscol.com" />
       <meta
         property="og:image"
@@ -34,8 +34,8 @@ const App = ({ children, viewer }: Props) => (
       />
       <meta property="og:type" content="website" />
 
-      <meta name="twitter:title" content={viewer.title} />
-      <meta name="twitter:description" content={viewer.description} />
+      <meta name="twitter:title" content={chris.title} />
+      <meta name="twitter:description" content={chris.description} />
       <meta name="twitter:url" content="https://chrisdriscol.com" />
       <meta
         name="twitter:image"
@@ -138,7 +138,7 @@ const App = ({ children, viewer }: Props) => (
 export default createFragmentContainer(
   App,
   graphql`
-    fragment app_viewer on Viewer {
+    fragment app_chris on Chris {
       title
       description
     }

@@ -14,7 +14,7 @@ export default function BuiltWith() {
                 'This site is powered by GraphQL, you can query all this sites data (and more) by using my '
               }
               <a title="GraphiQL Explorer" href="/resume" target="_blank">
-                GraphQL Playground
+                GraphiQL Explorer
               </a>
             </p>
           </div>

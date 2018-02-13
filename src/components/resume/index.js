@@ -31,7 +31,7 @@ export default class ResumePage extends React.Component<{}, State> {
           query={`
 # Welcome to my Resume GraphiQL Explorer
 query {
-  viewer {
+  chris {
     title
   }
 }`}

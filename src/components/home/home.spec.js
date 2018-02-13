@@ -4,7 +4,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import Component from './home-page.component';
 
 const fixtures = {
-  viewer: {
+  chris: {
     social: {},
     about: {},
     skills: {},

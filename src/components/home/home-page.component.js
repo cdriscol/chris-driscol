@@ -10,44 +10,44 @@ import Portfolio from '../portfolio';
 import Contact from '../contact';
 import Footer from '../footer';
 import BuiltWith from '../built-with';
-import type { homePage_viewer } from './__generated__/homePage_viewer.graphql';
+import type { homePage_chris } from './__generated__/homePage_chris.graphql';
 
 type Props = {
-  viewer: homePage_viewer,
+  chris: homePage_chris,
 };
 
-function HomePage({ viewer }: Props) {
+function HomePage({ chris }: Props) {
   return (
     <div>
       {
         /* $FlowIssue: https://github.com/facebook/relay/issues/2316 */
-        <Navigation social={viewer.social} />
+        <Navigation social={chris.social} />
       }
       <Header />
       {
         /* $FlowIssue */
-        <About about={viewer.about} />
+        <About about={chris.about} />
       }
       <BuiltWith />
       {
         /* $FlowIssue */
-        <Skills skills={viewer.skills} />
+        <Skills skills={chris.skills} />
       }
       {
         /* $FlowIssue */
-        <Experience experiences={viewer.experience} />
+        <Experience experiences={chris.experience} />
       }
       {
         /* $FlowIssue */
-        <Portfolio works={viewer.work} />
+        <Portfolio works={chris.work} />
       }
       {
         /* $FlowIssue */
-        <Contact viewer={viewer} />
+        <Contact chris={chris} />
       }
       {
         /* $FlowIssue */
-        <Footer social={viewer.social} />
+        <Footer social={chris.social} />
       }
     </div>
   );
@@ -56,9 +56,9 @@ function HomePage({ viewer }: Props) {
 export default createFragmentContainer(
   HomePage,
   graphql`
-    fragment homePage_viewer on Viewer {
+    fragment homePage_chris on Chris {
       title
-      ...contact_viewer
+      ...contact_chris
       about {
         ...about_about
       }

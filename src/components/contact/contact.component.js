@@ -5,13 +5,13 @@ import { createFragmentContainer, graphql, Environment } from 'react-relay';
 import isEmail from 'validator/lib/isEmail';
 import './contact.css';
 import contactMutation from './contact.mutation';
-import type { contact_viewer } from './__generated__/contact_viewer.graphql';
+import type { contact_chris } from './__generated__/contact_chris.graphql';
 
 type Props = {
   relay?: {
     environment: Environment,
   },
-  viewer: contact_viewer,
+  chris: contact_chris,
 };
 
 type State = {
@@ -214,7 +214,7 @@ class Contact extends React.Component<Props, State> {
 export default createFragmentContainer(
   Contact,
   graphql`
-    fragment contact_viewer on Viewer {
+    fragment contact_chris on Chris {
       id
     }
   `,

@@ -7,7 +7,7 @@ import {
 } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 import {
-  ViewerModel,
+  ChrisModel,
   ExperienceModel,
   AboutModel,
   WorkModel,
@@ -21,8 +21,8 @@ import AboutType from './about.graphql';
 import WorkType from './work.graphql';
 import SocialType from './social.graphql';
 
-const ViewerType = new GraphQLObjectType({
-  name: 'Viewer',
+const ChrisType = new GraphQLObjectType({
+  name: 'Chris',
   fields: {
     id: globalIdField(),
     title: {
@@ -57,6 +57,6 @@ const ViewerType = new GraphQLObjectType({
   interfaces: [nodeInterface],
 });
 
-TypeModelResolver.registerType(ViewerType, ViewerModel);
+TypeModelResolver.registerType(ChrisType, ChrisModel);
 
-export default ViewerType;
+export default ChrisType;
