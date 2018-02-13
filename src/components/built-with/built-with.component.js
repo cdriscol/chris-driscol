@@ -11,9 +11,9 @@ export default function BuiltWith() {
           <div className={classNames('col-lg-12', 'text-center')}>
             <p className="text-muted">
               {
-                'This site is powered by GraphQL, you can query all this sites data by using my '
+                'This site is powered by GraphQL, you can query all this sites data (and more) by using my '
               }
-              <a title="GraphQL Playground" href="/playground" target="_blank">
+              <a title="GraphiQL Explorer" href="/resume" target="_blank">
                 GraphQL Playground
               </a>
             </p>

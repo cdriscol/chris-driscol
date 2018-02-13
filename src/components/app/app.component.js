@@ -42,6 +42,10 @@ const App = ({ children, viewer }: Props) => (
         content="https://chrisdriscol.com/public/images/header-bg.jpg"
       />
       <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/theme/solarized.css"
+      />
+      <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Source+Code+Pro:400,700"
         rel="stylesheet"
       />

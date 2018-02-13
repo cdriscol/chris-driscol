@@ -10,7 +10,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 export const historyMiddlewares = [queryMiddleware];
 
-import { App, HomePage } from './components';
+import { App, HomePage, ResumePage } from './components';
 
 export function createResolver(fetcher: any) {
   const environment = new Environment({
@@ -44,6 +44,7 @@ export const routeConfig = makeRouteConfig(
         }
       `}
     />
+    <Route path="resume" Component={ResumePage} />
   </Route>,
 );
 

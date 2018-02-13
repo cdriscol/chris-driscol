@@ -30,3 +30,7 @@ declare module '@storybook/addon-actions/register' {
 declare module 'react-test-renderer/shallow' {
   declare module.exports: any;
 }
+
+declare module 'graphiql/graphiql.css' {
+  declare module.exports: any;
+}

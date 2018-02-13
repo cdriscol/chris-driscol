@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // $FlowFixMe
 import 'bootstrap/dist/css/bootstrap.css';
+import 'graphiql/graphiql.css';
 import 'jquery/dist/jquery';
 import 'bootstrap/dist/js/bootstrap';
 import './styles';
