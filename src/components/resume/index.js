@@ -43,6 +43,7 @@ export default class ResumePage extends React.Component<{}, State> {
           query={`
 # Welcome to my Resume GraphiQL Explorer.
 # You can browse my schema by looking at the "Docs" on the right.
+# Run a query by pressing the execute (>) button on the top bar.
 query resume {
   chris {
     title
