@@ -32,7 +32,7 @@ const ChrisType = new GraphQLObjectType({
     description: {
       type: GraphQLNonNull(GraphQLString),
       resolve: () =>
-        `Hi, I'm Chris Driscol, a full-stack engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
+        `Hi, I'm Chris Driscol, an experienced full-stack engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
     },
     skills: {
       type: GraphQLNonNull(SkillsType),
