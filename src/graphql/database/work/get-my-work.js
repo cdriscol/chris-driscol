@@ -44,9 +44,9 @@ export default () => [
       'Github',
     ],
     [
-      'Working with a team of engineers, my responsibility is to ensure completion of new product and feature requests.  I work with business and product teams to create a feature backlog that gets broken into stories with my team and executed on.',
-      'My days can range from going heads-down all day on a technical problem, to working with every developer on my team to help complete our commitments, to meeting with business to understand and break down new market opportunities.',
-      'In the last year, we have been transitioning away from Angular into React and GraphQL. I have been spending a lot of my time building out a React component library and helping defining our GraphQL schema objects.',
+      'Working with a team of engineers, my responsibility is to ensure completion of new product and feature requests.  Working with business, product, and engineering teams to ensure we <i>build the right things and build them right</i>.',
+      'My days can range from going heads-down all day on a technical problem, to meeting with every developer on my team for our one on one, to meeting with users and business stakeholders to understand and scope new features.',
+      'In the last year, we have been transitioning away from Angular into React, Relay, and GraphQL. I have been spending a lot of my time building out a React component library and helping defining our GraphQL schema.',
     ],
     'https://www.commercialtribe.com/',
     'veGb2LARzsE',

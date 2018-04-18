@@ -68,6 +68,6 @@ export default (): Array<ExperienceType> => [
     'Fall 2015 - Present',
     'CommercialTribe, Denver, CO',
     'Responsible for leading development efforts for all new products and features. We started with a mostly MEAN stack, but now we have adopted GraphQL, React, Relay Modern, Redux, and React Native. Act as a player and coach, by not only being a top code contributor but also by coaching other developers on best practices, design patterns, open source, and agile principles.',
-    'Lead Software Engineer',
+    'Director of Engineering',
   ),
 ];

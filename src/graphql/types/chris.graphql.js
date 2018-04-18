@@ -27,12 +27,12 @@ const ChrisType = new GraphQLObjectType({
     id: globalIdField(),
     title: {
       type: GraphQLNonNull(GraphQLString),
-      resolve: () => 'Chris Driscol | Lead Full Stack Engineer in Colorado',
+      resolve: () => 'Chris Driscol | Director of Engineering in Colorado',
     },
     description: {
       type: GraphQLNonNull(GraphQLString),
       resolve: () =>
-        `Hi, I'm Chris Driscol, a lead full stack software engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
+        `Hi, I'm Chris Driscol, a full-stack engineer with a passion for crafting really awesome software.  Check out my site to learn about me!`,
     },
     skills: {
       type: GraphQLNonNull(SkillsType),

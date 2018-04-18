@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "precommit": "lint-staged",
     "lint": "eslint *.js src tools",
     "relay-compiler": "relay-compiler --src src --schema src/graphql/schema.graphql",
     "update-schema": "babel-node tools/update-schema.js",
@@ -22,12 +21,6 @@
     "start": "yarn relay-compiler && cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
     "start:prod": "yarn relay-compiler && cross-env NODE_ENV=production node index.js",
     "bs": "yarn clean && yarn relay && yarn build && yarn build:server && yarn start:prod"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
   },
   "prettier": {
     "printWidth": 79,
@@ -73,7 +66,6 @@
     "invariant": "^2.2.2",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
-    "lint-staged": "^6.0.1",
     "material-ui": "^1.0.0-beta.30",
     "node-sass": "^4.7.2",
     "nodemon": "^1.14.11",
@@ -124,7 +116,6 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "flow-bin": "^0.65.0",
     "flow-typed": "^2.3.0",
-    "husky": "^0.14.3",
     "jest": "^22.2.2",
     "jest-css-modules": "^1.1.0",
     "json-loader": "^0.5.7",
