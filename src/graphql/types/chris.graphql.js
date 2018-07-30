@@ -27,7 +27,7 @@ const ChrisType = new GraphQLObjectType({
     id: globalIdField(),
     title: {
       type: GraphQLNonNull(GraphQLString),
-      resolve: () => 'Chris Driscol | Director of Engineering in Colorado',
+      resolve: () => 'Chris Driscol | VP of Engineering in Colorado',
     },
     description: {
       type: GraphQLNonNull(GraphQLString),
