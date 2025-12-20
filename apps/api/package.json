@@ -1,0 +1,10 @@
+{
+  "name": "@chris-driscol/api",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cargo run --bin api",
+    "build": "cargo build --release --bin api",
+    "test": "cargo test"
+  }
+}

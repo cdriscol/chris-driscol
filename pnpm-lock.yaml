@@ -12,6 +12,8 @@ importers:
         specifier: ^2.1.2
         version: 2.7.0
 
+  apps/api: {}
+
   apps/web:
     dependencies:
       '@emotion/react':
