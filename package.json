@@ -4,6 +4,8 @@
   "packageManager": "pnpm@9.0.0",
   "scripts": {
     "dev": "turbo dev",
+    "dev:web": "pnpm -C apps/web dev",
+    "dev:api": "pnpm -C apps/api dev",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
