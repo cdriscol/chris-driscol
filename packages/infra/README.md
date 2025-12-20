@@ -14,6 +14,10 @@ pnpm synth
 - `API_LAMBDA_ZIP`: path to the Rust Lambda artifact (defaults to `dist/lambda.zip`)
 - `GRAPHQL_ORIGIN_SECRET`: shared secret header value for CloudFront -> Lambda
 
+## Origin protection
+
+Set the same `GRAPHQL_ORIGIN_SECRET` in the Lambda environment and in CloudFront's custom header (`x-origin-secret`).
+
 ## Notes
 
 - `/graphql` behavior has caching disabled.
