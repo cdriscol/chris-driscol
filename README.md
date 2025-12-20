@@ -32,6 +32,9 @@ pnpm dev        # runs turbo dev (per-package dev scripts)
 pnpm dev:web    # Vite dev server
 pnpm dev:api    # Rust API (cargo run)
 pnpm build      # turbo build
+pnpm lint       # Biome (where configured)
+pnpm format     # Biome (where configured)
+pnpm test       # Vitest (web)
 ```
 
 ## GraphQL contracts

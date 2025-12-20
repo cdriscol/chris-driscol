@@ -130,7 +130,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: accidental reformatting; enforce limited formatting and avoid mass changes.
   - Rollback: revert tooling commit and reapply with smaller scope.
-- Status: Pending.
+- Status: In progress (Biome config added; Vitest available in `apps/web`).
 
 ### Step 8: CI/CD via GitHub Actions (OIDC)
 - Goal/scope: Add GitHub Actions for `main` pushes to build Rust artifact, run tests, and deploy CDK with OIDC.

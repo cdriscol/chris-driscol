@@ -13,6 +13,10 @@ pnpm format
 pnpm typecheck
 ```
 
+## Styling
+
+Legacy global styles (fonts, headings, buttons, sections) are imported from `src/styles/legacy`.
+
 ## GraphQL
 
 The app should call `/graphql` in all environments. During local dev, Vite proxies:

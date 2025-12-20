@@ -1,0 +1,18 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+  "formatter": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true
+  },
+  "files": {
+    "ignore": [
+      "legacy/**",
+      "apps/web/public/**",
+      "target/**",
+      "**/*.lock",
+      "**/*.min.*"
+    ]
+  }
+}
