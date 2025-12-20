@@ -3,6 +3,8 @@ use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{routing::post, Extension, Router};
 use std::net::SocketAddr;
 
+const CONTRACT_SDL: &str = include_str!("../../../packages/contracts/schema.graphql");
+
 struct QueryRoot;
 struct MutationRoot;
 
@@ -43,9 +45,17 @@ async fn graphql_handler(
     schema.execute(request.into_inner()).await.into()
 }
 
+fn normalize_sdl(sdl: &str) -> String {
+    sdl.chars().filter(|ch| !ch.is_whitespace()).collect()
+}
+
 #[tokio::main]
 async fn main() {
     let schema = Schema::build(QueryRoot, MutationRoot, EmptySubscription).finish();
+    let api_sdl = schema.sdl();
+    if normalize_sdl(CONTRACT_SDL) != normalize_sdl(&api_sdl) {
+        eprintln!("Warning: API schema does not match packages/contracts/schema.graphql");
+    }
 
     let app = Router::new()
         .route("/graphql", post(graphql_handler))
