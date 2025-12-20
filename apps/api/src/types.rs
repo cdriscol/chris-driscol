@@ -1,6 +1,7 @@
 use async_graphql::{InputObject, Object, SimpleObject};
 
 use crate::data;
+use crate::email;
 
 pub struct QueryRoot;
 pub struct MutationRoot;
@@ -97,8 +98,13 @@ impl QueryRoot {
 
 #[Object]
 impl MutationRoot {
-    async fn contact_me(&self, input: ContactMeInput) -> ContactMePayload {
-        let _ = input;
-        ContactMePayload { success: true }
+    async fn contact_me(
+        &self,
+        input: ContactMeInput,
+    ) -> Result<ContactMePayload, async_graphql::Error> {
+        email::send_contact_email(&input)
+            .await
+            .map_err(|err| async_graphql::Error::new(err))?;
+        Ok(ContactMePayload { success: true })
     }
 }

@@ -5,6 +5,7 @@ use std::net::SocketAddr;
 mod schema;
 mod types;
 mod data;
+mod email;
 
 use schema::AppSchema;
 

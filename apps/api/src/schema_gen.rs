@@ -4,6 +4,7 @@ use std::path::PathBuf;
 mod schema;
 mod types;
 mod data;
+mod email;
 
 fn main() {
     let schema = schema::build_schema();
