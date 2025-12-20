@@ -9,7 +9,7 @@ fn about() -> About {
             "Prior to moving to Colorado I worked in Rochester, MN for the <strong>Mayo Clinic Department of Nuclear Medicine</strong> for just over 5 years.  Developing and supporting clinical <strong>diagnostic imaging applications</strong> on a small team helped me truly understand the importance of <strong>software quality, test automation, and continous integration tooling</strong>.".to_string(),
             "In my free time I love hiking, camping, snowboarding, mountain biking, baseball, football, <strong>spending time with my beautiful wife!</strong>".to_string(),
         ],
-        image_url: Some("public/images/me.jpg".to_string()),
+        image_url: Some("/images/me.jpg".to_string()),
         image_caption: Some("VP of Engineering".to_string()),
         image_title: Some("Chris Driscol".to_string()),
         tag_line: Some("I <i class=\"fa fa-heart\"></i> working on <strong>Agile teams</strong> motivated by <strong>delivering customer value</strong> early and often.".to_string()),
@@ -19,49 +19,49 @@ fn about() -> About {
 fn experience() -> Vec<Experience> {
     vec![
         Experience {
-            image_url: Some("public/images/about/1.jpg".to_string()),
+            image_url: Some("/images/about/1.jpg".to_string()),
             duration: Some("2001 - 2002".to_string()),
             location: Some("High School".to_string()),
             description: Some("It was a TI-83+ calculator, my brother had shown me a game called Beerhunt he installed on his <i>smart</i> calculator. Once I realized I could hack the source code directly on the calculator, I reverse engineered the price of a beer and claimed the high score. At this point, I was hooked on everything computer science.".to_string()),
             title: None,
         },
         Experience {
-            image_url: Some("public/images/about/2.jpg".to_string()),
+            image_url: Some("/images/about/2.jpg".to_string()),
             duration: Some("Fall 2004 â€“ Spring 2008".to_string()),
             location: Some("University of Iowa, Iowa City, IA".to_string()),
             description: Some("Started working in help desk troubleshooting problems for faculty and students as well as building computer labs around campus. I ended as a software developer, and developed a FileMaker Pro solution to help the Department of Otolaryngology go paperless.".to_string()),
             title: Some("Help Desk Consultant, Software Developer".to_string()),
         },
         Experience {
-            image_url: Some("public/images/about/3.jpg".to_string()),
+            image_url: Some("/images/about/3.jpg".to_string()),
             duration: Some("Summer 2007".to_string()),
             location: Some("Mayo Clinic, Rochester, MN".to_string()),
             description: Some("Was a key member of a data warehouse re-architecting project, having developed a full-stack web application to gather metadata about how our finance data was reported on. In 3 moths I wrote 22,000+ lines of non-generated C# and HTML code using ASP.Net 2.0.".to_string()),
             title: Some("Intern Programmer/Analyst".to_string()),
         },
         Experience {
-            image_url: Some("public/images/about/4.jpg".to_string()),
+            image_url: Some("/images/about/4.jpg".to_string()),
             duration: Some("Summer 2008 - Summer 2013".to_string()),
             location: Some("Mayo Clinic, Rochester, MN".to_string()),
             description: Some("Developed and supported more than 70 clinical imaging applications used by the Department of Nuclear Medicine used in multiple states. Was recognized with the Above & Beyond Award in 2013. During my time, I developed 6 clinically used image processing applications for Nuclear Medicine and more than 20 windows services and utility applications to automate several tasks. Became certified and acted as SQL Server Application DBA for my team. Presented on WPF, MVVM, and .Net tooling to more than 50 other software engineers from other teams in 2011.".to_string()),
             title: Some("Senior Programmer/Analyst, DBA".to_string()),
         },
         Experience {
-            image_url: Some("public/images/about/5.jpg".to_string()),
+            image_url: Some("/images/about/5.jpg".to_string()),
             duration: Some("Summer 2013 - Fall 2015".to_string()),
             location: Some("Rally Software, Boulder, CO".to_string()),
             description: Some("Developed two full-stack web applications including a Customer Community using SalesForceâ€™s Force.com platform, and an On-Demand Learning Management System using the Drupal platform. Contributed to development of several SaaS integrations created with Java, Groovy, Apache Camel, ActiveMQ, ElasticSearch, and Kibana. Responsible for maintenance and development of advanced SalesForce Apex/VisualForce solutions. Participated in agile trainings including Scrum Master, Agile Basics, and SAFe Practitioner. Responsible for facilitating team retros, planning, estimation, pair programming, TDD, and continuous integration.".to_string()),
             title: Some("Enterprise Software Engineer".to_string()),
         },
         Experience {
-            image_url: Some("public/images/favicon/ms-icon-310x310.png".to_string()),
+            image_url: Some("/images/favicon/ms-icon-310x310.png".to_string()),
             duration: Some("Fall 2013 - Present".to_string()),
             location: Some("Driscol Software LLC, Broomfield, CO".to_string()),
             description: Some("After moving to Colorado, I formed an LLC and began doing work for friends and businesses in the Boulder area. I get referrals all from word-of-mouth and have continued to increase my contacts year to year. Most recently my larger projects have been full-stack web applications for the University of Colorado. My smaller projects include wedding websites, design and styling work, and SalesForce development.".to_string()),
             title: Some("Owner".to_string()),
         },
         Experience {
-            image_url: Some("public/images/about/6.png".to_string()),
+            image_url: Some("/images/about/6.png".to_string()),
             duration: Some("Fall 2015 - Present".to_string()),
             location: Some("CommercialTribe, Denver, CO".to_string()),
             description: Some("Responsible for leading development efforts for all new products and features. We started with a mostly MEAN stack, but now we have adopted GraphQL, React, Relay Modern, Redux, and React Native. Act as a player and coach, by not only being a top code contributor but also by coaching other developers on best practices, design patterns, open source, and agile principles.".to_string()),
@@ -184,7 +184,7 @@ fn social() -> Social {
 fn work() -> Vec<Work> {
     vec![
         Work {
-            image_url: Some("public/images/work/ct_views.png".to_string()),
+            image_url: Some("/images/work/ct_views.png".to_string()),
             title: Some("CommercialTribe".to_string()),
             sub_title: Some(
                 "New product and feature development in React, GraphQL, React-Native, Redux, and Relay Modern.".to_string(),
@@ -217,7 +217,7 @@ fn work() -> Vec<Work> {
             video: Some("veGb2LARzsE".to_string()),
         },
         Work {
-            image_url: Some("public/images/work/cu_views.png".to_string()),
+            image_url: Some("/images/work/cu_views.png".to_string()),
             title: Some("University Alumni Community".to_string()),
             sub_title: Some(
                 "An alumni community for the University of Colorado for students to register, update their contact information, and stay in contact with the university.".to_string(),
@@ -247,7 +247,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/ec_wedding.png".to_string()),
+            image_url: Some("/images/work/ec_wedding.png".to_string()),
             title: Some("Wedding RSVP Site".to_string()),
             sub_title: Some("A wedding website for a friend with RSVP and details.".to_string()),
             date: Some("2017".to_string()),
@@ -272,7 +272,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/community_views.jpg".to_string()),
+            image_url: Some("/images/work/community_views.jpg".to_string()),
             title: Some("Rally Community".to_string()),
             sub_title: Some("Custom designed community built on the Force.com platform.".to_string()),
             date: Some("2014 - 2015".to_string()),
@@ -301,7 +301,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/lms_views.jpg".to_string()),
+            image_url: Some("/images/work/lms_views.jpg".to_string()),
             title: Some("AgileU OnDemand LMS".to_string()),
             sub_title: Some("Agile OnDemand Learning Management System (LMS) built on Drupal.".to_string()),
             date: Some("2014 - 2015".to_string()),
@@ -332,7 +332,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/wedding_views.jpg".to_string()),
+            image_url: Some("/images/work/wedding_views.jpg".to_string()),
             title: Some("driscolwedding.com".to_string()),
             sub_title: Some("My own wedding website which our guests <strong>absolutely loved!</strong>".to_string()),
             date: Some("2012".to_string()),
@@ -363,7 +363,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/mtb_race.jpg".to_string()),
+            image_url: Some("/images/work/mtb_race.jpg".to_string()),
             title: Some("MTB Race Timer".to_string()),
             sub_title: Some("An offline mountain bike race timer used to record live lap results".to_string()),
             date: Some("2012".to_string()),
@@ -387,7 +387,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/nukenotes.jpg".to_string()),
+            image_url: Some("/images/work/nukenotes.jpg".to_string()),
             title: Some("Nuke Notes".to_string()),
             sub_title: Some("Replaced paper notes in the Nuclear Medicine department".to_string()),
             date: Some("2012".to_string()),
@@ -413,7 +413,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/cisternogram.jpg".to_string()),
+            image_url: Some("/images/work/cisternogram.jpg".to_string()),
             title: Some("Cisternogram".to_string()),
             sub_title: Some("Measures leakage of the spine over time".to_string()),
             date: Some("2011".to_string()),
@@ -441,7 +441,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/dspect.jpg".to_string()),
+            image_url: Some("/images/work/dspect.jpg".to_string()),
             title: Some("D-SPECT QC GUI/Service".to_string()),
             sub_title: Some("Automated much of the daily QC work our technologists were performing".to_string()),
             date: Some("2010".to_string()),
@@ -467,7 +467,7 @@ fn work() -> Vec<Work> {
             video: None,
         },
         Work {
-            image_url: Some("public/images/work/subtract.jpg".to_string()),
+            image_url: Some("/images/work/subtract.jpg".to_string()),
             title: Some("SPECT Subtract".to_string()),
             sub_title: Some("SPECT image normalization and subtraction".to_string()),
             date: Some("2010".to_string()),
