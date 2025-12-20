@@ -1,5 +1,5 @@
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
-use axum::{routing::post, Extension, Router};
+use axum::{http::HeaderMap, routing::post, Extension, Router};
 use std::net::SocketAddr;
 
 mod schema;
@@ -11,8 +11,20 @@ use schema::AppSchema;
 
 async fn graphql_handler(
     Extension(schema): Extension<AppSchema>,
+    headers: HeaderMap,
     request: GraphQLRequest,
 ) -> GraphQLResponse {
+    if let Ok(expected) = std::env::var("GRAPHQL_ORIGIN_SECRET") {
+        let provided = headers
+            .get("x-origin-secret")
+            .and_then(|value| value.to_str().ok());
+        if provided != Some(expected.as_str()) {
+            let err = async_graphql::Error::new("Forbidden").extend_with(|_err, e| {
+                e.set("code", "FORBIDDEN");
+            });
+            return async_graphql::Response::from_errors(vec![err]).into();
+        }
+    }
     schema.execute(request.into_inner()).await.into()
 }
 
