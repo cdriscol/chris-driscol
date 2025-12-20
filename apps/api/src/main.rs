@@ -1,42 +1,11 @@
-use async_graphql::{EmptySubscription, InputObject, Object, Schema, SimpleObject};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{routing::post, Extension, Router};
 use std::net::SocketAddr;
 
-const CONTRACT_SDL: &str = include_str!("../../../packages/contracts/schema.graphql");
+mod schema;
+mod types;
 
-struct QueryRoot;
-struct MutationRoot;
-
-#[derive(InputObject)]
-struct ContactMeInput {
-    from: String,
-    name: String,
-    subject: String,
-    body: String,
-}
-
-#[derive(SimpleObject)]
-struct ContactMePayload {
-    success: bool,
-}
-
-#[Object]
-impl QueryRoot {
-    async fn ping(&self) -> &str {
-        "pong"
-    }
-}
-
-#[Object]
-impl MutationRoot {
-    async fn contact_me(&self, input: ContactMeInput) -> ContactMePayload {
-        let _ = input;
-        ContactMePayload { success: true }
-    }
-}
-
-type AppSchema = Schema<QueryRoot, MutationRoot, EmptySubscription>;
+use schema::AppSchema;
 
 async fn graphql_handler(
     Extension(schema): Extension<AppSchema>,
@@ -45,17 +14,9 @@ async fn graphql_handler(
     schema.execute(request.into_inner()).await.into()
 }
 
-fn normalize_sdl(sdl: &str) -> String {
-    sdl.chars().filter(|ch| !ch.is_whitespace()).collect()
-}
-
 #[tokio::main]
 async fn main() {
-    let schema = Schema::build(QueryRoot, MutationRoot, EmptySubscription).finish();
-    let api_sdl = schema.sdl();
-    if normalize_sdl(CONTRACT_SDL) != normalize_sdl(&api_sdl) {
-        eprintln!("Warning: API schema does not match packages/contracts/schema.graphql");
-    }
+    let schema = schema::build_schema();
 
     let app = Router::new()
         .route("/graphql", post(graphql_handler))

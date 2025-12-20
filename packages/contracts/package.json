@@ -6,6 +6,6 @@
     "schema.graphql"
   ],
   "scripts": {
-    "build": "node -e \"console.log('contracts: no build step')\""
+    "build": "cargo run -p chris-driscol-api --bin schema_gen"
   }
 }
