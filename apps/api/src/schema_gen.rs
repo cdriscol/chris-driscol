@@ -3,6 +3,7 @@ use std::path::PathBuf;
 
 mod schema;
 mod types;
+mod data;
 
 fn main() {
     let schema = schema::build_schema();

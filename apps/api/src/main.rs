@@ -4,6 +4,7 @@ use std::net::SocketAddr;
 
 mod schema;
 mod types;
+mod data;
 
 use schema::AppSchema;
 
