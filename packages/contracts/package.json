@@ -1,0 +1,11 @@
+{
+  "name": "@chris-driscol/contracts",
+  "private": true,
+  "version": "0.1.0",
+  "files": [
+    "schema.graphql"
+  ],
+  "scripts": {
+    "build": "node -e \"console.log('contracts: no build step')\""
+  }
+}

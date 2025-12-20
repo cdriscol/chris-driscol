@@ -1,0 +1,23 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  ping: String!
+}
+
+type Mutation {
+  contactMe(input: ContactMeInput!): ContactMePayload!
+}
+
+input ContactMeInput {
+  from: String!
+  name: String!
+  subject: String!
+  body: String!
+}
+
+type ContactMePayload {
+  success: Boolean!
+}
