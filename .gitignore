@@ -5,8 +5,10 @@ storybook-static/
 coverage/
 .turbo/
 .vite/
-pnpm-lock.yaml
 target/
 lambda.zip
 .env
 .env.*
+*.tsbuildinfo
+apps/**/vite.config.js
+apps/**/vite.config.d.ts
