@@ -1,9 +1,23 @@
-use async_graphql::{EmptyMutation, EmptySubscription, Object, Schema};
+use async_graphql::{EmptySubscription, InputObject, Object, Schema, SimpleObject};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{routing::post, Extension, Router};
 use std::net::SocketAddr;
 
 struct QueryRoot;
+struct MutationRoot;
+
+#[derive(InputObject)]
+struct ContactMeInput {
+    from: String,
+    name: String,
+    subject: String,
+    body: String,
+}
+
+#[derive(SimpleObject)]
+struct ContactMePayload {
+    success: bool,
+}
 
 #[Object]
 impl QueryRoot {
@@ -12,7 +26,15 @@ impl QueryRoot {
     }
 }
 
-type AppSchema = Schema<QueryRoot, EmptyMutation, EmptySubscription>;
+#[Object]
+impl MutationRoot {
+    async fn contact_me(&self, input: ContactMeInput) -> ContactMePayload {
+        let _ = input;
+        ContactMePayload { success: true }
+    }
+}
+
+type AppSchema = Schema<QueryRoot, MutationRoot, EmptySubscription>;
 
 async fn graphql_handler(
     Extension(schema): Extension<AppSchema>,
@@ -23,7 +45,7 @@ async fn graphql_handler(
 
 #[tokio::main]
 async fn main() {
-    let schema = Schema::build(QueryRoot, EmptyMutation, EmptySubscription).finish();
+    let schema = Schema::build(QueryRoot, MutationRoot, EmptySubscription).finish();
 
     let app = Router::new()
         .route("/graphql", post(graphql_handler))
