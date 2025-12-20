@@ -57,7 +57,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Dockerfiles and `docker-compose*.yml` present for web and storybook.
 - `Makefile` bundles local dev and CI tasks (`make ci`, `make build`, `make local`).
 
-## B) Step plan (6–10 steps)
+## B) Step plan (6-10 steps)
 
 ### Step 1: Create monorepo skeleton and quarantine legacy code
 - Goal/scope: Add `apps/`, `packages/`, `turbo.json`, `pnpm-workspace.yaml`, root `Cargo.toml`, and move current source into a `legacy/` directory for reference.
@@ -68,6 +68,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: accidental loss of legacy files or paths.
   - Rollback: revert the commit or move `legacy/` back to repo root.
+- Status: Completed (legacy moved to `legacy/`, root workspace scaffolded).
 
 ### Step 2: Scaffold `apps/web` (React + Vite + TS + Tailwind + MUI)
 - Goal/scope: Create a Vite React TypeScript app with Tailwind + MUI; configure aliases, asset handling, and `/graphql` proxy.
@@ -77,6 +78,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: initial app diverges from legacy structure; keep content minimal and configurable.
   - Rollback: remove `apps/web/` and any workspace references.
+- Status: Completed (build verified with `pnpm -C apps/web build`).
 
 ### Step 3: Scaffold `apps/storybook` (current major, static build)
 - Goal/scope: Create Storybook using TS and Vite builder; configure static build output and base path `/storybook/`.
@@ -87,6 +89,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: incorrect base path or static output location.
   - Rollback: remove `apps/storybook/` and related workspace tasks.
+- Status: Pending.
 
 ### Step 4: Scaffold `apps/api` (Rust + Axum + async-graphql + relay)
 - Goal/scope: Create Rust workspace and API crate with `/graphql` endpoint (JSON only), relay-ready schema, and local server on `localhost:3000`.
@@ -97,15 +100,17 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: mismatch between local server and frontend expectations (`/graphql`).
   - Rollback: revert API crate or isolate it behind feature flags until stable.
+- Status: Completed (build verified with `cargo build -p chris-driscol-api`).
 
 ### Step 5: Create `packages/contracts` for GraphQL schema and shared artifacts
-- Goal/scope: Centralize GraphQL SDL and any generated client artifacts for future use.
-- Files/areas touched: `packages/contracts/` (schema file, generation scripts placeholders).
+- Goal/scope: Centralize GraphQL SDL generated from the Rust schema (code-first).
+- Files/areas touched: `packages/contracts/` (generated schema, generation script).
 - Verification commands:
-  - `pnpm typecheck` (ensures TS integration with generated types if present)
+  - `cargo run -p chris-driscol-api --bin schema_gen`
 - Risks + rollback:
-  - Risk: over-committing to schema design before migration; keep minimal.
-  - Rollback: keep schema only and defer generation steps.
+  - Risk: schema drift if generation is not run; keep it in CI or pre-commit.
+  - Rollback: revert to last generated schema file.
+- Status: Completed (schema generation bin added and run once).
 
 ### Step 6: Add `packages/infra` (CDK v2)
 - Goal/scope: CDK app provisioning S3 (web/storybook), CloudFront, Lambda Function URL, Route53, and optional WAF; configure `/graphql` behavior and origin protection.
@@ -115,6 +120,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: incorrect origin protection or CloudFront behavior setup.
   - Rollback: keep infra isolated; do not deploy until verified.
+- Status: Completed (CDK scaffold only; no account/deploy yet).
 
 ### Step 7: Tooling modernization (Biome + Vitest + TS configs)
 - Goal/scope: Replace ESLint/Prettier/Jest/Flow with Biome, Vitest, and TypeScript.
@@ -124,6 +130,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: accidental reformatting; enforce limited formatting and avoid mass changes.
   - Rollback: revert tooling commit and reapply with smaller scope.
+- Status: Pending.
 
 ### Step 8: CI/CD via GitHub Actions (OIDC)
 - Goal/scope: Add GitHub Actions for `main` pushes to build Rust artifact, run tests, and deploy CDK with OIDC.
@@ -133,6 +140,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: OIDC role misconfiguration; keep documentation and fail-safe.
   - Rollback: disable workflow or lock to a separate branch until ready.
+- Status: Pending.
 
 ### Step 9: Content migration and legacy removal
 - Goal/scope: Incrementally port legacy UI, GraphQL schema, and contact flow into new structure; remove Flow/Jest/ESLint/Prettier/Bootstrap/jQuery artifacts in final state.
@@ -143,8 +151,10 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: regressions when removing legacy dependencies; keep commits scoped.
   - Rollback: revert the specific migration commit and continue from the last stable step.
+- Status: Pending.
 
 ## Assumptions / Decisions
 - Legacy code will be moved to `legacy/` and excluded from builds, to avoid partial migrations while keeping reference access.
 - Vite will proxy `/graphql` to `http://localhost:3000/graphql` in dev; production uses the same `/graphql` path behind CloudFront.
 - CloudFront origin protection will use the simplest viable model (secret header fallback if OAC/Function URL policy is insufficient).
+- GraphQL SDL is generated from Rust code (`schema.sdl()`), not hand-authored.
