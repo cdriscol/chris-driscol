@@ -14,6 +14,10 @@ packages/
 legacy/       # Archived legacy webpack/Flow codebase
 ```
 
+## Static assets
+
+Legacy assets are now served from `apps/web/public/images`, and API data references them with `/images/...` URLs.
+
 ## Requirements
 
 - Node.js 20+ and pnpm 9

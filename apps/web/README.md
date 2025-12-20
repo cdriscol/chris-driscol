@@ -20,3 +20,7 @@ The app should call `/graphql` in all environments. During local dev, Vite proxi
 ```
 /graphql -> http://localhost:3000/graphql
 ```
+
+## Static assets
+
+Legacy images live under `public/images` and are referenced as `/images/...`.

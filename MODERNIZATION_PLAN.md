@@ -100,7 +100,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: mismatch between local server and frontend expectations (`/graphql`).
   - Rollback: revert API crate or isolate it behind feature flags until stable.
-- Status: Completed (build verified with `cargo build -p chris-driscol-api`).
+- Status: Completed (legacy data ported, SES wired, origin secret enforced; build verified with `cargo build -p chris-driscol-api`).
 
 ### Step 5: Create `packages/contracts` for GraphQL schema and shared artifacts
 - Goal/scope: Centralize GraphQL SDL generated from the Rust schema (code-first).
@@ -151,7 +151,7 @@ This document captures the current repo inventory and a step-by-step modernizati
 - Risks + rollback:
   - Risk: regressions when removing legacy dependencies; keep commits scoped.
   - Rollback: revert the specific migration commit and continue from the last stable step.
-- Status: Pending.
+- Status: Pending (legacy static assets copied to `apps/web/public` and URLs updated to `/images/...`).
 
 ## Assumptions / Decisions
 - Legacy code will be moved to `legacy/` and excluded from builds, to avoid partial migrations while keeping reference access.
