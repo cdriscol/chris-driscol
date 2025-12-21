@@ -1,6 +1,6 @@
 header {
-  background-image: url(../../../public/images/header-bg.jpg);
-  background-repeat: none;
+  background-image: url("/public/images/header-bg.jpg");
+  background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   -webkit-background-size: cover;

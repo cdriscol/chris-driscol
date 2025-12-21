@@ -1,5 +1,5 @@
-import { Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { ReactTyped } from "react-typed";
 
 type Skills = {
   languages: string[];
@@ -125,6 +125,10 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [contactSent, setContactSent] = useState(false);
   const [contactError, setContactError] = useState<string | null>(null);
+  const [navSolid, setNavSolid] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [navOpen, setNavOpen] = useState(false);
+  const [activeWork, setActiveWork] = useState<Work | null>(null);
   const [contactForm, setContactForm] = useState({
     name: "",
     from: "",
@@ -174,6 +178,71 @@ export default function App() {
     };
   }, []);
 
+  const getNavOffset = () => {
+    const nav = document.querySelector(".site-nav") as HTMLElement | null;
+    if (!nav) return 0;
+    const solidHeight = navSolid ? nav.offsetHeight : 80;
+    return solidHeight;
+  };
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const offset = getNavOffset();
+    const top = section.offsetTop - offset + 1;
+    window.scrollTo({ top, behavior: "smooth" });
+    setNavOpen(false);
+    window.history.replaceState(null, "", window.location.pathname);
+  };
+
+  const handleNavClick =
+    (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      scrollToSection(id);
+    };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavSolid(window.scrollY >= 300);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ["aboutme", "skills", "experience", "portfolio", "contactme"];
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + getNavOffset() + 20;
+      let current = "";
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section && scrollPos >= section.offsetTop) {
+          current = id;
+        }
+      }
+      setActiveSection(current);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!activeWork) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [activeWork]);
+
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const id = window.location.hash.replace("#", "");
+    setTimeout(() => scrollToSection(id), 0);
+  }, []);
+
   const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setContactError(null);
@@ -214,443 +283,545 @@ export default function App() {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <nav className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur">
-        <Container maxWidth="lg" className="flex flex-wrap items-center justify-between gap-4 py-4">
-          <a href="#top" className="font-display text-lg font-semibold uppercase tracking-wide text-slate-900">
-            Chris Driscol
-          </a>
-          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 sm:text-sm">
-            <a href="#aboutme" className="hover:text-amber-600">
-              About me
-            </a>
-            <a href="#skills" className="hover:text-amber-600">
-              Skills
-            </a>
-            <a href="#experience" className="hover:text-amber-600">
-              Experience
-            </a>
-            <a href="#portfolio" className="hover:text-amber-600">
-              My work
-            </a>
-            <a href="#contactme" className="hover:text-amber-600">
-              Say hi
-            </a>
-          </div>
-          <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 sm:text-sm">
-            <a
-              href={chris?.social.linkedIn ?? "#"}
-              className="hover:text-amber-600"
-              rel="noreferrer"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={chris?.social.github ?? "#"}
-              className="hover:text-amber-600"
-              rel="noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </a>
-          </div>
-        </Container>
-      </nav>
-      <main className="pt-20">
-      <header
-        id="top"
-        className="relative bg-slate-900 text-white"
-        style={{ backgroundImage: "url(/images/header-bg.jpg)" }}
-      >
-        <div className="absolute inset-0 bg-black/60" />
-        <Container maxWidth="md" className="relative py-24 sm:py-32">
-          <Stack spacing={2} alignItems="flex-start">
-            <Typography variant="overline" letterSpacing={2} className="text-xs font-semibold tracking-[0.3em]">
-              Welcome to my website
-            </Typography>
-            <Typography
-              variant="h3"
-              component="h1"
-              className="font-display text-4xl font-bold uppercase tracking-wide text-white"
-            >
-              {chris?.title ?? "Chris Driscol"}
-            </Typography>
-            <Typography variant="h5" className="font-display text-2xl uppercase tracking-wide text-white/90">
-              It is nice to meet you
-            </Typography>
-            <Typography variant="body1" className="max-w-xl text-base leading-7 text-white/80">
-              {chris?.description ?? "Loading profile details..."}
-            </Typography>
-            <a
-              href="#aboutme"
-              className="inline-flex items-center rounded-md bg-amber-400 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-amber-300"
-            >
-              Learn about me
-            </a>
-            {error ? (
-              <Typography variant="body2" className="text-sm text-amber-200">
-                {error}
-              </Typography>
-            ) : null}
-          </Stack>
-        </Container>
-      </header>
+  const normalizeText = (value?: string | null) =>
+    value
+      ?.replaceAll("â€“", "-")
+      .replaceAll("â€”", "-")
+      .replaceAll("â€™", "'")
+      .replaceAll("â€œ", "\"")
+      .replaceAll("â€�", "\"")
+      .replaceAll("Â", "") ?? "";
 
-      <section className="py-20" id="aboutme">
-        <Container maxWidth="md">
-          <Stack spacing={2}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
-              About
-            </Typography>
-            <Typography className="font-serif text-base italic text-slate-600">
-              {chris?.about.tagLine ?? "Loading summary..."}
-            </Typography>
-            <div className="grid gap-6 md:grid-cols-[180px_1fr]">
-              {chris?.about.imageUrl ? (
-                <figure className="text-center">
-                  <img
-                    src={chris.about.imageUrl}
-                    alt={chris.about.imageTitle ?? "Chris Driscol"}
-                    className="h-44 w-44 rounded-full object-cover shadow-md"
-                  />
-                  <figcaption className="mt-2 text-sm text-slate-500">
-                    {chris.about.imageCaption}
-                  </figcaption>
-                </figure>
-              ) : null}
-              <div className="space-y-4 text-sm leading-7 text-slate-700">
-                {chris?.about.description.map((line) => (
-                  <p key={line} dangerouslySetInnerHTML={{ __html: line }} />
-                )) ?? <p>Loading biography...</p>}
+  const getVideoSrc = (value?: string | null) => {
+    if (!value) return null;
+    if (value.startsWith("http")) return value;
+    return `https://www.youtube.com/embed/${value}`;
+  };
+
+
+  const IconLinkedIn = () => (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="nav-icon">
+      <path
+        fill="currentColor"
+        d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.37 0 2.49 1.12 2.49 2.5zM.5 8h3.98v12.5H.5V8zm7.5 0h3.82v1.7h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.05V20.5h-3.98v-5.9c0-1.41-.03-3.23-1.97-3.23-1.97 0-2.27 1.54-2.27 3.13v6H8V8z"
+      />
+    </svg>
+  );
+
+  const IconGitHub = () => (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="nav-icon">
+      <path
+        fill="currentColor"
+        d="M12 .5C5.73.5.75 5.58.75 11.98c0 5.2 3.43 9.6 8.2 11.16.6.12.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.74-4.04-1.66-4.04-1.66-.54-1.4-1.32-1.77-1.32-1.77-1.08-.76.08-.74.08-.74 1.2.09 1.83 1.26 1.83 1.26 1.06 1.86 2.78 1.32 3.46 1 .11-.8.41-1.32.74-1.62-2.66-.31-5.46-1.36-5.46-6.03 0-1.33.46-2.41 1.22-3.26-.12-.31-.53-1.56.12-3.25 0 0 1-.33 3.3 1.24a11.2 11.2 0 0 1 6 0c2.3-1.57 3.3-1.24 3.3-1.24.65 1.69.24 2.94.12 3.25.76.85 1.22 1.93 1.22 3.26 0 4.68-2.8 5.72-5.48 6.02.42.37.8 1.1.8 2.23 0 1.61-.02 2.9-.02 3.3 0 .32.22.7.83.58 4.76-1.56 8.19-5.96 8.19-11.16C23.25 5.58 18.27.5 12 .5z"
+      />
+    </svg>
+  );
+
+  const IconHeart = () => (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="heart-icon">
+      <path
+        fill="currentColor"
+        d="M12 21s-6.5-4.35-9.3-7.95C.9 11.2 1.3 7.7 4.1 6.1c2.1-1.2 4.6-.6 5.9 1.2 1.3-1.8 3.8-2.4 5.9-1.2 2.8 1.6 3.2 5.1 1.4 7-2.8 3.6-9.3 7.9-9.3 7.9z"
+      />
+    </svg>
+  );
+
+  return (
+    <div className="page">
+      <nav className={`site-nav ${navSolid ? "is-solid" : ""} ${navOpen ? "is-open" : ""}`}>
+        <div className="site-container nav-inner">
+          <h1 className="nav-brand">
+            <a href="#top" onClick={handleNavClick("top")}>
+              Chris Driscol
+            </a>
+          </h1>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-expanded={navOpen}
+            aria-label="Toggle navigation"
+            onClick={() => setNavOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <ul className="nav-links">
+            <li>
+              <a
+                href="#aboutme"
+                className={activeSection === "aboutme" ? "active" : undefined}
+                onClick={handleNavClick("aboutme")}
+              >
+                About me
+              </a>
+            </li>
+            <li>
+              <a
+                href="#skills"
+                className={activeSection === "skills" ? "active" : undefined}
+                onClick={handleNavClick("skills")}
+              >
+                Skills
+              </a>
+            </li>
+            <li>
+              <a
+                href="#experience"
+                className={activeSection === "experience" ? "active" : undefined}
+                onClick={handleNavClick("experience")}
+              >
+                Experience
+              </a>
+            </li>
+            <li>
+              <a
+                href="#portfolio"
+                className={activeSection === "portfolio" ? "active" : undefined}
+                onClick={handleNavClick("portfolio")}
+              >
+                My work
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contactme"
+                className={activeSection === "contactme" ? "active" : undefined}
+                onClick={handleNavClick("contactme")}
+              >
+                Say hi
+              </a>
+            </li>
+          </ul>
+          <ul className="nav-social">
+            <li>
+              <a
+                href={chris?.social.linkedIn ?? "#"}
+                rel="noreferrer"
+                target="_blank"
+                title="LinkedIn"
+              >
+                <IconLinkedIn />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={chris?.social.github ?? "#"}
+                rel="noreferrer"
+                target="_blank"
+                title="Github"
+              >
+                <IconGitHub />
+                <span className="sr-only">GitHub</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main>
+        <header id="top" className="hero">
+          <div className="site-container">
+            <div className="intro-text">
+              <div className="intro-lead-in">Welcome To My Website!</div>
+              <div className="intro-heading">It&apos;s Nice To Meet You</div>
+              <div className="hero-actions">
+                <a href="#aboutme" onClick={handleNavClick("aboutme")} className="btn btn-xl btn-primary">
+                  Learn about me
+                </a>
+              </div>
+              {error ? <p className="intro-body">Error: {error}</p> : null}
+            </div>
+          </div>
+        </header>
+
+        <section className="section aboutme" id="aboutme">
+          <div className="site-container">
+            <div className="section-header">
+              <h2 className="section-title">About Me</h2>
+              <p className="section-tagline text-muted">
+                This should help you get to know more about me..
+              </p>
+            </div>
+            <div className="about-row">
+              <div className="about-description">
+                {chris?.about?.description?.map((line) => (
+                  <p key={line} className="large" dangerouslySetInnerHTML={{ __html: line }} />
+                )) ?? <p className="large">Loading biography...</p>}
+              </div>
+              <div className="about-profile">
+                <div className="me">
+                  {chris?.about.imageUrl ? (
+                    <img
+                      src={chris.about.imageUrl}
+                      alt={chris.about.imageTitle ?? "Chris Driscol"}
+                      className="about-avatar"
+                    />
+                  ) : null}
+                  <h1>{chris?.about.imageTitle ?? "Chris Driscol"}</h1>
+                  <h2 className="text-muted">
+                    {chris?.about.imageCaption ?? "VP of Engineering"}
+                  </h2>
+                </div>
               </div>
             </div>
-          </Stack>
-        </Container>
-      </section>
+            <div className="about-tag">
+              <p className="large text-muted">
+                I <IconHeart /> working on <strong>Agile teams</strong> motivated by{" "}
+                <strong>delivering customer value</strong> early and often.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <section className="bg-slate-50 py-20" id="experience">
-        <Container maxWidth="md">
-          <Stack spacing={3}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
-              Experience
-            </Typography>
-            <div className="space-y-6">
-              {chris?.experience.map((item) => (
-                <div key={`${item.duration}-${item.title}`} className="rounded-lg border border-slate-200 bg-white p-6">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center">
+        <section className="built-with" id="builtWith">
+          <div className="site-container">
+            <p className="text-muted">
+              This site is powered by GraphQL, you can query all this sites data (and more) by using
+              my{" "}
+              <a title="GraphiQL Explorer" href="/resume" target="_blank" rel="noreferrer">
+                GraphiQL Explorer
+              </a>
+              .
+            </p>
+          </div>
+        </section>
+
+        <section className="section skills" id="skills">
+          <div className="site-container">
+            <div className="section-header">
+              <h2 className="section-title">My Skills</h2>
+              <p className="section-tagline text-muted">
+                These are some things I&apos;ve picked up over the years..
+              </p>
+            </div>
+            {chris?.skills ? (
+              <div className="skills-row">
+                <div className="skills-block">
+                  <h3 className="card-title">languages</h3>
+                  <p>{chris.skills.languages.join(", ")}</p>
+                </div>
+                <div className="skills-block">
+                  <h3 className="card-title">technologies</h3>
+                  <p>{chris.skills.technologies.join(", ")}</p>
+                </div>
+                <div className="skills-block">
+                  <h3 className="card-title">tools</h3>
+                  <p>{chris.skills.tools.join(", ")}</p>
+                </div>
+              </div>
+            ) : (
+              <p className="text-muted">Loading skills...</p>
+            )}
+            <div className="skills-love">
+              I <IconHeart />{" "}
+              <ReactTyped
+                className="skills-love-text"
+                strings={chris?.skills.loves ?? ["Agile teams"]}
+                typeSpeed={100}
+                backSpeed={40}
+                loop
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="experience">
+          <div className="site-container">
+            <div className="section-header text-center">
+              <h2 className="section-title">My Experience</h2>
+              <p className="section-tagline">Here&apos;s what I&apos;ve been up to..</p>
+            </div>
+            <ol className="timeline">
+              {chris?.experience.map((item, index) => {
+                const duration = normalizeText(item.duration);
+                const location = normalizeText(item.location);
+                const title = normalizeText(item.title) || location || "Experience";
+                const locationLine = item.title ? location : "";
+                return (
+                <li
+                  key={`${item.duration}-${item.title}`}
+                  className={`timeline-item ${index % 2 === 1 ? "timeline-inverted" : ""}`}
+                >
+                  <div className="timeline-image">
                     {item.imageUrl ? (
                       <img
                         src={item.imageUrl}
                         alt={item.title ?? item.location ?? "Experience"}
-                        className="h-20 w-20 rounded-full object-cover"
                       />
-                    ) : null}
-                    <div>
-                      <Typography className="font-display text-lg uppercase tracking-wide">
-                        {item.title ?? item.location ?? "Experience"}
-                      </Typography>
-                      <Typography className="text-sm text-slate-500">
-                        {item.duration} - {item.location}
-                      </Typography>
-                      <Typography className="mt-2 text-sm leading-6 text-slate-700">
-                        {item.description}
-                      </Typography>
+                    ) : (
+                      <span className="timeline-dot" />
+                    )}
+                  </div>
+                  <div className="timeline-panel">
+                    <div className="timeline-heading">
+                      <h4 className="timeline-year">{duration}</h4>
+                      <h4 className="subheading">{title}</h4>
+                      {locationLine ? <p className="text-muted">{locationLine}</p> : null}
+                    </div>
+                    <div className="timeline-body">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: normalizeText(item.description ?? ""),
+                        }}
+                      />
                     </div>
                   </div>
+                </li>
+                );
+              }) ?? <p className="text-sm text-[var(--muted)]">Loading experience...</p>}
+              <li className="timeline-item timeline-final timeline-inverted">
+                <div className="timeline-image">
+                  <a
+                    href="#contactme"
+                    className="timeline-final-link"
+                    onClick={handleNavClick("contactme")}
+                  >
+                    Want to hear more?
+                  </a>
                 </div>
-              )) ?? <p className="text-sm text-slate-500">Loading experience...</p>}
-            </div>
-          </Stack>
-        </Container>
-      </section>
+              </li>
+            </ol>
+          </div>
+        </section>
 
-      <section className="bg-slate-900 py-10 text-white" id="builtWith">
-        <Container maxWidth="md">
-          <Stack spacing={2}>
-            <Typography className="text-sm uppercase tracking-[0.3em] text-amber-300">Built with</Typography>
-            <Typography className="text-base text-white/80">
-              This site is built with React + Vite + Tailwind + MUI on the frontend, Rust + Axum + async-graphql on the
-              backend, and AWS Lambda + CloudFront + CDK for infrastructure. The API lives at <span className="font-semibold">/graphql</span>.
-            </Typography>
-            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-white/70">
-              {[
-                "React",
-                "Vite",
-                "Tailwind",
-                "MUI",
-                "Rust",
-                "Axum",
-                "async-graphql",
-                "Lambda",
-                "CloudFront",
-                "CDK",
-                "SES",
-              ].map((item) => (
-                <span key={item} className="rounded-full border border-white/20 px-3 py-1">
-                  {item}
-                </span>
-              ))}
+        <section className="section portfolio" id="portfolio">
+          <div className="site-container">
+            <div className="section-header">
+              <h2 className="section-title">My Work</h2>
+              <p className="section-tagline text-muted">
+                These are just some of the things I have worked on over the years, some were done
+                with the help of extremely talented colleagues.
+              </p>
             </div>
-          </Stack>
-        </Container>
-      </section>
-
-      <section className="py-20" id="skills">
-        <Container maxWidth="md">
-          <Stack spacing={3}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
-              Skills
-            </Typography>
-            <div className="grid gap-6 md:grid-cols-2">
-              {chris?.skills ? (
-                <>
-                  <div>
-                    <Typography className="font-display uppercase tracking-wide text-slate-700">Languages</Typography>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-                      {chris.skills.languages.map((skill) => (
-                        <li key={skill} className="rounded-full bg-slate-100 px-3 py-1">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <Typography className="font-display uppercase tracking-wide text-slate-700">Technologies</Typography>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-                      {chris.skills.technologies.map((skill) => (
-                        <li key={skill} className="rounded-full bg-slate-100 px-3 py-1">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <Typography className="font-display uppercase tracking-wide text-slate-700">Tools</Typography>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-                      {chris.skills.tools.map((skill) => (
-                        <li key={skill} className="rounded-full bg-slate-100 px-3 py-1">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <Typography className="font-display uppercase tracking-wide text-slate-700">Loves</Typography>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-                      {chris.skills.loves.map((skill) => (
-                        <li key={skill} className="rounded-full bg-slate-100 px-3 py-1">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <p className="text-sm text-slate-500">Loading skills...</p>
-              )}
-            </div>
-          </Stack>
-        </Container>
-      </section>
-
-      <section className="bg-slate-50 py-20" id="portfolio">
-        <Container maxWidth="lg">
-          <Stack spacing={3}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
-              Work
-            </Typography>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="portfolio-grid">
               {chris?.work.map((item) => (
-                <div key={`${item.title}-${item.date}`} className="rounded-lg border border-slate-200 bg-white p-6">
-                  {item.imageUrl ? (
-                    <img
-                      src={item.imageUrl}
-                      alt={item.title ?? "Work"}
-                      className="h-44 w-full rounded-md object-cover"
-                    />
-                  ) : null}
-                  <div className="mt-4 space-y-2">
-                    <Typography className="font-display text-lg uppercase tracking-wide">
-                      {item.title}
-                    </Typography>
-                    <Typography className="text-sm text-slate-500">
-                      {item.date} - {item.location}
-                    </Typography>
-                    <Typography className="text-sm text-slate-700">{item.subTitle}</Typography>
-                    <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600">
-                      {item.description.map((line) => (
-                        <li key={line} dangerouslySetInnerHTML={{ __html: line }} />
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap gap-2 text-xs text-slate-500">
-                      {item.technologies.map((tech) => (
-                        <span key={tech} className="rounded-full bg-slate-100 px-2 py-1">
-                          {tech}
-                        </span>
-                      ))}
+                <div key={`${item.title}-${item.date}`} className="portfolio-item">
+                  <a
+                    className="portfolio-link"
+                    href={item.link ?? "#"}
+                    rel={item.link ? "noreferrer" : undefined}
+                    target={item.link ? "_blank" : undefined}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setActiveWork(item);
+                    }}
+                  >
+                    <div className="portfolio-hover">
+                      <div className="portfolio-hover-content">+</div>
                     </div>
-                    {item.link ? (
-                      <a
-                        href={item.link}
-                        className="inline-flex items-center text-sm font-semibold text-amber-600 hover:text-amber-500"
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Visit project
-                      </a>
+                    {item.imageUrl ? (
+                      <img src={item.imageUrl} alt={item.title ?? "Work"} />
                     ) : null}
+                  </a>
+                  <div className="portfolio-caption">
+                    <h4 className="portfolio-title">{item.title}</h4>
+                    <p className="text-muted">{item.location ?? item.subTitle}</p>
                   </div>
                 </div>
-              )) ?? <p className="text-sm text-slate-500">Loading work...</p>}
+              )) ?? <p className="text-sm text-[var(--muted)]">Loading work...</p>}
             </div>
-          </Stack>
-        </Container>
-      </section>
+          </div>
+        </section>
 
-      <section
-        className="bg-[#222] bg-[url('/images/map-image.png')] bg-cover bg-center py-20"
-        id="contactme"
-      >
-        <Container maxWidth="md">
-          <Stack spacing={2}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide text-white">
-              {contactSent ? "Thank you" : "Contact Me"}
-            </Typography>
-            <Typography className="font-serif text-base italic text-white/70">
-              {contactSent
+        <section className="section contact" id="contactme">
+          <div className="site-container">
+            <div className="section-header text-center">
+              <h2 className="section-title">{contactSent ? "Thank you" : "Contact Me"}</h2>
+              <p className="section-tagline">
+                {contactSent
                 ? "I will respond to you as soon as possible."
                 : "I would love to hear from you!"}
-            </Typography>
-            {!contactSent ? (
-              <form onSubmit={handleContactSubmit} className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="contact-email" className="sr-only">
-                      Your email
-                    </label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
-                      placeholder="your email *"
-                      value={contactForm.from}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, from: event.target.value }))
-                      }
-                    />
-                    {contactErrors.from ? (
-                      <p className="mt-1 text-sm text-red-300">{contactErrors.from}</p>
-                    ) : null}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-name" className="sr-only">
-                      Your name
-                    </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
-                      placeholder="your name *"
-                      value={contactForm.name}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, name: event.target.value }))
-                      }
-                    />
-                    {contactErrors.name ? (
-                      <p className="mt-1 text-sm text-red-300">{contactErrors.name}</p>
-                    ) : null}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-subject" className="sr-only">
-                      Subject
-                    </label>
-                    <input
-                      id="contact-subject"
-                      type="text"
-                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
-                      placeholder="subject *"
-                      value={contactForm.subject}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, subject: event.target.value }))
-                      }
-                    />
-                    {contactErrors.subject ? (
-                      <p className="mt-1 text-sm text-red-300">{contactErrors.subject}</p>
-                    ) : null}
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="contact-message" className="sr-only">
-                      Message
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      rows={9}
-                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
-                      placeholder="this is where you say something.. *"
-                      value={contactForm.body}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, body: event.target.value }))
-                      }
-                    />
-                    {contactErrors.body ? (
-                      <p className="mt-1 text-sm text-red-300">{contactErrors.body}</p>
-                    ) : null}
-                  </div>
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-md bg-amber-400 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-amber-300"
-                  >
-                    Send Message
-                  </button>
-                  {contactError ? (
-                    <p className="text-sm font-semibold text-red-300">{contactError}</p>
-                  ) : null}
-                </div>
-              </form>
-            ) : null}
-            <div className="grid gap-2 text-sm text-white/70 sm:grid-cols-3">
-              <div>Email: {chris?.social.email ?? "Loading..."}</div>
-              <div>GitHub: {chris?.social.github ?? "Loading..."}</div>
-              <div>LinkedIn: {chris?.social.linkedIn ?? "Loading..."}</div>
+              </p>
             </div>
-          </Stack>
-        </Container>
-      </section>
-      <footer className="border-t border-slate-200 bg-white py-8">
-        <Container maxWidth="lg" className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
-          <span>
-            Copyright &copy; <strong>Chris Driscol</strong> {new Date().getFullYear()}
-          </span>
-          <div className="flex items-center gap-4">
-            <a
-              href={chris?.social.linkedIn ?? "#"}
-              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
-              rel="noreferrer"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={chris?.social.github ?? "#"}
-              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
-              rel="noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </a>
-            <a
-              href={chris?.social.email ? `mailto:${chris.social.email}` : "#"}
-              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
-            >
-              {chris?.social.email ?? "Email"}
-            </a>
+            <div className="contact-panel mt-8">
+              {!contactSent ? (
+                <form onSubmit={handleContactSubmit} className="contact-form">
+                  <div className="contact-column">
+                    <div className="form-group">
+                      <label htmlFor="contact-email" className="sr-only">
+                        Your email
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        className="form-control"
+                        placeholder="your email *"
+                        value={contactForm.from}
+                        onChange={(event) =>
+                          setContactForm((prev) => ({ ...prev, from: event.target.value }))
+                        }
+                      />
+                      {contactErrors.from ? (
+                        <p className="help-block text-danger">{contactErrors.from}</p>
+                      ) : null}
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="contact-name" className="sr-only">
+                        Your name
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        className="form-control"
+                        placeholder="your name *"
+                        value={contactForm.name}
+                        onChange={(event) =>
+                          setContactForm((prev) => ({ ...prev, name: event.target.value }))
+                        }
+                      />
+                      {contactErrors.name ? (
+                        <p className="help-block text-danger">{contactErrors.name}</p>
+                      ) : null}
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="contact-subject" className="sr-only">
+                        Subject
+                      </label>
+                      <input
+                        id="contact-subject"
+                        type="text"
+                        className="form-control"
+                        placeholder="subject *"
+                        value={contactForm.subject}
+                        onChange={(event) =>
+                          setContactForm((prev) => ({ ...prev, subject: event.target.value }))
+                        }
+                      />
+                      {contactErrors.subject ? (
+                        <p className="help-block text-danger">{contactErrors.subject}</p>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="contact-column">
+                    <div className="form-group">
+                      <label htmlFor="contact-message" className="sr-only">
+                        Message
+                      </label>
+                      <textarea
+                        id="contact-message"
+                        rows={9}
+                        className="form-control"
+                        placeholder="this is where you say something.. *"
+                        value={contactForm.body}
+                        onChange={(event) =>
+                          setContactForm((prev) => ({ ...prev, body: event.target.value }))
+                        }
+                      />
+                      {contactErrors.body ? (
+                        <p className="help-block text-danger">{contactErrors.body}</p>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="contact-actions">
+                    <button type="submit" className="btn btn-xl btn-primary">
+                      Send Message
+                    </button>
+                    {contactError ? (
+                      <p className="help-block text-danger">{contactError}</p>
+                    ) : null}
+                  </div>
+                </form>
+              ) : null}
+            </div>
           </div>
-        </Container>
-      </footer>
+        </section>
+
+        {activeWork ? (
+          <div className="portfolio-modal" role="dialog" aria-modal="true">
+            <div className="portfolio-modal-content">
+              <button
+                type="button"
+                className="portfolio-modal-close"
+                aria-label="Close"
+                onClick={() => setActiveWork(null)}
+              >
+                ×
+              </button>
+              <h2>{activeWork.title}</h2>
+              {activeWork.subTitle ? (
+                <p className="modal-subtitle">{normalizeText(activeWork.subTitle)}</p>
+              ) : null}
+              {getVideoSrc(activeWork.video) ? (
+                <div className="modal-video">
+                  <iframe
+                    src={getVideoSrc(activeWork.video) ?? ""}
+                    title={activeWork.title ?? "Work video"}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              ) : activeWork.imageUrl ? (
+                <img src={activeWork.imageUrl} alt={activeWork.title ?? "Work"} />
+              ) : null}
+              {activeWork.description?.length ? (
+                <ul className="modal-description">
+                  {activeWork.description.map((line) => (
+                    <li
+                      key={line}
+                      dangerouslySetInnerHTML={{ __html: normalizeText(line) }}
+                    />
+                  ))}
+                </ul>
+              ) : null}
+              {activeWork.technologies?.length ? (
+                <div className="modal-technologies">
+                  <h4>Technologies</h4>
+                  <p>{activeWork.technologies.join(", ")}</p>
+                </div>
+              ) : null}
+              <div className="modal-meta">
+                {activeWork.date ? <span>Date: {activeWork.date}</span> : null}
+                {activeWork.location ? <span>{activeWork.location}</span> : null}
+                {activeWork.link ? (
+                  <a href={activeWork.link} target="_blank" rel="noreferrer">
+                    {activeWork.link}
+                  </a>
+                ) : null}
+              </div>
+              <button
+                type="button"
+                className="btn btn-xl btn-primary"
+                onClick={() => setActiveWork(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        ) : null}
+
+        <footer className="footer">
+          <div className="site-container">
+            <div className="footer-row">
+              <span className="copyright">
+                Copyright &copy; <strong>Chris Driscol</strong> {new Date().getFullYear()}
+              </span>
+              <ul className="social-buttons">
+                <li>
+                  <a href={chris?.social.linkedIn ?? "#"} rel="noreferrer" target="_blank">
+                    <IconLinkedIn />
+                    <span className="sr-only">LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={chris?.social.github ?? "#"} rel="noreferrer" target="_blank">
+                    <IconGitHub />
+                    <span className="sr-only">GitHub</span>
+                  </a>
+                </li>
+              </ul>
+              <ul className="quicklinks">
+                <li>
+                  <a href={chris?.social.email ? `mailto:${chris.social.email}` : "#"}>
+                    {chris?.social.email ?? "chris@driscolsoftware.com"}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );

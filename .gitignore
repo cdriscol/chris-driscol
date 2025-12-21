@@ -12,3 +12,4 @@ lambda.zip
 *.tsbuildinfo
 apps/**/vite.config.js
 apps/**/vite.config.d.ts
+.devserver.*.log

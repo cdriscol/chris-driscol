@@ -4,7 +4,7 @@ export default {
     extend: {
       fontFamily: {
         display: ["Montserrat", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
-        serif: ["Droid Serif", "Times New Roman", "serif"],
+        serif: ["Montserrat", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
         sans: ["Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
       },
     },
