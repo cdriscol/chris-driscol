@@ -31,11 +31,37 @@ jobs:
       - name: Install JS deps
         run: pnpm install
 
+      - name: Cache Turbo build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            ~/.cache/turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml', '**/turbo.json', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Cache Rust build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Install cargo-lambda
         run: cargo install cargo-lambda
+
+      - name: Install Zig
+        uses: goto-bus-stop/setup-zig@v2
+        with:
+          version: "0.13.0"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
