@@ -179,3 +179,27 @@ body.graphiql-page {
   text-decoration: underline;
   color: white !important;
 }
+
+body.graphiql-page * {
+  scrollbar-color: #415161 #0f212e;
+  scrollbar-width: thin;
+}
+
+body.graphiql-page *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+body.graphiql-page *::-webkit-scrollbar-track {
+  background: #0f212e;
+}
+
+body.graphiql-page *::-webkit-scrollbar-thumb {
+  background: #415161;
+  border-radius: 999px;
+  border: 2px solid #0f212e;
+}
+
+body.graphiql-page *::-webkit-scrollbar-thumb:hover {
+  background: #52657a;
+}
