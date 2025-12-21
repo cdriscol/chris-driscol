@@ -1,0 +1,964 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InfraStack > matches the synthesized snapshot 1`] = `
+{
+  "Mappings": {
+    "AWSCloudFrontPartitionHostedZoneIdMap": {
+      "aws": {
+        "zoneId": "Z2FDTNDATAQYW2",
+      },
+      "aws-cn": {
+        "zoneId": "Z3RFFRIM2A3IF5",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "AliasAAAAchrisdriscolcom50383788": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "chrisdriscol.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAAAAdriscolsoftwarecom587312B7": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone12DDE8289",
+        },
+        "Name": "driscolsoftware.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAAAAwearshortstoworkcomA553BA64": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone2A7C28BD8",
+        },
+        "Name": "wearshortstowork.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAAAAwwwchrisdriscolcom77E70226": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "www.chrisdriscol.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAAAAwwwdriscolsoftwarecom93172D0C": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone12DDE8289",
+        },
+        "Name": "www.driscolsoftware.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAAAAwwwwearshortstoworkcomF1DD01B9": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone2A7C28BD8",
+        },
+        "Name": "www.wearshortstowork.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAchrisdriscolcomA3E0D840": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "chrisdriscol.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAdriscolsoftwarecom3651FAAA": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone12DDE8289",
+        },
+        "Name": "driscolsoftware.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAwearshortstoworkcomB50D6163": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone2A7C28BD8",
+        },
+        "Name": "wearshortstowork.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAwwwchrisdriscolcomD178D37E": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "www.chrisdriscol.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAwwwdriscolsoftwarecom44526BEB": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone12DDE8289",
+        },
+        "Name": "www.driscolsoftware.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAwwwwearshortstoworkcom1E7C687B": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "AlternateHostedZone2A7C28BD8",
+        },
+        "Name": "www.wearshortstowork.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AlternateHostedZone12DDE8289": {
+      "Properties": {
+        "Name": "driscolsoftware.com.",
+      },
+      "Type": "AWS::Route53::HostedZone",
+    },
+    "AlternateHostedZone2A7C28BD8": {
+      "Properties": {
+        "Name": "wearshortstowork.com.",
+      },
+      "Type": "AWS::Route53::HostedZone",
+    },
+    "ApiLambda91D2282D": {
+      "DependsOn": [
+        "ApiLambdaServiceRole1CC7D0F3",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-111111111111-us-east-1",
+          "S3Key": "48430e934e3c0c384ea6745c8f2c9cbcc1497952a684da8304bd260e70a831eb.zip",
+        },
+        "Handler": "bootstrap",
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "ApiLambdaServiceRole1CC7D0F3",
+            "Arn",
+          ],
+        },
+        "Runtime": "provided.al2023",
+        "Timeout": 15,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ApiLambdaFunctionUrl727286F0": {
+      "Properties": {
+        "AuthType": "NONE",
+        "Cors": {
+          "AllowHeaders": [
+            "content-type",
+            "authorization",
+          ],
+          "AllowMethods": [
+            "POST",
+            "OPTIONS",
+          ],
+          "AllowOrigins": [
+            "http://localhost:3000",
+          ],
+        },
+        "TargetFunctionArn": {
+          "Fn::GetAtt": [
+            "ApiLambda91D2282D",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Url",
+    },
+    "ApiLambdaServiceRole1CC7D0F3": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ApiLambdainvokefunction7E9EDB55": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ApiLambda91D2282D",
+            "Arn",
+          ],
+        },
+        "InvokedViaFunctionUrl": true,
+        "Principal": "*",
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "ApiLambdainvokefunctionurlBBF64BA4": {
+      "Properties": {
+        "Action": "lambda:InvokeFunctionUrl",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ApiLambda91D2282D",
+            "Arn",
+          ],
+        },
+        "FunctionUrlAuthType": "NONE",
+        "Principal": "*",
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "CanonicalHostedZone015DF008": {
+      "Properties": {
+        "Name": "chrisdriscol.com.",
+      },
+      "Type": "AWS::Route53::HostedZone",
+    },
+    "GraphqlCachePolicyD6C6CB6A": {
+      "Properties": {
+        "CachePolicyConfig": {
+          "DefaultTTL": 0,
+          "MaxTTL": 0,
+          "MinTTL": 0,
+          "Name": "TestStackGraphqlCachePolicyB70CA48D-us-east-1",
+          "ParametersInCacheKeyAndForwardedToOrigin": {
+            "CookiesConfig": {
+              "CookieBehavior": "none",
+            },
+            "EnableAcceptEncodingBrotli": false,
+            "EnableAcceptEncodingGzip": false,
+            "HeadersConfig": {
+              "HeaderBehavior": "whitelist",
+              "Headers": [
+                "Content-Type",
+                "Authorization",
+              ],
+            },
+            "QueryStringsConfig": {
+              "QueryStringBehavior": "all",
+            },
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::CachePolicy",
+    },
+    "GraphqlOriginRequestPolicy69110C39": {
+      "Properties": {
+        "OriginRequestPolicyConfig": {
+          "CookiesConfig": {
+            "CookieBehavior": "none",
+          },
+          "HeadersConfig": {
+            "HeaderBehavior": "whitelist",
+            "Headers": [
+              "Content-Type",
+            ],
+          },
+          "Name": "TestStackGraphqlOriginRequestPolicyA3D4DEC9",
+          "QueryStringsConfig": {
+            "QueryStringBehavior": "all",
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::OriginRequestPolicy",
+    },
+    "ResumeRewriteFunction4AD78491": {
+      "Properties": {
+        "AutoPublish": true,
+        "FunctionCode": "
+function handler(event) {
+  var request = event.request;
+  var host = request.headers.host ? request.headers.host.value : "";
+  var qs = request.querystring ? "?" + request.querystring : "";
+  if (host && host !== "chrisdriscol.com" && host !== "www.chrisdriscol.com") {
+    return {
+      statusCode: 301,
+      statusDescription: "Moved Permanently",
+      headers: {
+        location: { value: "https://chrisdriscol.com" + request.uri + qs },
+      },
+    };
+  }
+  if (request.uri === "/resume" || request.uri === "/resume/") {
+    request.uri = "/resume/index.html";
+  }
+  return request;
+}
+      ",
+        "FunctionConfig": {
+          "Comment": "us-east-1TestStackResumeRewriteFunction76458E0E",
+          "Runtime": "cloudfront-js-1.0",
+        },
+        "Name": "us-east-1TestStackResumeRewriteFunction76458E0E",
+      },
+      "Type": "AWS::CloudFront::Function",
+    },
+    "SiteCertificate38C247F6": {
+      "Properties": {
+        "DomainName": "chrisdriscol.com",
+        "DomainValidationOptions": [
+          {
+            "DomainName": "chrisdriscol.com",
+            "HostedZoneId": {
+              "Ref": "CanonicalHostedZone015DF008",
+            },
+          },
+          {
+            "DomainName": "driscolsoftware.com",
+            "HostedZoneId": {
+              "Ref": "AlternateHostedZone12DDE8289",
+            },
+          },
+          {
+            "DomainName": "wearshortstowork.com",
+            "HostedZoneId": {
+              "Ref": "AlternateHostedZone2A7C28BD8",
+            },
+          },
+        ],
+        "SubjectAlternativeNames": [
+          "www.chrisdriscol.com",
+          "driscolsoftware.com",
+          "www.driscolsoftware.com",
+          "wearshortstowork.com",
+          "www.wearshortstowork.com",
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/SiteCertificate",
+          },
+        ],
+        "ValidationMethod": "DNS",
+      },
+      "Type": "AWS::CertificateManager::Certificate",
+    },
+    "SiteDistribution3FF9535D": {
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            "chrisdriscol.com",
+            "www.chrisdriscol.com",
+            "driscolsoftware.com",
+            "www.driscolsoftware.com",
+            "wearshortstowork.com",
+            "www.wearshortstowork.com",
+          ],
+          "CacheBehaviors": [
+            {
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+              "Compress": true,
+              "PathPattern": "storybook/*",
+              "TargetOriginId": "TestStackSiteDistributionOrigin2A651AAE6",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PUT",
+                "PATCH",
+                "POST",
+                "DELETE",
+              ],
+              "CachePolicyId": {
+                "Ref": "GraphqlCachePolicyD6C6CB6A",
+              },
+              "Compress": true,
+              "OriginRequestPolicyId": {
+                "Ref": "GraphqlOriginRequestPolicy69110C39",
+              },
+              "PathPattern": "graphql",
+              "TargetOriginId": "TestStackSiteDistributionOrigin3B10B7480",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+          ],
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "Compress": true,
+            "FunctionAssociations": [
+              {
+                "EventType": "viewer-request",
+                "FunctionARN": {
+                  "Fn::GetAtt": [
+                    "ResumeRewriteFunction4AD78491",
+                    "FunctionARN",
+                  ],
+                },
+              },
+            ],
+            "TargetOriginId": "TestStackSiteDistributionOrigin178A33869",
+            "ViewerProtocolPolicy": "redirect-to-https",
+          },
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "WebBucket12880F5B",
+                  "RegionalDomainName",
+                ],
+              },
+              "Id": "TestStackSiteDistributionOrigin178A33869",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "origin-access-identity/cloudfront/",
+                      {
+                        "Ref": "WebOai3AB8056C",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+            {
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "StorybookBucket39CEC964",
+                  "RegionalDomainName",
+                ],
+              },
+              "Id": "TestStackSiteDistributionOrigin2A651AAE6",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "origin-access-identity/cloudfront/",
+                      {
+                        "Ref": "WebOai3AB8056C",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+            {
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "https-only",
+                "OriginSSLProtocols": [
+                  "TLSv1.2",
+                ],
+              },
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "ApiLambdaFunctionUrl727286F0",
+                  "FunctionUrl",
+                ],
+              },
+              "Id": "TestStackSiteDistributionOrigin3B10B7480",
+              "OriginCustomHeaders": [
+                {
+                  "HeaderName": "x-origin-secret",
+                  "HeaderValue": "replace-me",
+                },
+              ],
+            },
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "SiteCertificate38C247F6",
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only",
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::Distribution",
+    },
+    "StorybookBucket39CEC964": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "StorybookBucketPolicy40885581": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "StorybookBucket39CEC964",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "WebOai3AB8056C",
+                    "S3CanonicalUserId",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "StorybookBucket39CEC964",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "StorybookBucket39CEC964",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "WebOai3AB8056C",
+                    "S3CanonicalUserId",
+                  ],
+                },
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "StorybookBucket39CEC964",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "WebBucket12880F5B": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "WebBucketPolicy95D08FAA": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "WebBucket12880F5B",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "WebOai3AB8056C",
+                    "S3CanonicalUserId",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebBucket12880F5B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebBucket12880F5B",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "WebOai3AB8056C",
+                    "S3CanonicalUserId",
+                  ],
+                },
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "WebBucket12880F5B",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "WebOai3AB8056C": {
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "Allows CloudFront to reach the bucket",
+        },
+      },
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

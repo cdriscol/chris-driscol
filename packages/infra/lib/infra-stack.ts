@@ -119,7 +119,6 @@ export class InfraStack extends Stack {
         cookieBehavior: cloudfront.OriginRequestCookieBehavior.none(),
         headerBehavior: cloudfront.OriginRequestHeaderBehavior.allowList(
           "Content-Type",
-          "Authorization",
         ),
         queryStringBehavior: cloudfront.OriginRequestQueryStringBehavior.all(),
       },
