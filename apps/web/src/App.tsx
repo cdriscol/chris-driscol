@@ -59,6 +59,21 @@ type QueryResponse = {
   };
 };
 
+type ContactErrors = {
+  name?: string;
+  from?: string;
+  subject?: string;
+  body?: string;
+};
+
+const contactMutation = `
+  mutation ContactMe($input: ContactMeInput!) {
+    contactMe(input: $input) {
+      success
+    }
+  }
+`;
+
 const query = `
   query AppQuery {
     chris {
@@ -108,6 +123,31 @@ const query = `
 export default function App() {
   const [chris, setChris] = useState<Chris | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [contactSent, setContactSent] = useState(false);
+  const [contactError, setContactError] = useState<string | null>(null);
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    from: "",
+    subject: "",
+    body: "",
+  });
+  const [contactErrors, setContactErrors] = useState<ContactErrors>({});
+
+  const validateContact = () => {
+    const nextErrors: ContactErrors = {};
+    if (!contactForm.name.trim()) nextErrors.name = "Please enter your name.";
+    if (!contactForm.from.trim()) nextErrors.from = "Please enter your email.";
+    if (
+      contactForm.from.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.from)
+    ) {
+      nextErrors.from = "Please enter a valid email.";
+    }
+    if (!contactForm.subject.trim()) nextErrors.subject = "Please enter a subject.";
+    if (!contactForm.body.trim()) nextErrors.body = "Please enter a message.";
+    setContactErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
 
   useEffect(() => {
     let active = true;
@@ -133,6 +173,46 @@ export default function App() {
       active = false;
     };
   }, []);
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setContactError(null);
+    if (!validateContact()) return;
+
+    try {
+      const response = await fetch("/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: contactMutation,
+          variables: {
+            input: {
+              name: contactForm.name,
+              from: contactForm.from,
+              subject: contactForm.subject,
+              body: contactForm.body,
+            },
+          },
+        }),
+      });
+      const json = (await response.json()) as {
+        data?: { contactMe?: { success?: boolean } };
+        errors?: Array<{ message: string }>;
+      };
+      if (json.errors?.length) {
+        throw new Error(json.errors[0]?.message ?? "There was an error sending your email.");
+      }
+      if (!json.data?.contactMe?.success) {
+        throw new Error("There was an error sending your email.");
+      }
+      setContactSent(true);
+      setContactForm({ name: "", from: "", subject: "", body: "" });
+    } catch (err) {
+      setContactError(err instanceof Error ? err.message : "There was an error sending your email.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -220,7 +300,7 @@ export default function App() {
                         {item.title ?? item.location ?? "Experience"}
                       </Typography>
                       <Typography className="text-sm text-slate-500">
-                        {item.duration} · {item.location}
+                        {item.duration} - {item.location}
                       </Typography>
                       <Typography className="mt-2 text-sm leading-6 text-slate-700">
                         {item.description}
@@ -313,7 +393,7 @@ export default function App() {
                       {item.title}
                     </Typography>
                     <Typography className="text-sm text-slate-500">
-                      {item.date} · {item.location}
+                      {item.date} - {item.location}
                     </Typography>
                     <Typography className="text-sm text-slate-700">{item.subTitle}</Typography>
                     <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600">
@@ -346,21 +426,114 @@ export default function App() {
         </Container>
       </section>
 
-      <section className="py-20" id="contact">
+      <section
+        className="bg-[#222] bg-[url('/images/map-image.png')] bg-cover bg-center py-20"
+        id="contact"
+      >
         <Container maxWidth="md">
           <Stack spacing={2}>
-            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
-              Contact
+            <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide text-white">
+              {contactSent ? "Thank you" : "Contact Me"}
             </Typography>
-            <Typography className="text-sm text-slate-600">
-              Email: {chris?.social.email ?? "Loading..."}
+            <Typography className="font-serif text-base italic text-white/70">
+              {contactSent
+                ? "I will respond to you as soon as possible."
+                : "I would love to hear from you!"}
             </Typography>
-            <Typography className="text-sm text-slate-600">
-              GitHub: {chris?.social.github ?? "Loading..."}
-            </Typography>
-            <Typography className="text-sm text-slate-600">
-              LinkedIn: {chris?.social.linkedIn ?? "Loading..."}
-            </Typography>
+            {!contactSent ? (
+              <form onSubmit={handleContactSubmit} className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="contact-email" className="sr-only">
+                      Your email
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
+                      placeholder="your email *"
+                      value={contactForm.from}
+                      onChange={(event) =>
+                        setContactForm((prev) => ({ ...prev, from: event.target.value }))
+                      }
+                    />
+                    {contactErrors.from ? (
+                      <p className="mt-1 text-sm text-red-300">{contactErrors.from}</p>
+                    ) : null}
+                  </div>
+                  <div>
+                    <label htmlFor="contact-name" className="sr-only">
+                      Your name
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
+                      placeholder="your name *"
+                      value={contactForm.name}
+                      onChange={(event) =>
+                        setContactForm((prev) => ({ ...prev, name: event.target.value }))
+                      }
+                    />
+                    {contactErrors.name ? (
+                      <p className="mt-1 text-sm text-red-300">{contactErrors.name}</p>
+                    ) : null}
+                  </div>
+                  <div>
+                    <label htmlFor="contact-subject" className="sr-only">
+                      Subject
+                    </label>
+                    <input
+                      id="contact-subject"
+                      type="text"
+                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
+                      placeholder="subject *"
+                      value={contactForm.subject}
+                      onChange={(event) =>
+                        setContactForm((prev) => ({ ...prev, subject: event.target.value }))
+                      }
+                    />
+                    {contactErrors.subject ? (
+                      <p className="mt-1 text-sm text-red-300">{contactErrors.subject}</p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="contact-message" className="sr-only">
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      rows={9}
+                      className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:border-amber-400 focus:outline-none"
+                      placeholder="this is where you say something.. *"
+                      value={contactForm.body}
+                      onChange={(event) =>
+                        setContactForm((prev) => ({ ...prev, body: event.target.value }))
+                      }
+                    />
+                    {contactErrors.body ? (
+                      <p className="mt-1 text-sm text-red-300">{contactErrors.body}</p>
+                    ) : null}
+                  </div>
+                  <button
+                    type="submit"
+                    className="inline-flex w-full items-center justify-center rounded-md bg-amber-400 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-amber-300"
+                  >
+                    Send Message
+                  </button>
+                  {contactError ? (
+                    <p className="text-sm font-semibold text-red-300">{contactError}</p>
+                  ) : null}
+                </div>
+              </form>
+            ) : null}
+            <div className="grid gap-2 text-sm text-white/70 sm:grid-cols-3">
+              <div>Email: {chris?.social.email ?? "Loading..."}</div>
+              <div>GitHub: {chris?.social.github ?? "Loading..."}</div>
+              <div>LinkedIn: {chris?.social.linkedIn ?? "Loading..."}</div>
+            </div>
           </Stack>
         </Container>
       </section>
