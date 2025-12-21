@@ -33,11 +33,20 @@ mod tests {
 
         assert!(response.errors.is_empty(), "GraphQL errors: {:?}", response.errors);
         let data = response.data;
-        let chris = data.get_field_value("chris").expect("missing chris");
-        let id = chris
-            .get_field_value("id")
-            .and_then(Value::as_str)
-            .expect("missing id");
+        let chris = match data {
+            Value::Object(ref map) => map.get("chris"),
+            _ => None,
+        }
+        .expect("missing chris");
+        let id = match chris {
+            Value::Object(ref map) => map.get("id"),
+            _ => None,
+        }
+        .and_then(|value| match value {
+            Value::String(value) => Some(value.as_str()),
+            _ => None,
+        })
+        .expect("missing id");
         assert_eq!(id, "guest");
     }
 }

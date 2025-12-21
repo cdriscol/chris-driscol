@@ -1,3 +1,4 @@
+use async_graphql::{ErrorExtensionValues, Response, ServerError};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{http::HeaderMap, routing::post, Extension, Router};
 use std::net::SocketAddr;
@@ -19,10 +20,11 @@ async fn graphql_handler(
             .get("x-origin-secret")
             .and_then(|value| value.to_str().ok());
         if provided != Some(expected.as_str()) {
-            let err = async_graphql::Error::new("Forbidden").extend_with(|_err, e| {
-                e.set("code", "FORBIDDEN");
-            });
-            return async_graphql::Response::from_errors(vec![err]).into();
+            let mut error = ServerError::new("Forbidden", None);
+            let mut extensions = ErrorExtensionValues::default();
+            extensions.set("code", "FORBIDDEN");
+            error.extensions = Some(extensions);
+            return Response::from_errors(vec![error]).into();
         }
     }
     schema.execute(request.into_inner()).await.into()
