@@ -57,7 +57,18 @@ jobs:
             ${{ runner.os }}-cargo-
           save-always: true
 
+      - name: Cache cargo-lambda
+        id: cache-cargo-lambda
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/cargo-lambda
+          key: ${{ runner.os }}-cargo-lambda-1.0.2
+          restore-keys: |
+            ${{ runner.os }}-cargo-lambda-
+          save-always: true
+
       - name: Install cargo-lambda
+        if: steps.cache-cargo-lambda.outputs.cache-hit != 'true'
         run: cargo install cargo-lambda
 
       - name: Install Zig
