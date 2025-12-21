@@ -7,9 +7,13 @@
     "dev:web": "pnpm -C apps/web dev",
     "dev:api": "pnpm -C apps/api dev",
     "build": "turbo build",
+    "test:web": "pnpm -C apps/web test",
     "test": "turbo test",
+    "lint:web": "pnpm -C apps/web lint",
     "lint": "turbo lint",
+    "format:web": "pnpm -C apps/web format",
     "format": "turbo format",
+    "typecheck:web": "pnpm -C apps/web typecheck",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
