@@ -4,28 +4,28 @@
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.graphiql-page,
-.graphiql-page body,
-.graphiql-page #graphiql-root,
-.graphiql-page .resume {
+html,
+body.graphiql-page,
+body.graphiql-page #graphiql-root,
+body.graphiql-page .resume {
   height: 100%;
 }
 
-.graphiql-page body {
+body.graphiql-page {
   margin: 0;
   background: #09141d;
   overflow: hidden;
 }
 
-.graphiql-page #graphiql-root,
-.graphiql-page .resume,
-.graphiql-page .graphiql-container {
+body.graphiql-page #graphiql-root,
+body.graphiql-page .resume,
+body.graphiql-page .graphiql-container {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
 }
 
-.graphiql-page {
+body.graphiql-page {
   overflow: hidden;
 }
 
