@@ -20,9 +20,32 @@ Legacy assets are now served from `apps/web/public/images`, and API data referen
 
 ## Requirements
 
-- Node.js 20+ and pnpm 9
+- Node.js 24 (repo uses engines for web/infra) and pnpm 9
 - Rust toolchain (rustup)
 - Windows: Visual Studio Build Tools with C++ workload for Rust builds
+
+## Local development (run everything)
+
+From repo root:
+
+```
+pnpm install
+pnpm dev
+```
+
+This starts:
+- Web (Vite) on `http://localhost:5173` (or the next free port if 5173 is in use).
+- API (Axum + async-graphql) on `http://127.0.0.1:3000/graphql`.
+
+The API respects `PORT` if you want a different port. If `GRAPHQL_ORIGIN_SECRET` is
+set, requests must include the `x-origin-secret` header.
+
+To run them individually:
+
+```
+pnpm dev:web
+pnpm dev:api
+```
 
 ## Common commands (repo root)
 
