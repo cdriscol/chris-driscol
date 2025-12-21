@@ -77,6 +77,10 @@ pnpm -C packages/infra build
 pnpm -C packages/infra synth
 ```
 
+## Deployment
+
+Deployments run via GitHub Actions on `main` pushes. The workflow builds the web app, builds the Rust Lambda zip, deploys CDK, syncs the web assets to S3, and invalidates CloudFront.
+
 ## Legacy
 
 The legacy codebase (webpack, Flow, Express) is archived in `legacy/` and is not used by the new build.

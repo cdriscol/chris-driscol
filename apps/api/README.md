@@ -9,6 +9,13 @@ cargo build -p chris-driscol-api
 cargo run -p chris-driscol-api --bin api
 ```
 
+## Lambda build
+
+```
+cargo install cargo-lambda
+pnpm -C apps/api build:lambda
+```
+
 ## Windows build notes
 
 The AWS SDK uses native crypto. On Windows you may need:

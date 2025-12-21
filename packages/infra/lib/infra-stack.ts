@@ -1,5 +1,6 @@
 import * as path from "path";
 import {
+  CfnOutput,
   Duration,
   RemovalPolicy,
   Stack,
@@ -67,12 +68,18 @@ export class InfraStack extends Stack {
       process.env.API_LAMBDA_ZIP ??
       path.join(__dirname, "..", "..", "..", "dist", "lambda.zip");
 
+    const graphqlOriginSecret =
+      process.env.GRAPHQL_ORIGIN_SECRET ?? "replace-me";
+
     const apiLambda = new lambda.Function(this, "ApiLambda", {
       runtime: lambda.Runtime.PROVIDED_AL2023,
       handler: "bootstrap",
       code: lambda.Code.fromAsset(apiLambdaZip),
       memorySize: 512,
       timeout: Duration.seconds(15),
+      environment: {
+        GRAPHQL_ORIGIN_SECRET: graphqlOriginSecret,
+      },
     });
 
     const apiFunctionUrl = apiLambda.addFunctionUrl({
@@ -83,9 +90,6 @@ export class InfraStack extends Stack {
         allowedOrigins: ["http://localhost:3000"],
       },
     });
-
-    const graphqlOriginSecret =
-      process.env.GRAPHQL_ORIGIN_SECRET ?? "replace-me";
 
     const graphqlOrigin = new origins.HttpOrigin(
       apiFunctionUrl.url.replace("https://", "").replace(/\/$/, ""),
@@ -227,6 +231,21 @@ function handler(event) {
         target: route53.RecordTarget.fromAlias(
           new targets.CloudFrontTarget(distribution),
         ),
+      });
+    });
+
+    new CfnOutput(this, "WebBucketName", {
+      value: webBucket.bucketName,
+    });
+    new CfnOutput(this, "StorybookBucketName", {
+      value: storybookBucket.bucketName,
+    });
+    new CfnOutput(this, "CloudFrontDistributionId", {
+      value: distribution.distributionId,
+    });
+    hostedZones.forEach((zone, index) => {
+      new CfnOutput(this, `HostedZoneNameServers${index + 1}`, {
+        value: (zone.hostedZoneNameServers ?? []).join(","),
       });
     });
   }

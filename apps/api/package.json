@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cargo run --bin api",
     "build": "cargo build --release --bin api",
+    "build:lambda": "bash scripts/build-lambda.sh",
     "test": "cargo test"
   }
 }

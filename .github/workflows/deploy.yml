@@ -1,0 +1,83 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      CDK_DEFAULT_REGION: us-east-1
+      GRAPHQL_ORIGIN_SECRET: ${{ secrets.GRAPHQL_ORIGIN_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: "9.0.0"
+
+      - name: Install JS deps
+        run: pnpm install
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install cargo-lambda
+        run: cargo install cargo-lambda
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Build web
+        run: pnpm -C apps/web build
+
+      - name: Build Lambda zip
+        run: pnpm -C apps/api build:lambda
+
+      - name: Install CDK CLI
+        run: npm install -g aws-cdk@2
+
+      - name: Deploy CDK
+        run: pnpm -C packages/infra deploy
+
+      - name: Upload web assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          web_bucket="$(aws cloudformation describe-stacks \
+            --stack-name ChrisDriscolStack \
+            --query "Stacks[0].Outputs[?OutputKey=='WebBucketName'].OutputValue" \
+            --output text)"
+          if [[ -z "$web_bucket" ]]; then
+            echo "Web bucket output not found." >&2
+            exit 1
+          fi
+          aws s3 sync apps/web/dist "s3://$web_bucket" --delete
+
+      - name: Invalidate CloudFront
+        shell: bash
+        run: |
+          set -euo pipefail
+          distribution_id="$(aws cloudformation describe-stacks \
+            --stack-name ChrisDriscolStack \
+            --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
+            --output text)"
+          if [[ -z "$distribution_id" ]]; then
+            echo "CloudFront distribution output not found." >&2
+            exit 1
+          fi
+          aws cloudfront create-invalidation --distribution-id "$distribution_id" --paths "/*"
