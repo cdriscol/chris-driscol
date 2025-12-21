@@ -716,6 +716,7 @@ dependencies = [
  "aws-config",
  "aws-sdk-sesv2",
  "axum",
+ "http 1.4.0",
  "lambda_http",
  "serde",
  "serde_json",
