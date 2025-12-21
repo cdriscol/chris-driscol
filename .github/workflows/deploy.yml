@@ -40,6 +40,7 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml', '**/turbo.json', '**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-turbo-
+          save-always: true
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -54,6 +55,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
+          save-always: true
 
       - name: Install cargo-lambda
         run: cargo install cargo-lambda
