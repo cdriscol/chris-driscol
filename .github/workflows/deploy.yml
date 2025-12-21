@@ -31,8 +31,9 @@ jobs:
       - name: Install JS deps
         run: pnpm install
 
-      - name: Cache Turbo build
-        uses: actions/cache@v4
+      - name: Restore Turbo cache
+        id: cache-turbo-restore
+        uses: actions/cache/restore@v4
         with:
           path: |
             .turbo
@@ -40,13 +41,13 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml', '**/turbo.json', '**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-turbo-
-          save-always: true
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Cache Rust build
-        uses: actions/cache@v4
+      - name: Restore Rust cache
+        id: cache-rust-restore
+        uses: actions/cache/restore@v4
         with:
           path: |
             ~/.cargo/registry
@@ -55,21 +56,26 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-          save-always: true
 
-      - name: Cache cargo-lambda
-        id: cache-cargo-lambda
-        uses: actions/cache@v4
+      - name: Restore cargo-lambda cache
+        id: cache-cargo-lambda-restore
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cargo/bin/cargo-lambda
           key: ${{ runner.os }}-cargo-lambda-1.0.2
           restore-keys: |
             ${{ runner.os }}-cargo-lambda-
-          save-always: true
 
       - name: Install cargo-lambda
-        if: steps.cache-cargo-lambda.outputs.cache-hit != 'true'
+        if: steps.cache-cargo-lambda-restore.outputs.cache-hit != 'true'
         run: cargo install cargo-lambda
+
+      - name: Save cargo-lambda cache
+        if: always() && steps.cache-cargo-lambda-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cargo/bin/cargo-lambda
+          key: ${{ steps.cache-cargo-lambda-restore.outputs.cache-primary-key }}
 
       - name: Install Zig
         uses: goto-bus-stop/setup-zig@v2
@@ -87,6 +93,25 @@ jobs:
 
       - name: Build Lambda zip
         run: pnpm -C apps/api build:lambda
+
+      - name: Save Turbo cache
+        if: always() && steps.cache-turbo-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .turbo
+            ~/.cache/turbo
+          key: ${{ steps.cache-turbo-restore.outputs.cache-primary-key }}
+
+      - name: Save Rust cache
+        if: always() && steps.cache-rust-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ steps.cache-rust-restore.outputs.cache-primary-key }}
 
       - name: Install CDK CLI
         run: npm install -g aws-cdk@2
