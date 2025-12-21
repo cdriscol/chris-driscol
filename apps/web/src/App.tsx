@@ -216,6 +216,49 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
+      <nav className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+        <Container maxWidth="lg" className="flex flex-wrap items-center justify-between gap-4 py-4">
+          <a href="#top" className="font-display text-lg font-semibold uppercase tracking-wide text-slate-900">
+            Chris Driscol
+          </a>
+          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 sm:text-sm">
+            <a href="#aboutme" className="hover:text-amber-600">
+              About me
+            </a>
+            <a href="#skills" className="hover:text-amber-600">
+              Skills
+            </a>
+            <a href="#experience" className="hover:text-amber-600">
+              Experience
+            </a>
+            <a href="#portfolio" className="hover:text-amber-600">
+              My work
+            </a>
+            <a href="#contactme" className="hover:text-amber-600">
+              Say hi
+            </a>
+          </div>
+          <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 sm:text-sm">
+            <a
+              href={chris?.social.linkedIn ?? "#"}
+              className="hover:text-amber-600"
+              rel="noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={chris?.social.github ?? "#"}
+              className="hover:text-amber-600"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          </div>
+        </Container>
+      </nav>
+      <main className="pt-20">
       <header
         id="top"
         className="relative bg-slate-900 text-white"
@@ -225,7 +268,7 @@ export default function App() {
         <Container maxWidth="md" className="relative py-24 sm:py-32">
           <Stack spacing={2} alignItems="flex-start">
             <Typography variant="overline" letterSpacing={2} className="text-xs font-semibold tracking-[0.3em]">
-              Portfolio
+              Welcome to my website
             </Typography>
             <Typography
               variant="h3"
@@ -234,9 +277,18 @@ export default function App() {
             >
               {chris?.title ?? "Chris Driscol"}
             </Typography>
+            <Typography variant="h5" className="font-display text-2xl uppercase tracking-wide text-white/90">
+              It is nice to meet you
+            </Typography>
             <Typography variant="body1" className="max-w-xl text-base leading-7 text-white/80">
               {chris?.description ?? "Loading profile details..."}
             </Typography>
+            <a
+              href="#aboutme"
+              className="inline-flex items-center rounded-md bg-amber-400 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-amber-300"
+            >
+              Learn about me
+            </a>
             {error ? (
               <Typography variant="body2" className="text-sm text-amber-200">
                 {error}
@@ -246,7 +298,7 @@ export default function App() {
         </Container>
       </header>
 
-      <section className="py-20" id="about">
+      <section className="py-20" id="aboutme">
         <Container maxWidth="md">
           <Stack spacing={2}>
             <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
@@ -314,6 +366,37 @@ export default function App() {
         </Container>
       </section>
 
+      <section className="bg-slate-900 py-10 text-white" id="builtWith">
+        <Container maxWidth="md">
+          <Stack spacing={2}>
+            <Typography className="text-sm uppercase tracking-[0.3em] text-amber-300">Built with</Typography>
+            <Typography className="text-base text-white/80">
+              This site is built with React + Vite + Tailwind + MUI on the frontend, Rust + Axum + async-graphql on the
+              backend, and AWS Lambda + CloudFront + CDK for infrastructure. The API lives at <span className="font-semibold">/graphql</span>.
+            </Typography>
+            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-white/70">
+              {[
+                "React",
+                "Vite",
+                "Tailwind",
+                "MUI",
+                "Rust",
+                "Axum",
+                "async-graphql",
+                "Lambda",
+                "CloudFront",
+                "CDK",
+                "SES",
+              ].map((item) => (
+                <span key={item} className="rounded-full border border-white/20 px-3 py-1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Stack>
+        </Container>
+      </section>
+
       <section className="py-20" id="skills">
         <Container maxWidth="md">
           <Stack spacing={3}>
@@ -372,7 +455,7 @@ export default function App() {
         </Container>
       </section>
 
-      <section className="bg-slate-50 py-20" id="work">
+      <section className="bg-slate-50 py-20" id="portfolio">
         <Container maxWidth="lg">
           <Stack spacing={3}>
             <Typography variant="h4" className="font-display text-3xl uppercase tracking-wide">
@@ -428,7 +511,7 @@ export default function App() {
 
       <section
         className="bg-[#222] bg-[url('/images/map-image.png')] bg-cover bg-center py-20"
-        id="contact"
+        id="contactme"
       >
         <Container maxWidth="md">
           <Stack spacing={2}>
@@ -537,6 +620,38 @@ export default function App() {
           </Stack>
         </Container>
       </section>
+      <footer className="border-t border-slate-200 bg-white py-8">
+        <Container maxWidth="lg" className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
+          <span>
+            Copyright &copy; <strong>Chris Driscol</strong> {new Date().getFullYear()}
+          </span>
+          <div className="flex items-center gap-4">
+            <a
+              href={chris?.social.linkedIn ?? "#"}
+              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
+              rel="noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={chris?.social.github ?? "#"}
+              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+            <a
+              href={chris?.social.email ? `mailto:${chris.social.email}` : "#"}
+              className="font-semibold uppercase tracking-[0.2em] text-slate-600 hover:text-amber-600"
+            >
+              {chris?.social.email ?? "Email"}
+            </a>
+          </div>
+        </Container>
+      </footer>
+      </main>
     </div>
   );
 }

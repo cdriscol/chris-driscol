@@ -6,6 +6,6 @@ import App from "./App";
 describe("App", () => {
   it("renders the app title", () => {
     render(<App />);
-    expect(screen.getByText("Chris Driscol")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Chris Driscol" })).toBeInTheDocument();
   });
 });
