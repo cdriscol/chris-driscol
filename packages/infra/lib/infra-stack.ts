@@ -93,6 +93,22 @@ export class InfraStack extends Stack {
       },
     );
 
+    const resumeRewriteFunction = new cloudfront.Function(
+      this,
+      "ResumeRewriteFunction",
+      {
+        code: cloudfront.FunctionCode.fromInline(`
+function handler(event) {
+  var request = event.request;
+  if (request.uri === "/resume" || request.uri === "/resume/") {
+    request.uri = "/resume/index.html";
+  }
+  return request;
+}
+        `),
+      },
+    );
+
     const distribution = new cloudfront.Distribution(
       this,
       "SiteDistribution",
@@ -101,6 +117,12 @@ export class InfraStack extends Stack {
           origin: new origins.S3Origin(webBucket, { originAccessIdentity: oai }),
           viewerProtocolPolicy:
             cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          functionAssociations: [
+            {
+              eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+              function: resumeRewriteFunction,
+            },
+          ],
         },
         additionalBehaviors: {
           "storybook/*": {
