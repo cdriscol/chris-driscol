@@ -158,7 +158,9 @@ function handler(event) {
       "SiteDistribution",
       {
         defaultBehavior: {
-          origin: new origins.S3Origin(webBucket, { originAccessIdentity: oai }),
+          origin: origins.S3BucketOrigin.withOriginAccessIdentity(webBucket, {
+            originAccessIdentity: oai,
+          }),
           viewerProtocolPolicy:
             cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           functionAssociations: [
@@ -172,7 +174,7 @@ function handler(event) {
         certificate,
         additionalBehaviors: {
           "storybook/*": {
-            origin: new origins.S3Origin(storybookBucket, {
+            origin: origins.S3BucketOrigin.withOriginAccessIdentity(storybookBucket, {
               originAccessIdentity: oai,
             }),
             viewerProtocolPolicy:
