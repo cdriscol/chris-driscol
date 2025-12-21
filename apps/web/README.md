@@ -15,7 +15,7 @@ pnpm typecheck
 
 ## Styling
 
-Legacy global styles (fonts, headings, buttons, sections) are imported from `src/styles/legacy`.
+Legacy styles were migrated into Tailwind utilities. There is no legacy stylesheet directory.
 
 ## GraphQL
 
