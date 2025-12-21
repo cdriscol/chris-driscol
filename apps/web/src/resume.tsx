@@ -59,7 +59,7 @@ document.body.classList.add("graphiql-page");
 ReactDOM.createRoot(document.getElementById("graphiql-root")!).render(
   <React.StrictMode>
     <div className="resume">
-      <GraphiQL fetcher={fetcher} query={query} variables={variables}>
+      <GraphiQL fetcher={fetcher} defaultQuery={query} initialVariables={variables}>
         <GraphiQL.Logo>
           <a href="/" title="Chris Driscol">
             Chris Driscol

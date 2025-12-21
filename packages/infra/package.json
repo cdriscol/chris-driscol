@@ -2,18 +2,22 @@
   "name": "@chris-driscol/infra",
   "private": true,
   "version": "0.1.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "synth": "cdk synth",
     "test": "vitest run"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.161.0",
-    "constructs": "^10.4.2"
+    "aws-cdk-lib": "^2.233.0",
+    "constructs": "^10.4.4"
   },
   "devDependencies": {
-    "vitest": "^2.1.8",
+    "@types/node": "^24.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
   }
 }
