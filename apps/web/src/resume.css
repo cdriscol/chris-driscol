@@ -14,14 +14,19 @@
 .graphiql-page body {
   margin: 0;
   background: #09141d;
+  overflow: hidden;
 }
 
 .graphiql-page #graphiql-root,
 .graphiql-page .resume,
 .graphiql-page .graphiql-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   min-height: 100vh;
+}
+
+.graphiql-page {
+  overflow: hidden;
 }
 
 .resume .topBar {
