@@ -62,6 +62,7 @@ async fn handler(schema: AppSchema, request: Request) -> Result<LambdaResponse<B
         Body::Text(text) => text.as_bytes().to_vec(),
         Body::Binary(bytes) => bytes.clone(),
         Body::Empty => Vec::new(),
+        _ => Vec::new(),
     };
 
     let payload: GraphqlPayload = serde_json::from_slice(&body)?;
