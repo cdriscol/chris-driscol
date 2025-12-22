@@ -92,14 +92,12 @@ export class InfraStack extends Stack {
       },
     });
 
-    const graphqlOrigin = new origins.HttpOrigin(
-      apiFunctionUrl.url.replace("https://", "").replace(/\/$/, ""),
-      {
-        customHeaders: {
-          "x-origin-secret": graphqlOriginSecret,
-        },
+    const apiFunctionUrlDomain = Fn.select(2, Fn.split("/", apiFunctionUrl.url));
+    const graphqlOrigin = new origins.HttpOrigin(apiFunctionUrlDomain, {
+      customHeaders: {
+        "x-origin-secret": graphqlOriginSecret,
       },
-    );
+    });
 
     const graphqlCachePolicy = cloudfront.CachePolicy.CACHING_DISABLED;
 

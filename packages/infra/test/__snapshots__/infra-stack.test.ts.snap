@@ -731,9 +731,19 @@ function handler(event) {
                 ],
               },
               "DomainName": {
-                "Fn::GetAtt": [
-                  "ApiLambdaFunctionUrl727286F0",
-                  "FunctionUrl",
+                "Fn::Select": [
+                  2,
+                  {
+                    "Fn::Split": [
+                      "/",
+                      {
+                        "Fn::GetAtt": [
+                          "ApiLambdaFunctionUrl727286F0",
+                          "FunctionUrl",
+                        ],
+                      },
+                    ],
+                  },
                 ],
               },
               "Id": "TestStackSiteDistributionOrigin3B10B7480",
