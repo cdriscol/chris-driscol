@@ -1,4 +1,4 @@
-const defaultLocalGraphqlUrl = "http://localhost:3000/graphql";
+const defaultLocalGraphqlUrl = "/graphql";
 const defaultProdGraphqlUrl = "https://api.chrisdriscol.com/graphql";
 
 export const graphqlUrl =
