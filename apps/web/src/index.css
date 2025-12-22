@@ -1066,6 +1066,10 @@ img::-moz-selection {
     display: inline-flex;
   }
 
+  .about-profile {
+    order: -1;
+  }
+
   .nav-links,
   .nav-social {
     display: none;
