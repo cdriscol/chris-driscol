@@ -90,7 +90,16 @@ export class InfraStack extends Stack {
       cors: {
         allowedHeaders: ["content-type", "authorization"],
         allowedMethods: [lambda.HttpMethod.ALL],
-        allowedOrigins: ["http://localhost:3000"],
+        allowedOrigins: [
+          "http://localhost:3000",
+          `https://${canonicalDomain}`,
+          `https://www.${canonicalDomain}`,
+          `https://${apiDomain}`,
+          ...alternateDomains.flatMap((domain) => [
+            `https://${domain}`,
+            `https://www.${domain}`,
+          ]),
+        ],
       },
     });
 

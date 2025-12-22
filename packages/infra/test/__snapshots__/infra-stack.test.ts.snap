@@ -506,6 +506,13 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
           ],
           "AllowOrigins": [
             "http://localhost:3000",
+            "https://chrisdriscol.com",
+            "https://www.chrisdriscol.com",
+            "https://api.chrisdriscol.com",
+            "https://driscolsoftware.com",
+            "https://www.driscolsoftware.com",
+            "https://wearshortstowork.com",
+            "https://www.wearshortstowork.com",
           ],
         },
         "TargetFunctionArn": {
