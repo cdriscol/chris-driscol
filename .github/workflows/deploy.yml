@@ -101,6 +101,9 @@ jobs:
         run: pnpm -C apps/web build
 
       - name: Build Lambda zip
+        env:
+          RUSTC_WRAPPER: ""
+          SCCACHE_GHA_ENABLED: "false"
         run: pnpm -C apps/api build:lambda
 
       - name: Save Turbo cache
