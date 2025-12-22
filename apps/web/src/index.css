@@ -898,10 +898,11 @@ a:active {
   inset: 0;
   background: rgba(255, 255, 255, 0.96);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 40px 20px;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .portfolio-modal-content {
@@ -912,6 +913,9 @@ a:active {
   padding: 40px;
   position: relative;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .portfolio-modal-content h2 {
@@ -967,9 +971,10 @@ a:active {
 }
 
 .portfolio-modal-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: sticky;
+  top: 12px;
+  align-self: flex-end;
+  margin-left: auto;
   background: none;
   border: none;
   font-size: 32px;
@@ -1064,6 +1069,15 @@ img::-moz-selection {
 
   .nav-toggle {
     display: inline-flex;
+  }
+
+  .portfolio-modal {
+    padding: 24px 12px;
+  }
+
+  .portfolio-modal-content {
+    padding: 24px 18px;
+    max-height: calc(100vh - 48px);
   }
 
   .about-profile {
