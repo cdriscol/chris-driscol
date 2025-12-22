@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { ReactTyped } from "react-typed";
+import { graphqlUrl } from "./lib/api";
 
 type Skills = {
   languages: string[];
@@ -157,7 +158,7 @@ export default function App() {
     let active = true;
     const load = async () => {
       try {
-        const response = await fetch("/graphql", {
+        const response = await fetch(graphqlUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -415,7 +416,7 @@ export default function App() {
     if (!validateContact()) return;
 
     try {
-      const response = await fetch("/graphql", {
+      const response = await fetch(graphqlUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
