@@ -101,21 +101,7 @@ export class InfraStack extends Stack {
       },
     );
 
-    const graphqlCachePolicy = new cloudfront.CachePolicy(
-      this,
-      "GraphqlCachePolicy",
-      {
-        minTtl: Duration.seconds(0),
-        defaultTtl: Duration.seconds(0),
-        maxTtl: Duration.seconds(0),
-        cookieBehavior: cloudfront.CacheCookieBehavior.none(),
-        headerBehavior: cloudfront.CacheHeaderBehavior.allowList(
-          "Content-Type",
-          "Authorization",
-        ),
-        queryStringBehavior: cloudfront.CacheQueryStringBehavior.all(),
-      },
-    );
+    const graphqlCachePolicy = cloudfront.CachePolicy.CACHING_DISABLED;
 
     const graphqlOriginRequestPolicy = new cloudfront.OriginRequestPolicy(
       this,
