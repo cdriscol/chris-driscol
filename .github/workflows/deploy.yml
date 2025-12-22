@@ -126,7 +126,7 @@ jobs:
         run: npm install -g aws-cdk@2
 
       - name: Deploy CDK
-        run: pnpm -C packages/infra deploy
+        run: pnpm -C packages/infra run deploy
 
       - name: Upload web assets
         shell: bash
