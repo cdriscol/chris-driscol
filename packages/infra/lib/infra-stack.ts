@@ -25,9 +25,11 @@ export class InfraStack extends Stack {
       "driscolsoftware.com",
       "wearshortstowork.com",
     ];
+    const apiDomain = `api.${canonicalDomain}`;
     const allDomains = [
       canonicalDomain,
       `www.${canonicalDomain}`,
+      apiDomain,
       ...alternateDomains.flatMap((domain) => [domain, `www.${domain}`]),
     ];
 
@@ -146,6 +148,7 @@ function handler(event) {
       this,
       "SiteDistribution",
       {
+        defaultRootObject: "index.html",
         defaultBehavior: {
           origin: origins.S3BucketOrigin.withOriginAccessIdentity(webBucket, {
             originAccessIdentity: oai,
@@ -217,6 +220,21 @@ function handler(event) {
           new targets.CloudFrontTarget(distribution),
         ),
       });
+    });
+
+    new route53.ARecord(this, "AliasA-api", {
+      zone: canonicalZone,
+      recordName: apiDomain,
+      target: route53.RecordTarget.fromAlias(
+        new targets.CloudFrontTarget(distribution),
+      ),
+    });
+    new route53.AaaaRecord(this, "AliasAAAA-api", {
+      zone: canonicalZone,
+      recordName: apiDomain,
+      target: route53.RecordTarget.fromAlias(
+        new targets.CloudFrontTarget(distribution),
+      ),
     });
 
     new CfnOutput(this, "WebBucketName", {

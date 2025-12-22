@@ -76,6 +76,33 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
     },
   },
   "Resources": {
+    "AliasAAAAapi2FCFC6C8": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "api.chrisdriscol.com.",
+        "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
     "AliasAAAAchrisdriscolcom50383788": {
       "Properties": {
         "AliasTarget": {
@@ -235,6 +262,33 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
         },
         "Name": "www.wearshortstowork.com.",
         "Type": "AAAA",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "AliasAapi9169C153": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "SiteDistribution3FF9535D",
+              "DomainName",
+            ],
+          },
+          "HostedZoneId": {
+            "Fn::FindInMap": [
+              "AWSCloudFrontPartitionHostedZoneIdMap",
+              {
+                "Ref": "AWS::Partition",
+              },
+              "zoneId",
+            ],
+          },
+        },
+        "HostedZoneId": {
+          "Ref": "CanonicalHostedZone015DF008",
+        },
+        "Name": "api.chrisdriscol.com.",
+        "Type": "A",
       },
       "Type": "AWS::Route53::RecordSet",
     },
@@ -604,6 +658,7 @@ function handler(event) {
         ],
         "SubjectAlternativeNames": [
           "www.chrisdriscol.com",
+          "api.chrisdriscol.com",
           "driscolsoftware.com",
           "www.driscolsoftware.com",
           "wearshortstowork.com",
@@ -625,6 +680,7 @@ function handler(event) {
           "Aliases": [
             "chrisdriscol.com",
             "www.chrisdriscol.com",
+            "api.chrisdriscol.com",
             "driscolsoftware.com",
             "www.driscolsoftware.com",
             "wearshortstowork.com",
@@ -675,6 +731,7 @@ function handler(event) {
             "TargetOriginId": "TestStackSiteDistributionOrigin178A33869",
             "ViewerProtocolPolicy": "redirect-to-https",
           },
+          "DefaultRootObject": "index.html",
           "Enabled": true,
           "HttpVersion": "http2",
           "IPV6Enabled": true,
