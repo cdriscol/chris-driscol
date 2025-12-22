@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import * as path from "path";
 import { describe, expect, it } from "vitest";
 import { App } from "aws-cdk-lib";
@@ -7,11 +8,12 @@ import { InfraStack } from "../lib/infra-stack";
 describe("InfraStack", () => {
   it("matches the synthesized snapshot", () => {
     const originalLambdaZip = process.env.API_LAMBDA_ZIP;
-    process.env.API_LAMBDA_ZIP = path.join(
-      __dirname,
-      "fixtures",
-      "lambda.zip",
-    );
+    const fixturePath = path.join(__dirname, "fixtures", "lambda.zip");
+    if (!fs.existsSync(fixturePath)) {
+      fs.mkdirSync(path.dirname(fixturePath), { recursive: true });
+      fs.writeFileSync(fixturePath, "placeholder");
+    }
+    process.env.API_LAMBDA_ZIP = fixturePath;
 
     const app = new App();
     const stack = new InfraStack(app, "TestStack", {
