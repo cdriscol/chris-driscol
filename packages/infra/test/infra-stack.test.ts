@@ -20,8 +20,17 @@ describe("InfraStack", () => {
       env: { account: "111111111111", region: "us-east-1" },
     });
 
-    const template = Template.fromStack(stack);
-    expect(template.toJSON()).toMatchSnapshot();
+    const template = Template.fromStack(stack).toJSON() as {
+      Resources?: Record<string, { Type?: string; Properties?: Record<string, unknown> }>;
+    };
+    for (const resource of Object.values(template.Resources ?? {})) {
+      if (resource.Type !== "AWS::Lambda::Function") continue;
+      const code = resource.Properties?.Code as Record<string, unknown> | undefined;
+      if (code && typeof code.S3Key === "string") {
+        code.S3Key = "<asset-key>";
+      }
+    }
+    expect(template).toMatchSnapshot();
 
     if (originalLambdaZip === undefined) {
       delete process.env.API_LAMBDA_ZIP;
