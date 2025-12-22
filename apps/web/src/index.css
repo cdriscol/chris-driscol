@@ -378,10 +378,7 @@ a:active {
 }
 
 .about-tag p {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
+  display: inline;
   white-space: nowrap;
   color: #777;
   font-size: 18px;
@@ -631,13 +628,18 @@ a:active {
 .heart-icon {
   width: 1em;
   height: 1em;
-  color: pink;
+  color: currentColor;
   vertical-align: -0.1em;
+  margin: 0 6px;
 }
 
 .skills-love-text {
   color: #fff;
   display: inline-block;
+}
+
+.skills-love .heart-icon {
+  color: pink;
 }
 
 .typed-cursor {
