@@ -92,12 +92,11 @@ a:active {
   border: 0;
   background: transparent;
   padding: 25px 0;
-  transition: padding 0.3s ease, background 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .site-nav.is-solid {
   background: var(--deep);
-  padding: 10px 0;
 }
 
 .nav-inner {
@@ -266,7 +265,7 @@ a:active {
 
 .section {
   padding: 150px 0;
-  scroll-margin-top: 110px;
+  scroll-margin-top: var(--nav-offset, 110px);
 }
 
 .section-header {
@@ -1045,7 +1044,7 @@ img::-moz-selection {
 @media (max-width: 767px) {
   .site-nav {
     background: #222;
-    padding: 0;
+    padding: 12px 0;
   }
 
   .nav-inner {

@@ -348,17 +348,31 @@ export default function App() {
   const getNavOffset = useCallback(() => {
     const nav = document.querySelector(".site-nav") as HTMLElement | null;
     if (!nav) return 0;
-    const solidHeight = navSolid ? nav.offsetHeight : 80;
-    return solidHeight;
-  }, [navSolid]);
+    const styles = window.getComputedStyle(nav);
+    const paddingTop = Number.parseFloat(styles.paddingTop) || 0;
+    const paddingBottom = Number.parseFloat(styles.paddingBottom) || 0;
+    const brand = nav.querySelector(".nav-brand") as HTMLElement | null;
+    const toggle = nav.querySelector(".nav-toggle") as HTMLElement | null;
+    const rowHeight = Math.max(
+      brand?.getBoundingClientRect().height ?? 0,
+      toggle?.getBoundingClientRect().height ?? 0,
+    );
+    const height = rowHeight + paddingTop + paddingBottom;
+    document.documentElement.style.setProperty("--nav-offset", `${height}px`);
+    return height;
+  }, []);
 
   const scrollToSection = useCallback((id: string) => {
     const section = document.getElementById(id);
     if (!section) return;
-    const offset = getNavOffset();
-    const top = section.offsetTop - offset + 1;
-    window.scrollTo({ top, behavior: "smooth" });
     setNavOpen(false);
+    const nav = document.querySelector(".site-nav");
+    nav?.classList.remove("is-open");
+    requestAnimationFrame(() => {
+      const offset = getNavOffset();
+      const top = section.getBoundingClientRect().top + window.scrollY - offset + 1;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
     window.history.replaceState(null, "", window.location.pathname);
   }, [getNavOffset]);
 
@@ -376,6 +390,15 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      getNavOffset();
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [getNavOffset]);
 
   useEffect(() => {
     const sectionIds = ["aboutme", "skills", "experience", "portfolio", "contactme"];
