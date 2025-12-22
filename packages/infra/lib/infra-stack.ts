@@ -2,6 +2,7 @@ import * as path from "path";
 import {
   CfnOutput,
   Duration,
+  Fn,
   RemovalPolicy,
   Stack,
   StackProps,
@@ -245,7 +246,7 @@ function handler(event) {
     });
     hostedZones.forEach((zone, index) => {
       new CfnOutput(this, `HostedZoneNameServers${index + 1}`, {
-        value: (zone.hostedZoneNameServers ?? []).join(","),
+        value: Fn.join(",", zone.hostedZoneNameServers ?? []),
       });
     });
   }

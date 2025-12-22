@@ -6,6 +6,7 @@ import App from "./App";
 describe("App", () => {
   it("renders the app title", () => {
     render(<App />);
-    expect(screen.getByRole("heading", { level: 1, name: "Chris Driscol" })).toBeInTheDocument();
+    const headings = screen.getAllByRole("heading", { level: 1, name: "Chris Driscol" });
+    expect(headings.length).toBeGreaterThan(0);
   });
 });

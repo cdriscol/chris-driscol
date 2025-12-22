@@ -12,6 +12,62 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
       },
     },
   },
+  "Outputs": {
+    "CloudFrontDistributionId": {
+      "Value": {
+        "Ref": "SiteDistribution3FF9535D",
+      },
+    },
+    "HostedZoneNameServers1": {
+      "Value": {
+        "Fn::Join": [
+          ",",
+          {
+            "Fn::GetAtt": [
+              "CanonicalHostedZone015DF008",
+              "NameServers",
+            ],
+          },
+        ],
+      },
+    },
+    "HostedZoneNameServers2": {
+      "Value": {
+        "Fn::Join": [
+          ",",
+          {
+            "Fn::GetAtt": [
+              "AlternateHostedZone12DDE8289",
+              "NameServers",
+            ],
+          },
+        ],
+      },
+    },
+    "HostedZoneNameServers3": {
+      "Value": {
+        "Fn::Join": [
+          ",",
+          {
+            "Fn::GetAtt": [
+              "AlternateHostedZone2A7C28BD8",
+              "NameServers",
+            ],
+          },
+        ],
+      },
+    },
+    "StorybookBucketName": {
+      "Value": {
+        "Ref": "StorybookBucket39CEC964",
+      },
+    },
+    "WebBucketName": {
+      "Value": {
+        "Ref": "WebBucket12880F5B",
+      },
+    },
+  },
   "Parameters": {
     "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
@@ -364,6 +420,11 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
         "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-111111111111-us-east-1",
           "S3Key": "48430e934e3c0c384ea6745c8f2c9cbcc1497952a684da8304bd260e70a831eb.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "GRAPHQL_ORIGIN_SECRET": "replace-me",
+          },
         },
         "Handler": "bootstrap",
         "MemorySize": 512,
