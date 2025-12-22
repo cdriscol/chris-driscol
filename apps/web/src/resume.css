@@ -95,7 +95,9 @@ body.graphiql-page {
 
 .cm-s-dracula.CodeMirror,
 .cm-s-dracula .CodeMirror-gutters {
+  /* biome-ignore lint/complexity/noImportantStyles: override third-party styles */
   background-color: #0f212e !important;
+  /* biome-ignore lint/complexity/noImportantStyles: override third-party styles */
   color: #f8f8f2 !important;
   border: none;
 }
@@ -177,6 +179,7 @@ body.graphiql-page {
 }
 .cm-s-dracula .CodeMirror-matchingbracket {
   text-decoration: underline;
+  /* biome-ignore lint/complexity/noImportantStyles: override third-party styles */
   color: white !important;
 }
 

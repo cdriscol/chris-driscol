@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ReactTyped } from "react-typed";
 
 type Skills = {
@@ -344,14 +344,14 @@ export default function App() {
     });
   }, [chris]);
 
-  const getNavOffset = () => {
+  const getNavOffset = useCallback(() => {
     const nav = document.querySelector(".site-nav") as HTMLElement | null;
     if (!nav) return 0;
     const solidHeight = navSolid ? nav.offsetHeight : 80;
     return solidHeight;
-  };
+  }, [navSolid]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     const section = document.getElementById(id);
     if (!section) return;
     const offset = getNavOffset();
@@ -359,7 +359,7 @@ export default function App() {
     window.scrollTo({ top, behavior: "smooth" });
     setNavOpen(false);
     window.history.replaceState(null, "", window.location.pathname);
-  };
+  }, [getNavOffset]);
 
   const handleNavClick =
     (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -392,7 +392,7 @@ export default function App() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [getNavOffset]);
 
   useEffect(() => {
     if (!activeWork) return undefined;
@@ -407,7 +407,7 @@ export default function App() {
     if (!window.location.hash) return;
     const id = window.location.hash.replace("#", "");
     setTimeout(() => scrollToSection(id), 0);
-  }, []);
+  }, [scrollToSection]);
 
   const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -497,6 +497,7 @@ export default function App() {
       <nav className={`site-nav ${navSolid ? "is-solid" : ""} ${navOpen ? "is-open" : ""}`}>
         <div className="site-container nav-inner">
           <h1 className="nav-brand">
+            {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
             <a href="#top" onClick={handleNavClick("top")}>
               Chris Driscol
             </a>
@@ -514,6 +515,7 @@ export default function App() {
           </button>
           <ul className="nav-links">
             <li>
+              {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
                 href="#aboutme"
                 className={activeSection === "aboutme" ? "active" : undefined}
@@ -523,6 +525,7 @@ export default function App() {
               </a>
             </li>
             <li>
+              {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
                 href="#skills"
                 className={activeSection === "skills" ? "active" : undefined}
@@ -532,6 +535,7 @@ export default function App() {
               </a>
             </li>
             <li>
+              {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
                 href="#experience"
                 className={activeSection === "experience" ? "active" : undefined}
@@ -541,6 +545,7 @@ export default function App() {
               </a>
             </li>
             <li>
+              {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
                 href="#portfolio"
                 className={activeSection === "portfolio" ? "active" : undefined}
@@ -550,6 +555,7 @@ export default function App() {
               </a>
             </li>
             <li>
+              {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
                 href="#contactme"
                 className={activeSection === "contactme" ? "active" : undefined}
@@ -593,6 +599,7 @@ export default function App() {
               <div className="intro-lead-in">Welcome To My Website!</div>
               <div className="intro-heading">It&apos;s Nice To Meet You</div>
               <div className="hero-actions">
+                {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
                 <a href="#aboutme" onClick={handleNavClick("aboutme")} className="btn btn-xl btn-primary">
                   Learn about me
                 </a>
@@ -612,9 +619,10 @@ export default function App() {
             </div>
             <div className="about-row">
               <div className="about-description">
-                {chris?.about?.description?.map((line) => (
-                  <p key={line} className="large" dangerouslySetInnerHTML={{ __html: line }} />
-                )) ?? <p className="large">Loading biography...</p>}
+                {chris?.about?.description?.map((line) => {
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: content is trusted
+                  return <p key={line} className="large" dangerouslySetInnerHTML={{ __html: line }} />;
+                }) ?? <p className="large">Loading biography...</p>}
               </div>
               <div className="about-profile">
                 <div className="me">
@@ -705,40 +713,38 @@ export default function App() {
                 const location = normalizeText(item.location);
                 const title = normalizeText(item.title) || location || "Experience";
                 const locationLine = item.title ? location : "";
+                const description = normalizeText(item.description ?? "");
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: content is trusted
+                const body = <p dangerouslySetInnerHTML={{ __html: description }} />;
                 return (
-                <li
-                  key={`${item.duration}-${item.title}`}
-                  className={`timeline-item ${index % 2 === 1 ? "timeline-inverted" : ""}`}
-                >
-                  <div className="timeline-image">
-                    {item.imageUrl ? (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title ?? item.location ?? "Experience"}
-                      />
-                    ) : (
-                      <span className="timeline-dot" />
-                    )}
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <h4 className="timeline-year">{duration}</h4>
-                      <h4 className="subheading">{title}</h4>
-                      {locationLine ? <p className="text-muted">{locationLine}</p> : null}
+                  <li
+                    key={`${item.duration}-${item.title}`}
+                    className={`timeline-item ${index % 2 === 1 ? "timeline-inverted" : ""}`}
+                  >
+                    <div className="timeline-image">
+                      {item.imageUrl ? (
+                        <img
+                          src={item.imageUrl}
+                          alt={item.title ?? item.location ?? "Experience"}
+                        />
+                      ) : (
+                        <span className="timeline-dot" />
+                      )}
                     </div>
-                    <div className="timeline-body">
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: normalizeText(item.description ?? ""),
-                        }}
-                      />
+                    <div className="timeline-panel">
+                      <div className="timeline-heading">
+                        <h4 className="timeline-year">{duration}</h4>
+                        <h4 className="subheading">{title}</h4>
+                        {locationLine ? <p className="text-muted">{locationLine}</p> : null}
+                      </div>
+                      <div className="timeline-body">{body}</div>
                     </div>
-                  </div>
-                </li>
+                  </li>
                 );
               }) ?? <p className="text-sm text-[var(--muted)]">Loading experience...</p>}
               <li className="timeline-item timeline-final timeline-inverted">
                 <div className="timeline-image">
+                  {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
                   <a
                     href="#contactme"
                     className="timeline-final-link"
@@ -925,10 +931,7 @@ export default function App() {
               {activeWork.description?.length ? (
                 <ul className="modal-description">
                   {activeWork.description.map((line) => (
-                    <li
-                      key={line}
-                      dangerouslySetInnerHTML={{ __html: normalizeText(line) }}
-                    />
+                    <li key={line}>{normalizeText(line)}</li>
                   ))}
                 </ul>
               ) : null}

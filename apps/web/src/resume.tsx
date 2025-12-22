@@ -56,7 +56,12 @@ mutation contactMeMutation($input: ContactMeInput!) {
 
 document.body.classList.add("graphiql-page");
 
-ReactDOM.createRoot(document.getElementById("graphiql-root")!).render(
+const root = document.getElementById("graphiql-root");
+if (!root) {
+  throw new Error("GraphiQL root element not found");
+}
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <div className="resume">
       <GraphiQL fetcher={fetcher} defaultQuery={query} initialVariables={variables}>
