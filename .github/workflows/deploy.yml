@@ -15,6 +15,9 @@ jobs:
       AWS_REGION: us-east-1
       CDK_DEFAULT_REGION: us-east-1
       GRAPHQL_ORIGIN_SECRET: ${{ secrets.GRAPHQL_ORIGIN_SECRET }}
+      RUSTC_WRAPPER: sccache
+      SCCACHE_GHA_ENABLED: "true"
+      CARGO_INCREMENTAL: "1"
     steps:
       - uses: actions/checkout@v4
 
@@ -45,17 +48,14 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Restore Rust cache
-        id: cache-rust-restore
-        uses: actions/cache/restore@v4
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.3
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          workspaces: |
+            . -> target
 
       - name: Restore cargo-lambda cache
         id: cache-cargo-lambda-restore
@@ -111,16 +111,6 @@ jobs:
             .turbo
             ~/.cache/turbo
           key: ${{ steps.cache-turbo-restore.outputs.cache-primary-key }}
-
-      - name: Save Rust cache
-        if: always() && steps.cache-rust-restore.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ steps.cache-rust-restore.outputs.cache-primary-key }}
 
       - name: Install CDK CLI
         run: npm install -g aws-cdk@2
