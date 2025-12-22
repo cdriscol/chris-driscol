@@ -87,7 +87,7 @@ export class InfraStack extends Stack {
       authType: lambda.FunctionUrlAuthType.NONE,
       cors: {
         allowedHeaders: ["content-type", "authorization"],
-        allowedMethods: [lambda.HttpMethod.POST, lambda.HttpMethod.OPTIONS],
+        allowedMethods: [lambda.HttpMethod.ALL],
         allowedOrigins: ["http://localhost:3000"],
       },
     });

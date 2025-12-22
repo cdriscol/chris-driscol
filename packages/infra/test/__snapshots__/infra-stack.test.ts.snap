@@ -448,8 +448,7 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
             "authorization",
           ],
           "AllowMethods": [
-            "POST",
-            "OPTIONS",
+            "*",
           ],
           "AllowOrigins": [
             "http://localhost:3000",
