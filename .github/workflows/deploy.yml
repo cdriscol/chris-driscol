@@ -82,6 +82,15 @@ jobs:
         with:
           version: "0.13.0"
 
+      - name: Lint (Biome)
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Tests
+        run: pnpm test
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
