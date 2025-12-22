@@ -30,10 +30,20 @@ else
 fi
 
 if [[ ! -f "$lambda_zip" ]]; then
-  found_zip="$(find "$lambda_dir" -type f -name 'bootstrap.zip' 2>/dev/null | head -n 1)"
-  if [[ -z "$found_zip" ]]; then
-    found_zip="$(find "$lambda_dir" -type f -name '*.zip' 2>/dev/null | head -n 1)"
-  fi
+  found_zip=""
+  search_dirs=("$lambda_dir" "$project_root/target" "$project_root/target/x86_64-unknown-linux-musl/lambda")
+  for dir in "${search_dirs[@]}"; do
+    if [[ ! -d "$dir" ]]; then
+      continue
+    fi
+    found_zip="$(find "$dir" -type f -name 'bootstrap.zip' 2>/dev/null | head -n 1)"
+    if [[ -z "$found_zip" ]]; then
+      found_zip="$(find "$dir" -type f -name '*.zip' 2>/dev/null | head -n 1)"
+    fi
+    if [[ -n "$found_zip" ]]; then
+      break
+    fi
+  done
   if [[ -z "$found_zip" ]]; then
     echo "Contents of $project_root/target (if any):"
     ls -la "$project_root/target" || true
