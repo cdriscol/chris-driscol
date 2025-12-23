@@ -22,36 +22,60 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
   const skillsData = useFragment(SkillsSectionFragment, skills);
 
   return (
-    <section className="section skills" id="skills">
+    <section className="section bg-[#2a2a2a]" id="skills">
       <div className="site-container">
         <div className="section-header">
-          <h2 className="section-title">My Skills</h2>
-          <p className="section-tagline text-muted">
+          <h2 className="section-title text-[white]">My Skills</h2>
+          <p className="section-tagline !text-[#bbb]">
             These are some things I&apos;ve picked up over the years..
           </p>
         </div>
         {skillsData ? (
-          <div className="skills-row">
-            <div className="skills-block">
-              <h3 className="card-title">languages</h3>
-              <p>{skillsData.languages.join(", ")}</p>
+          <div className="skills-row grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            <div className="skills-block text-center">
+              <h3 className="mb-[10px] text-[18px] font-bold uppercase tracking-[1px] text-[white]">
+                languages
+              </h3>
+              <p
+                className="text-[1.1em] text-[#bbb]"
+                style={{ fontFamily: "Roboto, Helvetica, Arial, sans-serif" }}
+              >
+                {skillsData.languages.join(", ")}
+              </p>
             </div>
-            <div className="skills-block">
-              <h3 className="card-title">technologies</h3>
-              <p>{skillsData.technologies.join(", ")}</p>
+            <div className="skills-block text-center">
+              <h3 className="mb-[10px] text-[18px] font-bold uppercase tracking-[1px] text-[white]">
+                technologies
+              </h3>
+              <p
+                className="text-[1.1em] text-[#bbb]"
+                style={{ fontFamily: "Roboto, Helvetica, Arial, sans-serif" }}
+              >
+                {skillsData.technologies.join(", ")}
+              </p>
             </div>
-            <div className="skills-block">
-              <h3 className="card-title">tools</h3>
-              <p>{skillsData.tools.join(", ")}</p>
+            <div className="skills-block text-center">
+              <h3 className="mb-[10px] text-[18px] font-bold uppercase tracking-[1px] text-[white]">
+                tools
+              </h3>
+              <p
+                className="text-[1.1em] text-[#bbb]"
+                style={{ fontFamily: "Roboto, Helvetica, Arial, sans-serif" }}
+              >
+                {skillsData.tools.join(", ")}
+              </p>
             </div>
           </div>
         ) : (
-          <p className="text-muted">Loading skills...</p>
+          <p className="text-muted !text-[#bbb]">Loading skills...</p>
         )}
-        <div className="skills-love">
-          I <IconHeart />{" "}
+        <div className="skills-love inline-flex w-full flex-wrap items-center justify-center gap-2 pt-[30px] text-[32px] leading-[38.4px] text-[white] md:flex-nowrap md:whitespace-nowrap">
+          I{" "}
+          <span className="text-[pink]">
+            <IconHeart />
+          </span>{" "}
           <ReactTyped
-            className="skills-love-text"
+            className="inline-block"
             strings={skillsData?.loves ?? ["Agile teams"]}
             typeSpeed={100}
             backSpeed={40}
