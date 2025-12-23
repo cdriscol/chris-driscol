@@ -13,3 +13,4 @@ lambda.zip
 apps/**/vite.config.js
 apps/**/vite.config.d.ts
 .devserver.*.log
+apps/web/src/generated/graphql/

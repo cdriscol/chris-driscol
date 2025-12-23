@@ -7,14 +7,17 @@
     "enabled": true
   },
   "files": {
-    "experimentalScannerIgnores": [
-      "legacy/**",
-      "apps/web/dist/**",
-      "dist/**",
-      "apps/web/public/**",
-      "target/**",
-      "**/*.lock",
-      "**/*.min.*"
+    "includes": [
+      "**",
+      "!!**/legacy/**",
+      "!!**/apps/web/dist/**",
+      "!!**/dist/**",
+      "!!**/apps/web/public/**",
+      "!!**/src/generated/graphql/**",
+      "!!**/apps/web/src/generated/graphql/**",
+      "!!**/target/**",
+      "!!**/*.lock",
+      "!!**/*.min.*"
     ]
   }
 }

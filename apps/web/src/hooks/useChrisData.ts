@@ -1,36 +1,42 @@
-import { useEffect, useState } from "react";
-import { graphqlUrl } from "../lib/api";
-import { chrisQuery } from "../lib/graphql";
-import type { Chris, QueryResponse } from "../types/chris";
+import { useQuery } from "@tanstack/react-query";
+import { graphql } from "../generated/graphql";
+import { execute } from "../generated/graphql/execute";
+
+const AppQueryDocument = graphql(/* GraphQL */ `
+  query AppQuery {
+    chris {
+      id
+      title
+      description
+      about {
+        ...AboutSection
+      }
+      experience {
+        ...ExperienceItem
+      }
+      skills {
+        ...SkillsSection
+      }
+      work {
+        ...PortfolioCard
+        ...PortfolioModal
+      }
+      social {
+        ...SiteNavSocial
+        ...FooterSocial
+      }
+    }
+  }
+`);
 
 export const useChrisData = () => {
-  const [chris, setChris] = useState<Chris | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const { data, error } = useQuery({
+    queryKey: ["chris"],
+    queryFn: () => execute(AppQueryDocument),
+  });
 
-  useEffect(() => {
-    let active = true;
-    const load = async () => {
-      try {
-        const response = await fetch(graphqlUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query: chrisQuery }),
-        });
-        const json = (await response.json()) as QueryResponse;
-        if (!active) return;
-        setChris(json.data?.chris ?? null);
-      } catch (err) {
-        if (!active) return;
-        setError(err instanceof Error ? err.message : "Failed to load data.");
-      }
-    };
-    load();
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  return { chris, error };
+  return {
+    data,
+    error: error instanceof Error ? error.message : error ? "Failed to load data." : null,
+  };
 };

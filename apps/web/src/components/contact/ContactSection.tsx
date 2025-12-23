@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { graphqlUrl } from "../../lib/api";
-import { contactMutation } from "../../lib/graphql";
+import { graphql } from "../../generated/graphql";
+import { execute } from "../../generated/graphql/execute";
 import "./contact.css";
 
 type ContactErrors = {
@@ -9,6 +9,14 @@ type ContactErrors = {
   subject?: string;
   body?: string;
 };
+
+const ContactMutationDocument = graphql(/* GraphQL */ `
+  mutation ContactMe($input: ContactMeInput!) {
+    contactMe(input: $input) {
+      success
+    }
+  }
+`);
 
 export const ContactSection = () => {
   const [contactSent, setContactSent] = useState(false);
@@ -43,31 +51,15 @@ export const ContactSection = () => {
     if (!validateContact()) return;
 
     try {
-      const response = await fetch(graphqlUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const result = await execute(ContactMutationDocument, {
+        input: {
+          name: contactForm.name,
+          from: contactForm.from,
+          subject: contactForm.subject,
+          body: contactForm.body,
         },
-        body: JSON.stringify({
-          query: contactMutation,
-          variables: {
-            input: {
-              name: contactForm.name,
-              from: contactForm.from,
-              subject: contactForm.subject,
-              body: contactForm.body,
-            },
-          },
-        }),
       });
-      const json = (await response.json()) as {
-        data?: { contactMe?: { success?: boolean } };
-        errors?: Array<{ message: string }>;
-      };
-      if (json.errors?.length) {
-        throw new Error(json.errors[0]?.message ?? "There was an error sending your email.");
-      }
-      if (!json.data?.contactMe?.success) {
+      if (!result.contactMe?.success) {
         throw new Error("There was an error sending your email.");
       }
       setContactSent(true);

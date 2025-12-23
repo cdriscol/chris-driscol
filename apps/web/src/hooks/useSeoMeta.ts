@@ -1,7 +1,15 @@
 import { useEffect } from "react";
-import type { Chris } from "../types/chris";
+import { AboutSectionFragment } from "../components/about/AboutSection";
+import { SiteNavSocialFragment } from "../components/nav/SiteNav";
+import { useFragment } from "../generated/graphql/fragment-masking";
+import type { AppQueryQuery } from "../generated/graphql/graphql";
 
-export const useSeoMeta = (chris: Chris | null) => {
+type SeoChris = AppQueryQuery["chris"];
+
+export const useSeoMeta = (chris: SeoChris | null) => {
+  const about = useFragment(AboutSectionFragment, chris?.about ?? null);
+  const social = useFragment(SiteNavSocialFragment, chris?.social ?? null);
+
   useEffect(() => {
     if (!chris) return;
     const baseUrl = window.location.origin;
@@ -12,7 +20,7 @@ export const useSeoMeta = (chris: Chris | null) => {
     const imageAlt = `${title} hero image`;
     const twitterHandle = (() => {
       try {
-        const handle = new URL(chris.social.github).pathname
+        const handle = new URL(social?.github ?? "").pathname
           .split("/")
           .filter(Boolean)[0];
         return handle ? `@${handle}` : null;
@@ -148,16 +156,16 @@ export const useSeoMeta = (chris: Chris | null) => {
     }
     ensureLink("canonical", canonicalUrl);
 
-    const personName = chris.about?.imageTitle ?? "Chris Driscol";
-    const jobTitle = chris.about?.imageCaption ?? chris.title;
-    const sameAs = [chris.social.linkedIn, chris.social.github].filter(Boolean);
+    const personName = about?.imageTitle ?? "Chris Driscol";
+    const jobTitle = about?.imageCaption ?? chris.title;
+    const sameAs = [social?.linkedIn, social?.github].filter(Boolean);
     ensureScript("ld-json-person", {
       "@context": "https://schema.org",
       "@type": "Person",
       name: personName,
       url: baseUrl,
       jobTitle,
-      image: chris.about?.imageUrl ? `${baseUrl}${chris.about.imageUrl}` : imageUrl,
+      image: about?.imageUrl ? `${baseUrl}${about.imageUrl}` : imageUrl,
       sameAs,
     });
     ensureScript("ld-json-website", {
@@ -166,5 +174,12 @@ export const useSeoMeta = (chris: Chris | null) => {
       name: title,
       url: baseUrl,
     });
-  }, [chris]);
+  }, [
+    chris,
+    about?.imageCaption,
+    about?.imageTitle,
+    about?.imageUrl,
+    social?.github,
+    social?.linkedIn,
+  ]);
 };

@@ -1,4 +1,6 @@
 import type { MouseEvent } from "react";
+import { graphql } from "../../generated/graphql";
+import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { IconGitHub, IconLinkedIn } from "../icons/Icons";
 import "../icons/icons.css";
 import "./nav.css";
@@ -9,9 +11,15 @@ type SiteNavProps = {
   activeSection: string;
   onToggle: () => void;
   onNavClick: (id: string) => (event: MouseEvent<HTMLAnchorElement>) => void;
-  linkedIn?: string;
-  github?: string;
+  social?: FragmentType<typeof SiteNavSocialFragment> | null;
 };
+
+export const SiteNavSocialFragment = graphql(/* GraphQL */ `
+  fragment SiteNavSocial on Social {
+    linkedIn
+    github
+  }
+`);
 
 export const SiteNav = ({
   navSolid,
@@ -19,11 +27,13 @@ export const SiteNav = ({
   activeSection,
   onToggle,
   onNavClick,
-  linkedIn,
-  github,
-}: SiteNavProps) => (
-  <nav className={`site-nav ${navSolid ? "is-solid" : ""} ${navOpen ? "is-open" : ""}`}>
-    <div className="site-container nav-inner">
+  social,
+}: SiteNavProps) => {
+  const socialData = useFragment(SiteNavSocialFragment, social);
+
+  return (
+    <nav className={`site-nav ${navSolid ? "is-solid" : ""} ${navOpen ? "is-open" : ""}`}>
+      <div className="site-container nav-inner">
       <h1 className="nav-brand">
         {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
         <a href="#top" onClick={onNavClick("top")}>
@@ -95,18 +105,29 @@ export const SiteNav = ({
       </ul>
       <ul className="nav-social">
         <li>
-          <a href={linkedIn ?? "#"} rel="noreferrer" target="_blank" title="LinkedIn">
+          <a
+            href={socialData?.linkedIn ?? "#"}
+            rel="noreferrer"
+            target="_blank"
+            title="LinkedIn"
+          >
             <IconLinkedIn />
             <span className="sr-only">LinkedIn</span>
           </a>
         </li>
         <li>
-          <a href={github ?? "#"} rel="noreferrer" target="_blank" title="Github">
+          <a
+            href={socialData?.github ?? "#"}
+            rel="noreferrer"
+            target="_blank"
+            title="Github"
+          >
             <IconGitHub />
             <span className="sr-only">GitHub</span>
           </a>
         </li>
       </ul>
     </div>
-  </nav>
-);
+    </nav>
+  );
+};

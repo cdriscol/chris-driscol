@@ -12,12 +12,16 @@ import {
   SkillsSection,
 } from "./components";
 import { useChrisData, useSeoMeta, useSiteNav } from "./hooks";
-import type { Work } from "./types/chris";
+import type { FragmentType } from "./generated/graphql/fragment-masking";
+import type { PortfolioModalFragment } from "./components/portfolio/PortfolioSection";
 
 export const App = () => {
-  const { chris, error } = useChrisData();
+  const { data, error } = useChrisData();
+  const chris = data?.chris ?? null;
   const { navSolid, navOpen, setNavOpen, activeSection, handleNavClick } = useSiteNav();
-  const [activeWork, setActiveWork] = useState<Work | null>(null);
+  const [activeWork, setActiveWork] = useState<FragmentType<typeof PortfolioModalFragment> | null>(
+    null,
+  );
 
   useSeoMeta(chris);
 
@@ -38,8 +42,7 @@ export const App = () => {
         activeSection={activeSection}
         onToggle={() => setNavOpen((open) => !open)}
         onNavClick={handleNavClick}
-        linkedIn={chris?.social.linkedIn}
-        github={chris?.social.github}
+        social={chris?.social ?? null}
       />
 
       <main>
@@ -48,14 +51,14 @@ export const App = () => {
         <BuiltWithSection />
         <SkillsSection skills={chris?.skills} />
         <ExperienceSection experience={chris?.experience} onNavClick={handleNavClick} />
-        <PortfolioSection work={chris?.work} onSelectWork={setActiveWork} />
+        <PortfolioSection work={chris?.work ?? null} onSelectWork={setActiveWork} />
         <ContactSection />
 
         {activeWork ? (
           <PortfolioModal activeWork={activeWork} onClose={() => setActiveWork(null)} />
         ) : null}
 
-        <FooterSection social={chris?.social} />
+        <FooterSection social={chris?.social ?? null} />
       </main>
     </div>
   );
