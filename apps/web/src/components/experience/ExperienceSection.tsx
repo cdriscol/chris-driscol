@@ -5,6 +5,7 @@ import { normalizeText } from "../../utils/normalizeText";
 import { SectionHeader } from "../section/SectionHeader";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
+import { SiteContainer } from "../section/SiteContainer";
 import "./experience.css";
 
 type ExperienceSectionProps = {
@@ -27,7 +28,7 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
 
   return (
     <section className="section" id="experience">
-      <div className="site-container">
+      <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>My Experience</SectionTitle>
           <SectionTagline>Here&apos;s what I&apos;ve been up to..</SectionTagline>
@@ -80,7 +81,7 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
             </div>
           </li>
         </ol>
-      </div>
+      </SiteContainer>
     </section>
   );
 };

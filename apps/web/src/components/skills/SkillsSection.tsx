@@ -5,6 +5,7 @@ import { IconHeart } from "../icons/Icons";
 import { SectionHeader } from "../section/SectionHeader";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
+import { SiteContainer } from "../section/SiteContainer";
 import "../icons/icons.css";
 import "./skills.css";
 
@@ -26,7 +27,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
 
   return (
     <section className="section bg-[#2a2a2a]" id="skills">
-      <div className="site-container">
+      <SiteContainer>
         <SectionHeader>
           <SectionTitle className="text-[white]">My Skills</SectionTitle>
           <SectionTagline className="!text-[#bbb]">
@@ -88,7 +89,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
             loop
           />
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 };

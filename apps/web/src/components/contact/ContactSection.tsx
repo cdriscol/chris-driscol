@@ -4,6 +4,7 @@ import { execute } from "../../generated/graphql/execute";
 import { SectionHeader } from "../section/SectionHeader";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
+import { SiteContainer } from "../section/SiteContainer";
 import "./contact.css";
 
 type ContactErrors = {
@@ -74,7 +75,7 @@ export const ContactSection = () => {
 
   return (
     <section className="section contact" id="contactme">
-      <div className="site-container">
+      <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>{contactSent ? "Thank you" : "Contact Me"}</SectionTitle>
           <SectionTagline>
@@ -171,7 +172,7 @@ export const ContactSection = () => {
             </form>
           ) : null}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 };

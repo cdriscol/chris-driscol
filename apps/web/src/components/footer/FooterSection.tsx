@@ -1,6 +1,7 @@
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { IconGitHub, IconLinkedIn } from "../icons/Icons";
+import { SiteContainer } from "../section/SiteContainer";
 import "../icons/icons.css";
 import "./footer.css";
 
@@ -21,7 +22,7 @@ export const FooterSection = ({ social }: FooterSectionProps) => {
 
   return (
     <footer className="footer">
-      <div className="site-container">
+      <SiteContainer>
         <div className="footer-row">
           <span className="copyright">
             Copyright &copy; <strong>Chris Driscol</strong> {new Date().getFullYear()}
@@ -48,7 +49,7 @@ export const FooterSection = ({ social }: FooterSectionProps) => {
             </li>
           </ul>
         </div>
-      </div>
+      </SiteContainer>
     </footer>
   );
 };

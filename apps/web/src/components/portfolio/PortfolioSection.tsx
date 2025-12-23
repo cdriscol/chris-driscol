@@ -4,6 +4,7 @@ import { type FragmentType, useFragment } from "../../generated/graphql/fragment
 import { SectionHeader } from "../section/SectionHeader";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
+import { SiteContainer } from "../section/SiteContainer";
 import { PortfolioModal } from "./PortfolioModal";
 import "./portfolio.css";
 
@@ -60,7 +61,7 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
 
   return (
     <section className="section portfolio" id="portfolio">
-      <div className="site-container">
+      <SiteContainer>
         <SectionHeader>
           <SectionTitle>My Work</SectionTitle>
           <SectionTagline className="text-muted">
@@ -97,7 +98,7 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
             </div>
           )) ?? <p className="text-sm text-[var(--muted)]">Loading work...</p>}
         </div>
-      </div>
+      </SiteContainer>
       {activeWork ? (
         <PortfolioModal activeWork={activeWork} onClose={() => setActiveWork(null)} />
       ) : null}

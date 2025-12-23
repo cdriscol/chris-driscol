@@ -4,6 +4,7 @@ import { IconHeart } from "../icons/Icons";
 import { SectionHeader } from "../section/SectionHeader";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
+import { SiteContainer } from "../section/SiteContainer";
 import "../icons/icons.css";
 import "./about.css";
 
@@ -26,7 +27,7 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
 
   return (
     <section className="section aboutme" id="aboutme">
-      <div className="site-container">
+      <SiteContainer>
         <SectionHeader>
           <SectionTitle>About Me</SectionTitle>
           <SectionTagline className="text-muted">
@@ -60,7 +61,7 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
             <strong>delivering customer value</strong> early and often.
           </p>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 };

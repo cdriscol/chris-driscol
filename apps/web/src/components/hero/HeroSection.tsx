@@ -1,4 +1,5 @@
 import type { MouseEvent } from "react";
+import { SiteContainer } from "../section/SiteContainer";
 import "./hero.css";
 
 type HeroSectionProps = {
@@ -8,7 +9,7 @@ type HeroSectionProps = {
 
 export const HeroSection = ({ error, onNavClick }: HeroSectionProps) => (
   <header id="top" className="hero">
-    <div className="site-container">
+    <SiteContainer>
       <div className="intro-text">
         <div className="intro-lead-in">Welcome To My Website!</div>
         <div className="intro-heading">It&apos;s Nice To Meet You</div>
@@ -20,6 +21,6 @@ export const HeroSection = ({ error, onNavClick }: HeroSectionProps) => (
         </div>
         {error ? <p className="intro-body">Error: {error}</p> : null}
       </div>
-    </div>
+    </SiteContainer>
   </header>
 );

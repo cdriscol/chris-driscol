@@ -81,11 +81,6 @@ a:active {
   background: #fff;
 }
 
-.site-container {
-  width: min(1170px, 92vw);
-  margin: 0 auto;
-}
-
 .highlights-grid {
   display: grid;
   gap: 24px;
