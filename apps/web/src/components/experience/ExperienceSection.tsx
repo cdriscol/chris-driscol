@@ -3,6 +3,7 @@ import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { normalizeText } from "../../utils/normalizeText";
 import { SectionHeader } from "../section/SectionHeader";
+import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
@@ -27,7 +28,7 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
   const items = useFragment(ExperienceItemFragment, experience);
 
   return (
-    <section className="section" id="experience">
+    <Section id="experience">
       <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>My Experience</SectionTitle>
@@ -61,7 +62,9 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
                   <div className="timeline-heading">
                     <h4 className="timeline-year">{duration}</h4>
                     <h4 className="subheading">{title}</h4>
-                    {locationLine ? <p className="text-muted">{locationLine}</p> : null}
+                    {locationLine ? (
+                      <p className="text-[var(--muted)]">{locationLine}</p>
+                    ) : null}
                   </div>
                   <div className="timeline-body">{body}</div>
                 </div>
@@ -82,6 +85,6 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
           </li>
         </ol>
       </SiteContainer>
-    </section>
+    </Section>
   );
 };

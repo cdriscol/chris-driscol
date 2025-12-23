@@ -19,7 +19,7 @@ export const App = () => {
   useSeoMeta(chris);
 
   return (
-    <div className="page">
+    <div className="bg-white">
       <SiteNav
         navSolid={navSolid}
         navOpen={navOpen}

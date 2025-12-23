@@ -69,75 +69,6 @@ a:active {
   color: var(--accent-strong);
 }
 
-.text-muted {
-  color: #777;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.page {
-  background: #fff;
-}
-
-.highlights-grid {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.section {
-  padding: 150px 0;
-  scroll-margin-top: var(--nav-offset, 110px);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 3px;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-xl {
-  font-size: 18px;
-  padding: 20px 40px;
-}
-
-.btn-primary {
-  color: #fff;
-  background: var(--accent);
-  border: 1px solid var(--accent);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background: var(--accent-strong);
-  border-color: #f6bf01;
-  color: #fff;
-}
-
-.large {
-  font-size: 16px;
-}
-
 ::selection {
   background: var(--accent);
   text-shadow: none;
@@ -149,10 +80,4 @@ img::selection {
 
 img::-moz-selection {
   background: transparent;
-}
-
-@media (max-width: 767px) {
-  .section {
-    padding: 100px 0;
-  }
 }

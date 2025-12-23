@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { SectionHeader } from "../section/SectionHeader";
+import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
@@ -60,11 +61,11 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
   }, [activeWork]);
 
   return (
-    <section className="section portfolio" id="portfolio">
+    <Section id="portfolio" className="portfolio">
       <SiteContainer>
         <SectionHeader>
           <SectionTitle>My Work</SectionTitle>
-          <SectionTagline className="text-muted">
+          <SectionTagline className="text-[var(--muted)]">
             These are just some of the things I have worked on over the years, some were done with
             the help of extremely talented colleagues.
           </SectionTagline>
@@ -93,7 +94,7 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
               </a>
               <div className="portfolio-caption">
                 <h4 className="portfolio-title">{item.card.title}</h4>
-                <p className="text-muted">{item.card.location ?? item.card.subTitle}</p>
+                <p className="text-[var(--muted)]">{item.card.location ?? item.card.subTitle}</p>
               </div>
             </div>
           )) ?? <p className="text-sm text-[var(--muted)]">Loading work...</p>}
@@ -102,6 +103,6 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
       {activeWork ? (
         <PortfolioModal activeWork={activeWork} onClose={() => setActiveWork(null)} />
       ) : null}
-    </section>
+    </Section>
   );
 };

@@ -3,6 +3,7 @@ import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { IconHeart } from "../icons/Icons";
 import { SectionHeader } from "../section/SectionHeader";
+import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
@@ -26,7 +27,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
   const skillsData = useFragment(SkillsSectionFragment, skills);
 
   return (
-    <section className="section bg-[#2a2a2a]" id="skills">
+    <Section id="skills" className="bg-[#2a2a2a]">
       <SiteContainer>
         <SectionHeader>
           <SectionTitle className="text-[white]">My Skills</SectionTitle>
@@ -74,7 +75,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
             </div>
           </div>
         ) : (
-          <p className="text-muted !text-[#bbb]">Loading skills...</p>
+          <p className="!text-[#bbb]">Loading skills...</p>
         )}
         <div className="skills-love inline-flex w-full flex-wrap items-center justify-center gap-2 pt-[30px] text-[32px] leading-[38.4px] text-[white] md:flex-nowrap md:whitespace-nowrap">
           I{" "}
@@ -90,6 +91,6 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
           />
         </div>
       </SiteContainer>
-    </section>
+    </Section>
   );
 };

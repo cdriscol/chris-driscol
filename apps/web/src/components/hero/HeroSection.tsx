@@ -1,5 +1,6 @@
 import type { MouseEvent } from "react";
 import { SiteContainer } from "../section/SiteContainer";
+import { PrimaryButton } from "../ui/PrimaryButton";
 import "./hero.css";
 
 type HeroSectionProps = {
@@ -15,9 +16,9 @@ export const HeroSection = ({ error, onNavClick }: HeroSectionProps) => (
         <div className="intro-heading">It&apos;s Nice To Meet You</div>
         <div className="hero-actions">
           {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
-          <a href="#aboutme" onClick={onNavClick("aboutme")} className="btn btn-xl btn-primary">
+          <PrimaryButton as="a" href="#aboutme" onClick={onNavClick("aboutme")}>
             Learn about me
-          </a>
+          </PrimaryButton>
         </div>
         {error ? <p className="intro-body">Error: {error}</p> : null}
       </div>

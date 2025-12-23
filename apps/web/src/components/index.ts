@@ -10,5 +10,7 @@ export { PortfolioSection } from "./portfolio/PortfolioSection";
 export { SectionHeader } from "./section/SectionHeader";
 export { SectionTitle } from "./section/SectionTitle";
 export { SectionTagline } from "./section/SectionTagline";
+export { Section } from "./section/Section";
 export { SiteContainer } from "./section/SiteContainer";
 export { SkillsSection } from "./skills/SkillsSection";
+export { PrimaryButton } from "./ui/PrimaryButton";

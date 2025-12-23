@@ -2,9 +2,11 @@ import { useState, type FormEvent } from "react";
 import { graphql } from "../../generated/graphql";
 import { execute } from "../../generated/graphql/execute";
 import { SectionHeader } from "../section/SectionHeader";
+import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
+import { PrimaryButton } from "../ui/PrimaryButton";
 import "./contact.css";
 
 type ContactErrors = {
@@ -74,7 +76,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="section contact" id="contactme">
+    <Section id="contactme" className="contact">
       <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>{contactSent ? "Thank you" : "Contact Me"}</SectionTitle>
@@ -164,15 +166,15 @@ export const ContactSection = () => {
                 </div>
               </div>
               <div className="contact-actions">
-                <button type="submit" className="btn btn-xl btn-primary">
+                <PrimaryButton type="submit">
                   Send Message
-                </button>
+                </PrimaryButton>
                 {contactError ? <p className="help-block text-danger">{contactError}</p> : null}
               </div>
             </form>
           ) : null}
         </div>
       </SiteContainer>
-    </section>
+    </Section>
   );
 };
