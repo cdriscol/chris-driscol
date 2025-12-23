@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { SectionHeader } from "../section/SectionHeader";
+import { SectionTagline } from "../section/SectionTagline";
+import { SectionTitle } from "../section/SectionTitle";
 import { PortfolioModal } from "./PortfolioModal";
 import "./portfolio.css";
 
@@ -58,13 +61,13 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
   return (
     <section className="section portfolio" id="portfolio">
       <div className="site-container">
-        <div className="section-header">
-          <h2 className="section-title">My Work</h2>
-          <p className="section-tagline text-muted">
+        <SectionHeader>
+          <SectionTitle>My Work</SectionTitle>
+          <SectionTagline className="text-muted">
             These are just some of the things I have worked on over the years, some were done with
             the help of extremely talented colleagues.
-          </p>
-        </div>
+          </SectionTagline>
+        </SectionHeader>
         <div className="portfolio-grid">
           {items?.map((item) => (
             <div key={`${item.card.title}-${item.card.date}`} className="portfolio-item">

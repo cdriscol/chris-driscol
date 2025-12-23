@@ -2,6 +2,9 @@ import type { MouseEvent } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { normalizeText } from "../../utils/normalizeText";
+import { SectionHeader } from "../section/SectionHeader";
+import { SectionTagline } from "../section/SectionTagline";
+import { SectionTitle } from "../section/SectionTitle";
 import "./experience.css";
 
 type ExperienceSectionProps = {
@@ -25,10 +28,10 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
   return (
     <section className="section" id="experience">
       <div className="site-container">
-        <div className="section-header text-center">
-          <h2 className="section-title">My Experience</h2>
-          <p className="section-tagline">Here&apos;s what I&apos;ve been up to..</p>
-        </div>
+        <SectionHeader className="text-center">
+          <SectionTitle>My Experience</SectionTitle>
+          <SectionTagline>Here&apos;s what I&apos;ve been up to..</SectionTagline>
+        </SectionHeader>
         <ol className="timeline">
           {items?.map((item, index) => {
             const duration = normalizeText(item.duration);

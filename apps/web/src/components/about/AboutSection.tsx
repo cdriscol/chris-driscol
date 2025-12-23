@@ -1,6 +1,9 @@
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
 import { IconHeart } from "../icons/Icons";
+import { SectionHeader } from "../section/SectionHeader";
+import { SectionTagline } from "../section/SectionTagline";
+import { SectionTitle } from "../section/SectionTitle";
 import "../icons/icons.css";
 import "./about.css";
 
@@ -24,12 +27,12 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
   return (
     <section className="section aboutme" id="aboutme">
       <div className="site-container">
-        <div className="section-header">
-          <h2 className="section-title">About Me</h2>
-          <p className="section-tagline text-muted">
+        <SectionHeader>
+          <SectionTitle>About Me</SectionTitle>
+          <SectionTagline className="text-muted">
             This should help you get to know more about me..
-          </p>
-        </div>
+          </SectionTagline>
+        </SectionHeader>
         <div className="about-row">
           <div className="about-description">
             {aboutData?.description?.map((line) => {

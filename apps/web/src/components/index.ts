@@ -7,4 +7,7 @@ export { HeroSection } from "./hero/HeroSection";
 export { SiteNav } from "./nav/SiteNav";
 export { PortfolioModal } from "./portfolio/PortfolioModal";
 export { PortfolioSection } from "./portfolio/PortfolioSection";
+export { SectionHeader } from "./section/SectionHeader";
+export { SectionTitle } from "./section/SectionTitle";
+export { SectionTagline } from "./section/SectionTagline";
 export { SkillsSection } from "./skills/SkillsSection";

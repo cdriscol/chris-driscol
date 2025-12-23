@@ -1,6 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { graphql } from "../../generated/graphql";
 import { execute } from "../../generated/graphql/execute";
+import { SectionHeader } from "../section/SectionHeader";
+import { SectionTagline } from "../section/SectionTagline";
+import { SectionTitle } from "../section/SectionTitle";
 import "./contact.css";
 
 type ContactErrors = {
@@ -72,12 +75,14 @@ export const ContactSection = () => {
   return (
     <section className="section contact" id="contactme">
       <div className="site-container">
-        <div className="section-header text-center">
-          <h2 className="section-title">{contactSent ? "Thank you" : "Contact Me"}</h2>
-          <p className="section-tagline">
-            {contactSent ? "I will respond to you as soon as possible." : "I would love to hear from you!"}
-          </p>
-        </div>
+        <SectionHeader className="text-center">
+          <SectionTitle>{contactSent ? "Thank you" : "Contact Me"}</SectionTitle>
+          <SectionTagline>
+            {contactSent
+              ? "I will respond to you as soon as possible."
+              : "I would love to hear from you!"}
+          </SectionTagline>
+        </SectionHeader>
         <div className="contact-panel mt-8">
           {!contactSent ? (
             <form onSubmit={handleContactSubmit} className="contact-form">
