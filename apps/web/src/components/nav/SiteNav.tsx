@@ -1,6 +1,6 @@
-import type { MouseEvent } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { useNavClick } from "../../context/siteNavClickContext";
 import { IconGitHub, IconLinkedIn } from "../icons/Icons";
 import { SiteContainer } from "../section/SiteContainer";
 import "../icons/icons.css";
@@ -11,7 +11,6 @@ type SiteNavProps = {
   navOpen: boolean;
   activeSection: string;
   onToggle: () => void;
-  onNavClick: (id: string) => (event: MouseEvent<HTMLAnchorElement>) => void;
   social?: FragmentType<typeof SiteNavSocialFragment> | null;
 };
 
@@ -27,10 +26,10 @@ export const SiteNav = ({
   navOpen,
   activeSection,
   onToggle,
-  onNavClick,
   social,
 }: SiteNavProps) => {
   const socialData = useFragment(SiteNavSocialFragment, social);
+  const onNavClick = useNavClick();
 
   return (
     <nav className={`site-nav ${navSolid ? "is-solid" : ""} ${navOpen ? "is-open" : ""}`}>

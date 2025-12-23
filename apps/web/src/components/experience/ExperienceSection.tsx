@@ -1,6 +1,6 @@
-import type { MouseEvent } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { useNavClick } from "../../context/siteNavClickContext";
 import { normalizeText } from "../../utils/normalizeText";
 import { SectionHeader } from "../section/SectionHeader";
 import { Section } from "../section/Section";
@@ -11,7 +11,6 @@ import "./experience.css";
 
 type ExperienceSectionProps = {
   experience?: Array<FragmentType<typeof ExperienceItemFragment>> | null;
-  onNavClick: (id: string) => (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 export const ExperienceItemFragment = graphql(/* GraphQL */ `
@@ -24,8 +23,9 @@ export const ExperienceItemFragment = graphql(/* GraphQL */ `
   }
 `);
 
-export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionProps) => {
+export const ExperienceSection = ({ experience }: ExperienceSectionProps) => {
   const items = useFragment(ExperienceItemFragment, experience);
+  const onNavClick = useNavClick();
 
   return (
     <Section id="experience">
@@ -62,15 +62,13 @@ export const ExperienceSection = ({ experience, onNavClick }: ExperienceSectionP
                   <div className="timeline-heading">
                     <h4 className="timeline-year">{duration}</h4>
                     <h4 className="subheading">{title}</h4>
-                    {locationLine ? (
-                      <p className="text-[var(--muted)]">{locationLine}</p>
-                    ) : null}
+                    {locationLine ? <p className="text-muted">{locationLine}</p> : null}
                   </div>
                   <div className="timeline-body">{body}</div>
                 </div>
               </li>
             );
-          }) ?? <p className="text-sm text-[var(--muted)]">Loading experience...</p>}
+          }) ?? <p className="text-sm text-muted">Loading experience...</p>}
           <li className="timeline-item timeline-final timeline-inverted">
             <div className="timeline-image">
               {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
