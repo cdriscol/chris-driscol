@@ -1,12 +1,13 @@
+import { useEffect, useState } from "react";
 import { graphql } from "../../generated/graphql";
 import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { PortfolioModal } from "./PortfolioModal";
 import "./portfolio.css";
 
 type PortfolioSectionProps = {
   work?: Array<
     FragmentType<typeof PortfolioCardFragment> & FragmentType<typeof PortfolioModalFragment>
   > | null;
-  onSelectWork: (item: FragmentType<typeof PortfolioModalFragment>) => void;
 };
 
 export const PortfolioCardFragment = graphql(/* GraphQL */ `
@@ -34,13 +35,25 @@ export const PortfolioModalFragment = graphql(/* GraphQL */ `
   }
 `);
 
-export const PortfolioSection = ({ work, onSelectWork }: PortfolioSectionProps) => {
+export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
+  const [activeWork, setActiveWork] = useState<FragmentType<typeof PortfolioModalFragment> | null>(
+    null,
+  );
   const cardItems = useFragment(PortfolioCardFragment, work);
   const items =
     cardItems?.map((card, index) => ({
       card,
       raw: work?.[index],
     })) ?? null;
+
+  useEffect(() => {
+    if (!activeWork) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [activeWork]);
 
   return (
     <section className="section portfolio" id="portfolio">
@@ -63,7 +76,7 @@ export const PortfolioSection = ({ work, onSelectWork }: PortfolioSectionProps) 
                 onClick={(event) => {
                   event.preventDefault();
                   if (item.raw) {
-                    onSelectWork(item.raw);
+                    setActiveWork(item.raw);
                   }
                 }}
               >
@@ -82,6 +95,9 @@ export const PortfolioSection = ({ work, onSelectWork }: PortfolioSectionProps) 
           )) ?? <p className="text-sm text-[var(--muted)]">Loading work...</p>}
         </div>
       </div>
+      {activeWork ? (
+        <PortfolioModal activeWork={activeWork} onClose={() => setActiveWork(null)} />
+      ) : null}
     </section>
   );
 };
