@@ -2,6 +2,7 @@ import { type FragmentType, useFragment } from "../../generated/graphql/fragment
 import { PortfolioModalFragment } from "./PortfolioSection";
 import { getVideoSrc } from "../../utils/getVideoSrc";
 import { normalizeText } from "../../utils/normalizeText";
+import { PrimaryButton } from "../ui/PrimaryButton";
 import "./portfolio.css";
 
 type PortfolioModalProps = {
@@ -40,9 +41,11 @@ export const PortfolioModal = ({ activeWork, onClose }: PortfolioModalProps) => 
         ) : null}
         {work.description?.length ? (
           <ul className="modal-description">
-            {work.description.map((line) => (
-              <li key={line}>{normalizeText(line)}</li>
-            ))}
+            {work.description.map((line) => {
+              const normalized = normalizeText(line);
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: content is trusted
+              return <li key={line} dangerouslySetInnerHTML={{ __html: normalized }} />;
+            })}
           </ul>
         ) : null}
         {work.technologies?.length ? (
@@ -60,9 +63,9 @@ export const PortfolioModal = ({ activeWork, onClose }: PortfolioModalProps) => 
             </a>
           ) : null}
         </div>
-        <button type="button" className="btn btn-xl btn-primary" onClick={onClose}>
+        <PrimaryButton type="button" onClick={onClose}>
           Close
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );
