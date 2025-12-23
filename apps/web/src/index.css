@@ -92,28 +92,6 @@ a:active {
   scroll-margin-top: var(--nav-offset, 110px);
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 75px;
-}
-
-.section-title {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 40px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 15px;
-}
-
-.section-tagline {
-  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: italic;
-  color: var(--muted);
-  font-size: 16px;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;

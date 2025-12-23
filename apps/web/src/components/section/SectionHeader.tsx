@@ -6,6 +6,7 @@ type SectionHeaderProps = {
 };
 
 export const SectionHeader = ({ children, className }: SectionHeaderProps) => {
-  const combinedClassName = className ? `section-header ${className}` : "section-header";
+  const baseClassName = "mb-[75px] text-center";
+  const combinedClassName = className ? `${baseClassName} ${className}` : baseClassName;
   return <div className={combinedClassName}>{children}</div>;
 };
