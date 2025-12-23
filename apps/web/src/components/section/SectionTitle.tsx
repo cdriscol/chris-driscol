@@ -7,7 +7,7 @@ type SectionTitleProps = {
 
 export const SectionTitle = ({ children, className }: SectionTitleProps) => {
   const baseClassName =
-    "mb-[15px] mt-0 text-[40px] font-bold uppercase [font-family:\"Montserrat\",\"Helvetica Neue\",Helvetica,Arial,sans-serif]";
+    "mb-[15px] mt-0 text-[40px] font-bold uppercase font-heading";
   const combinedClassName = className ? `${baseClassName} ${className}` : baseClassName;
   return <h2 className={combinedClassName}>{children}</h2>;
 };

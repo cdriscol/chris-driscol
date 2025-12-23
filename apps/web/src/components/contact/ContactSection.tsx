@@ -80,7 +80,7 @@ export const ContactSection = () => {
       <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>{contactSent ? "Thank you" : "Contact Me"}</SectionTitle>
-          <SectionTagline>
+          <SectionTagline className="!text-[white]">
             {contactSent
               ? "I will respond to you as soon as possible."
               : "I would love to hear from you!"}

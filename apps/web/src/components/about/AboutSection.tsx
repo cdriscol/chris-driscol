@@ -31,7 +31,7 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
       <SiteContainer>
         <SectionHeader>
           <SectionTitle>About Me</SectionTitle>
-          <SectionTagline className="text-[var(--muted)]">
+          <SectionTagline className="text-muted">
             This should help you get to know more about me..
           </SectionTagline>
         </SectionHeader>
@@ -54,14 +54,14 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
                 />
               ) : null}
               <h1>{aboutData?.imageTitle ?? "Chris Driscol"}</h1>
-              <h2 className="text-[var(--muted)]">
+              <h2 className="text-muted">
                 {aboutData?.imageCaption ?? "VP of Engineering"}
               </h2>
             </div>
           </div>
         </div>
         <div className="about-tag">
-          <p className="text-[16px] text-[var(--muted)]">
+          <p className="text-[16px] text-muted">
             I <IconHeart /> working on <strong>Agile teams</strong> motivated by{" "}
             <strong>delivering customer value</strong> early and often.
           </p>

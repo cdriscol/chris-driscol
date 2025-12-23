@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600;700&family=Droid+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @source "./**/*.{ts,tsx}";
+@config "../tailwind.config.ts";
 
 /* biome-ignore lint/suspicious/noUnknownAtRules: tailwind directives */
 @tailwind base;
@@ -9,64 +10,66 @@
 /* biome-ignore lint/suspicious/noUnknownAtRules: tailwind directives */
 @tailwind utilities;
 
-:root {
-  color: #222;
-  background-color: #fff;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --ink: #222;
-  --ink-soft: #444;
-  --muted: #777;
-  --cream: #fff;
-  --sand: #f7f7f7;
-  --accent: #fed136;
-  --accent-strong: #fec503;
-  --deep: #222;
-  --glass: rgba(34, 34, 34, 0.92);
-  --shadow-soft: none;
-  --shadow-strong: none;
-  --radius-lg: 3px;
-  --radius-md: 3px;
-}
+@layer base {
+  :root {
+    color: #222;
+    background-color: #fff;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --ink: #222;
+    --ink-soft: #444;
+    --muted: #777;
+    --cream: #fff;
+    --sand: #f7f7f7;
+    --accent: #fed136;
+    --accent-strong: #fec503;
+    --deep: #222;
+    --glass: rgba(34, 34, 34, 0.92);
+    --shadow-soft: none;
+    --shadow-strong: none;
+    --radius-lg: 3px;
+    --radius-md: 3px;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-}
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+  }
 
-p {
-  font-size: 14px;
-  line-height: 1.75;
-}
+  p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 
-a {
-  color: var(--accent);
-}
+  a {
+    color: var(--accent);
+  }
 
-a:hover,
-a:focus,
-a:active {
-  color: var(--accent-strong);
+  a:hover,
+  a:focus,
+  a:active {
+    color: var(--accent-strong);
+  }
 }
 
 ::selection {

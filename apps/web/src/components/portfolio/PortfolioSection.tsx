@@ -65,7 +65,7 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
       <SiteContainer>
         <SectionHeader>
           <SectionTitle>My Work</SectionTitle>
-          <SectionTagline className="text-[var(--muted)]">
+          <SectionTagline className="text-muted">
             These are just some of the things I have worked on over the years, some were done with
             the help of extremely talented colleagues.
           </SectionTagline>
@@ -94,10 +94,10 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
               </a>
               <div className="portfolio-caption">
                 <h4 className="portfolio-title">{item.card.title}</h4>
-                <p className="text-[var(--muted)]">{item.card.location ?? item.card.subTitle}</p>
+                <p className="text-muted">{item.card.location ?? item.card.subTitle}</p>
               </div>
             </div>
-          )) ?? <p className="text-sm text-[var(--muted)]">Loading work...</p>}
+          )) ?? <p className="text-sm text-muted">Loading work...</p>}
         </div>
       </SiteContainer>
       {activeWork ? (

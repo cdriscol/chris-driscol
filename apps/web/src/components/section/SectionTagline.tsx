@@ -6,8 +6,7 @@ type SectionTaglineProps = {
 };
 
 export const SectionTagline = ({ children, className }: SectionTaglineProps) => {
-  const baseClassName =
-    "mx-auto max-w-[680px] text-[16px] italic text-[var(--muted)] [font-family:\"Droid Serif\",\"Helvetica Neue\",Helvetica,Arial,sans-serif]";
+  const baseClassName = "mx-auto max-w-[680px] text-[16px] italic text-muted font-sans";
   const combinedClassName = className ? `${baseClassName} ${className}` : baseClassName;
   return <p className={combinedClassName}>{children}</p>;
 };
