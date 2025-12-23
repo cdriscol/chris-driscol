@@ -1,0 +1,90 @@
+.contact {
+  background-color: #222;
+  background-image: url("/images/map-image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.contact .section-title,
+.contact .section-tagline {
+  color: #fff;
+}
+
+.contact-form {
+  display: grid;
+  gap: 25px;
+}
+
+.contact-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.contact-actions {
+  text-align: center;
+  margin-top: 10px;
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 20px;
+  color: #222;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: none;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.contact .form-group textarea {
+  padding: 20px;
+}
+
+.contact .form-group textarea.form-control {
+  height: 236px;
+}
+
+.contact .form-group input {
+  padding: 20px;
+}
+
+.contact .form-group input.form-control {
+  height: auto;
+}
+
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: #bbb;
+  font-weight: 400;
+}
+
+.help-block {
+  font-size: 16px;
+  margin: 8px 0 0;
+}
+
+.text-danger {
+  color: #e74c3c;
+}
+
+@media (min-width: 768px) {
+  .contact-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

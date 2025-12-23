@@ -1,0 +1,13 @@
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.heart-icon {
+  width: 1em;
+  height: 1em;
+  color: currentColor;
+  vertical-align: -0.1em;
+  margin: 0 6px;
+}

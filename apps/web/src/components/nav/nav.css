@@ -1,0 +1,150 @@
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  border: 0;
+  background: transparent;
+  padding: 25px 0;
+  transition: background 0.3s ease;
+}
+
+.site-nav.is-solid {
+  background: var(--deep);
+}
+
+.nav-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0;
+}
+
+.nav-brand {
+  margin: 0;
+  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.nav-brand a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.nav-links,
+.nav-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a,
+.nav-social a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.site-nav.is-solid .nav-brand a {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.site-nav.is-solid .nav-links a,
+.site-nav.is-solid .nav-social a {
+  color: #fff;
+}
+
+.nav-links a:hover,
+.nav-social a:hover {
+  color: var(--accent-strong);
+}
+
+.nav-links a.active {
+  color: #fff;
+  background-color: var(--accent);
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+
+.nav-links a.active:hover,
+.nav-links a.active:focus {
+  background-color: var(--accent-strong);
+  color: #fff;
+}
+
+.nav-toggle {
+  display: none;
+  background: var(--accent);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 48px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+  .site-nav {
+    background: #222;
+    padding: 12px 0;
+  }
+
+  .nav-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-size: 18px;
+  }
+
+  .nav-brand a {
+    font-size: 18px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links,
+  .nav-social {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0 20px;
+  }
+
+  .site-nav.is-open .nav-links,
+  .site-nav.is-open .nav-social {
+    display: flex;
+  }
+}

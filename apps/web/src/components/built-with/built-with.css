@@ -1,0 +1,17 @@
+.built-with {
+  background: #171619;
+  color: #bbb;
+  padding: 40px 0;
+}
+
+.built-with p {
+  margin: 0;
+  font-size: 1.3em;
+  font-style: italic;
+  text-align: center;
+}
+
+.built-with a,
+.built-with a:hover {
+  color: #e20098;
+}
