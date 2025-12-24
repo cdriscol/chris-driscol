@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "skills": {
+    "skill-developer": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "promptTriggers": {
+        "keywords": ["skill", "create skill", "skill triggers", "skill-rules.json"]
+      }
+    }
+  }
+}

@@ -14,3 +14,7 @@ apps/**/vite.config.js
 apps/**/vite.config.d.ts
 .devserver.*.log
 apps/web/src/generated/graphql/
+
+# Claude Code
+.claude/settings.local.json
+.claude/hooks/node_modules/
