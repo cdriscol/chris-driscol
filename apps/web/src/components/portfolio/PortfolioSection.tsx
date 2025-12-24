@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { graphql } from "../../generated/graphql";
-import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { graphql } from "../../graphql/generated";
+import { type FragmentType, useFragment } from "../../graphql/generated/fragment-masking";
 import { SectionHeader } from "../section/SectionHeader";
 import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";

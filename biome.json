@@ -13,8 +13,8 @@
       "!!**/apps/web/dist/**",
       "!!**/dist/**",
       "!!**/apps/web/public/**",
-      "!!**/src/generated/graphql/**",
-      "!!**/apps/web/src/generated/graphql/**",
+      "!!**/src/graphql/generated/**",
+      "!!**/apps/web/src/graphql/generated/**",
       "!!**/target/**",
       "!!**/*.lock",
       "!!**/*.min.*"

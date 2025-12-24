@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { graphql } from "../../generated/graphql";
-import { execute } from "../../generated/graphql/execute";
+import { graphql } from "../../graphql/generated";
+import { execute } from "../../graphql/execute";
 import { SectionHeader } from "../section/SectionHeader";
 import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
