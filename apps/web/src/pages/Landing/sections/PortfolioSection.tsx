@@ -56,8 +56,8 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
   }, [activeWork]);
 
   return (
-    <Section id="portfolio" className="bg-sand [&_*]:z-[2]">
-      <SiteContainer>
+    <Section id="portfolio" className="bg-sand">
+      <SiteContainer className="relative z-[2]">
         <SectionHeader>
           <SectionTitle>My Work</SectionTitle>
           <SectionTagline className="text-muted">
