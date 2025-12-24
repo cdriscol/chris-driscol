@@ -6,6 +6,13 @@
   "linter": {
     "enabled": true
   },
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "allowWrongLineComments": false,
+      "tailwindDirectives": true
+    }
+  },
   "files": {
     "includes": [
       "**",

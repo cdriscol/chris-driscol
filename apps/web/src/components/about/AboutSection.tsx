@@ -36,12 +36,10 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
         </SectionHeader>
         <div className="about-row">
           <div className="about-description">
-            {aboutData?.description?.map((line) => {
+            {aboutData?.description?.map((line) => (
               // biome-ignore lint/security/noDangerouslySetInnerHtml: content is trusted
-              return (
-                <p key={line} className="text-[16px]" dangerouslySetInnerHTML={{ __html: line }} />
-              );
-            }) ?? <p className="text-[16px]">Loading biography...</p>}
+              <p key={line} className="text-[16px]" dangerouslySetInnerHTML={{ __html: line }} />
+            )) ?? <p className="text-[16px]">Loading biography...</p>}
           </div>
           <div className="about-profile">
             <div className="me">

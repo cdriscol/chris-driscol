@@ -17,7 +17,6 @@ export const HeroSection = ({ error }: HeroSectionProps) => {
           <div className="intro-lead-in">Welcome To My Website!</div>
           <div className="intro-heading">It&apos;s Nice To Meet You</div>
           <div className="hero-actions">
-            {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
             <PrimaryButton as="a" href="#aboutme" onClick={onNavClick("aboutme")}>
               Learn about me
             </PrimaryButton>
