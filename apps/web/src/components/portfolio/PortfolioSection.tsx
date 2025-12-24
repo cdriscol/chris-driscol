@@ -7,7 +7,6 @@ import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
 import { PortfolioModal } from "./PortfolioModal";
-import "./portfolio.css";
 
 type PortfolioSectionProps = {
   work?: Array<
@@ -61,7 +60,7 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
   }, [activeWork]);
 
   return (
-    <Section id="portfolio" className="portfolio">
+    <Section id="portfolio" className="bg-sand [&_*]:z-[2]">
       <SiteContainer>
         <SectionHeader>
           <SectionTitle>My Work</SectionTitle>
@@ -70,11 +69,11 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
             the help of extremely talented colleagues.
           </SectionTagline>
         </SectionHeader>
-        <div className="portfolio-grid">
+        <div className="grid gap-[30px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {items?.map((item) => (
-            <div key={`${item.card.title}-${item.card.date}`} className="portfolio-item">
+            <div key={`${item.card.title}-${item.card.date}`} className="mb-[30px]">
               <a
-                className="portfolio-link"
+                className="group relative mx-auto block h-[215px] w-full max-w-[400px] cursor-pointer bg-white"
                 href={item.card.link ?? "#"}
                 rel={item.card.link ? "noreferrer" : undefined}
                 target={item.card.link ? "_blank" : undefined}
@@ -85,16 +84,24 @@ export const PortfolioSection = ({ work }: PortfolioSectionProps) => {
                   }
                 }}
               >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">+</div>
+                <div className="absolute inset-0 bg-accent/90 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-heading text-[48px] text-white">
+                    +
+                  </div>
                 </div>
                 {item.card.imageUrl ? (
-                  <img src={item.card.imageUrl} alt={item.card.title ?? "Work"} />
+                  <img
+                    src={item.card.imageUrl}
+                    alt={item.card.title ?? "Work"}
+                    className="mx-auto block h-full max-h-[214px] w-full object-cover"
+                  />
                 ) : null}
               </a>
-              <div className="portfolio-caption">
-                <h4 className="portfolio-title">{item.card.title}</h4>
-                <p className="text-muted">{item.card.location ?? item.card.subTitle}</p>
+              <div className="mx-auto max-w-[400px] bg-white p-[25px] text-center">
+                <h4 className="m-0 normal-case">{item.card.title}</h4>
+                <p className="m-0 text-base italic text-muted">
+                  {item.card.location ?? item.card.subTitle}
+                </p>
               </div>
             </div>
           )) ?? <p className="text-sm text-muted">Loading work...</p>}

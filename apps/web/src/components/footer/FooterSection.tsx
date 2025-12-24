@@ -25,15 +25,15 @@ export const FooterSection = ({ social }: FooterSectionProps) => {
           <span className="leading-[40px] normal-case">
             Copyright &copy; <strong>Chris Driscol</strong> {new Date().getFullYear()}
           </span>
-          <ul className="flex list-none items-center justify-center gap-[16px] p-[0px] m-[0px]">
+          <ul className="flex list-none items-center justify-center gap-4 p-0 m-0">
             <li>
               <a
                 href={socialData?.linkedIn ?? "#"}
                 rel="noreferrer"
                 target="_blank"
-                className="grid h-[44px] w-[44px] place-items-center rounded-full bg-deep text-[white] transition-colors duration-300 hover:bg-accent focus:bg-accent active:bg-accent"
+                className="grid h-11 w-11 place-items-center rounded-full bg-deep text-[white] transition-colors duration-300 hover:bg-accent focus:bg-accent active:bg-accent"
               >
-                <IconLinkedIn className="h-[24px] w-[24px]" />
+                <IconLinkedIn className="h-6 w-6" />
                 <span className="sr-only">LinkedIn</span>
               </a>
             </li>
@@ -42,14 +42,14 @@ export const FooterSection = ({ social }: FooterSectionProps) => {
                 href={socialData?.github ?? "#"}
                 rel="noreferrer"
                 target="_blank"
-                className="grid h-[44px] w-[44px] place-items-center rounded-full bg-deep text-[white] transition-colors duration-300 hover:bg-accent focus:bg-accent active:bg-accent"
+                className="grid h-11 w-11 place-items-center rounded-full bg-deep text-[white] transition-colors duration-300 hover:bg-accent focus:bg-accent active:bg-accent"
               >
-                <IconGitHub className="h-[24px] w-[24px]" />
+                <IconGitHub className="h-6 w-6" />
                 <span className="sr-only">GitHub</span>
               </a>
             </li>
           </ul>
-          <ul className="list-none p-[0px] m-[0px] normal-case md:text-right">
+          <ul className="list-none p-0 m-0 normal-case md:text-right">
             <li>
               <a
                 href={socialData?.email ? `mailto:${socialData.email}` : "#"}

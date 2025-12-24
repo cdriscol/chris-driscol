@@ -7,7 +7,9 @@ import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
 import { PrimaryButton } from "../ui/PrimaryButton";
-import "./contact.css";
+
+const formControlClass =
+  "w-full rounded-[3px] border border-[#ccc] bg-white p-5 text-ink text-sm font-heading normal-case font-normal outline-none transition-[border] duration-200 ease-in-out focus:border-accent placeholder:text-[#bbb] placeholder:font-normal";
 
 type ContactErrors = {
   name?: string;
@@ -76,28 +78,31 @@ export const ContactSection = () => {
   };
 
   return (
-    <Section id="contactme" className="contact">
+    <Section
+      id="contactme"
+      className="bg-deep bg-[url('/images/map-image.png')] bg-center bg-no-repeat text-white"
+    >
       <SiteContainer>
         <SectionHeader className="text-center">
           <SectionTitle>{contactSent ? "Thank you" : "Contact Me"}</SectionTitle>
-          <SectionTagline className="!text-[white]">
+          <SectionTagline className="!text-white">
             {contactSent
               ? "I will respond to you as soon as possible."
               : "I would love to hear from you!"}
           </SectionTagline>
         </SectionHeader>
-        <div className="contact-panel mt-8">
+        <div className="mt-8">
           {!contactSent ? (
-            <form onSubmit={handleContactSubmit} className="contact-form">
-              <div className="contact-column">
-                <div className="form-group">
+            <form onSubmit={handleContactSubmit} className="grid gap-[25px] md:grid-cols-2">
+              <div className="flex flex-col gap-[25px]">
+                <div className="mb-0">
                   <label htmlFor="contact-email" className="sr-only">
                     Your email
                   </label>
                   <input
                     id="contact-email"
                     type="email"
-                    className="form-control"
+                    className={formControlClass}
                     placeholder="your email *"
                     value={contactForm.from}
                     onChange={(event) =>
@@ -105,17 +110,17 @@ export const ContactSection = () => {
                     }
                   />
                   {contactErrors.from ? (
-                    <p className="help-block text-danger">{contactErrors.from}</p>
+                    <p className="mb-0 mt-2 text-base text-[#e74c3c]">{contactErrors.from}</p>
                   ) : null}
                 </div>
-                <div className="form-group">
+                <div className="mb-0">
                   <label htmlFor="contact-name" className="sr-only">
                     Your name
                   </label>
                   <input
                     id="contact-name"
                     type="text"
-                    className="form-control"
+                    className={formControlClass}
                     placeholder="your name *"
                     value={contactForm.name}
                     onChange={(event) =>
@@ -123,17 +128,17 @@ export const ContactSection = () => {
                     }
                   />
                   {contactErrors.name ? (
-                    <p className="help-block text-danger">{contactErrors.name}</p>
+                    <p className="mb-0 mt-2 text-base text-[#e74c3c]">{contactErrors.name}</p>
                   ) : null}
                 </div>
-                <div className="form-group">
+                <div className="mb-0">
                   <label htmlFor="contact-subject" className="sr-only">
                     Subject
                   </label>
                   <input
                     id="contact-subject"
                     type="text"
-                    className="form-control"
+                    className={formControlClass}
                     placeholder="subject *"
                     value={contactForm.subject}
                     onChange={(event) =>
@@ -141,19 +146,19 @@ export const ContactSection = () => {
                     }
                   />
                   {contactErrors.subject ? (
-                    <p className="help-block text-danger">{contactErrors.subject}</p>
+                    <p className="mb-0 mt-2 text-base text-[#e74c3c]">{contactErrors.subject}</p>
                   ) : null}
                 </div>
               </div>
-              <div className="contact-column">
-                <div className="form-group">
+              <div className="flex flex-col gap-[25px]">
+                <div className="mb-0">
                   <label htmlFor="contact-message" className="sr-only">
                     Message
                   </label>
                   <textarea
                     id="contact-message"
                     rows={9}
-                    className="form-control"
+                    className={`${formControlClass} h-[236px]`}
                     placeholder="this is where you say something.. *"
                     value={contactForm.body}
                     onChange={(event) =>
@@ -161,15 +166,15 @@ export const ContactSection = () => {
                     }
                   />
                   {contactErrors.body ? (
-                    <p className="help-block text-danger">{contactErrors.body}</p>
+                    <p className="mb-0 mt-2 text-base text-[#e74c3c]">{contactErrors.body}</p>
                   ) : null}
                 </div>
               </div>
-              <div className="contact-actions">
-                <PrimaryButton type="submit">
-                  Send Message
-                </PrimaryButton>
-                {contactError ? <p className="help-block text-danger">{contactError}</p> : null}
+              <div className="col-span-full mt-[10px] text-center">
+                <PrimaryButton type="submit">Send Message</PrimaryButton>
+                {contactError ? (
+                  <p className="mb-0 mt-2 text-base text-[#e74c3c]">{contactError}</p>
+                ) : null}
               </div>
             </form>
           ) : null}
