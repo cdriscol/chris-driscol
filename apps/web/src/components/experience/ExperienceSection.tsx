@@ -1,5 +1,5 @@
-import { graphql } from "../../generated/graphql";
-import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { graphql } from "../../graphql/generated";
+import { type FragmentType, useFragment } from "../../graphql/generated/fragment-masking";
 import { useNavClick } from "../../context/siteNavClickContext";
 import { normalizeText } from "../../utils/normalizeText";
 import { SectionHeader } from "../section/SectionHeader";

@@ -1,4 +1,4 @@
-import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { type FragmentType, useFragment } from "../../graphql/generated/fragment-masking";
 import { PortfolioModalFragment } from "./PortfolioSection";
 import { getVideoSrc } from "../../utils/getVideoSrc";
 import { normalizeText } from "../../utils/normalizeText";

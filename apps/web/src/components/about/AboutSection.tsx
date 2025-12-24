@@ -1,5 +1,5 @@
-import { graphql } from "../../generated/graphql";
-import { type FragmentType, useFragment } from "../../generated/graphql/fragment-masking";
+import { graphql } from "../../graphql/generated";
+import { type FragmentType, useFragment } from "../../graphql/generated/fragment-masking";
 import { IconHeart } from "../icons/Icons";
 import { SectionHeader } from "../section/SectionHeader";
 import { Section } from "../section/Section";

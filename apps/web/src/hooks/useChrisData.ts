@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { graphql } from "../generated/graphql";
-import { execute } from "../generated/graphql/execute";
+import { graphql } from "../graphql/generated";
+import { execute } from "../graphql/execute";
 
 const AppQueryDocument = graphql(/* GraphQL */ `
   query AppQuery {
