@@ -8,12 +8,12 @@ import {
   PortfolioSection,
   SkillsSection,
 } from "@/pages/Landing";
-import { SiteNav } from "@/ui";
-import { SiteNavClickProvider } from "@/context/siteNavClickContext";
-import { useChrisData, useSeoMeta, useSiteNav } from "@/hooks";
+import { SiteNav, SiteNavClickProvider, useSiteNav } from "@/ui";
+import { useAppQuery } from "@/useAppQuery";
+import { useSeoMeta } from "@/hooks";
 
 export const App = () => {
-  const { data, error } = useChrisData();
+  const { data, error } = useAppQuery();
   const chris = data?.chris ?? null;
   const { navSolid, navOpen, setNavOpen, activeSection, handleNavClick } = useSiteNav();
 

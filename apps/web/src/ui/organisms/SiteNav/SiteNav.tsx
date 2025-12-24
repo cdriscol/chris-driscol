@@ -1,6 +1,6 @@
 import { graphql } from "@/graphql/generated";
 import { type FragmentType, useFragment } from "@/graphql/generated/fragment-masking";
-import { useNavClick } from "@/context/siteNavClickContext";
+import { useNavClick } from "./SiteNavClickContext";
 import { IconGitHub, IconLinkedIn } from "@/ui/atoms";
 import { SiteContainer } from "@/layout";
 

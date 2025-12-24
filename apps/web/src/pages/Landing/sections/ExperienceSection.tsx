@@ -1,6 +1,6 @@
 import { graphql } from "@/graphql/generated";
 import { type FragmentType, useFragment } from "@/graphql/generated/fragment-masking";
-import { useNavClick } from "@/context/siteNavClickContext";
+import { useNavClick } from "@/ui";
 import { normalizeText } from "@/utils/normalizeText";
 import { SectionHeader, Section, SectionTagline, SectionTitle, SiteContainer } from "@/layout";
 

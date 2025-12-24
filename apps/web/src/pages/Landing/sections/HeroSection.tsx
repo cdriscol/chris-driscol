@@ -1,6 +1,5 @@
-import { useNavClick } from "@/context/siteNavClickContext";
 import { SiteContainer } from "@/layout";
-import { Button } from "@/ui";
+import { Button, useNavClick } from "@/ui";
 
 type HeroSectionProps = {
   error?: string | null;

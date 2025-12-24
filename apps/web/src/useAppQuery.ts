@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { graphql } from "../graphql/generated";
-import { execute } from "../graphql/execute";
+import { graphql } from "@/graphql/generated";
+import { execute } from "@/graphql/execute";
 
 const AppQueryDocument = graphql(/* GraphQL */ `
   query AppQuery {
@@ -29,7 +29,7 @@ const AppQueryDocument = graphql(/* GraphQL */ `
   }
 `);
 
-export const useChrisData = () => {
+export const useAppQuery = () => {
   const { data, error } = useQuery({
     queryKey: ["chris"],
     queryFn: () => execute(AppQueryDocument),
