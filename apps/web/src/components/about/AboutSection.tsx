@@ -6,7 +6,6 @@ import { Section } from "../section/Section";
 import { SectionTagline } from "../section/SectionTagline";
 import { SectionTitle } from "../section/SectionTitle";
 import { SiteContainer } from "../section/SiteContainer";
-import "../icons/icons.css";
 import "./about.css";
 
 type AboutSectionProps = {

@@ -1,6 +1,18 @@
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+    },
+    colors: {
+      white: "#fff",
+      black: "#000",
+      transparent: "transparent",
+      current: "currentColor",
+    },
     extend: {
       colors: {
         ink: "#222",

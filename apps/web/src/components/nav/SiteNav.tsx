@@ -3,7 +3,6 @@ import { type FragmentType, useFragment } from "../../generated/graphql/fragment
 import { useNavClick } from "../../context/siteNavClickContext";
 import { IconGitHub, IconLinkedIn } from "../icons/Icons";
 import { SiteContainer } from "../section/SiteContainer";
-import "../icons/icons.css";
 import "./nav.css";
 
 type SiteNavProps = {
