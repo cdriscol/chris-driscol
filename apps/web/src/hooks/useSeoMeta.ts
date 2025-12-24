@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { AboutSectionFragment } from "../components/about/AboutSection";
-import { SiteNavSocialFragment } from "../components/nav/SiteNav";
-import { useFragment } from "../graphql/generated/fragment-masking";
-import type { AppQueryQuery } from "../graphql/generated/graphql";
+import { AboutSectionFragment } from "@/pages/Landing";
+import { SiteNavSocialFragment } from "@/ui";
+import { useFragment } from "@/graphql/generated/fragment-masking";
+import type { AppQueryQuery } from "@/graphql/generated/graphql";
 
 type SeoChris = AppQueryQuery["chris"];
 

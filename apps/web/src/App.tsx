@@ -6,11 +6,11 @@ import {
   FooterSection,
   HeroSection,
   PortfolioSection,
-  SiteNav,
   SkillsSection,
-} from "./components";
-import { SiteNavClickProvider } from "./context/siteNavClickContext";
-import { useChrisData, useSeoMeta, useSiteNav } from "./hooks";
+} from "@/pages/Landing";
+import { SiteNav } from "@/ui";
+import { SiteNavClickProvider } from "@/context/siteNavClickContext";
+import { useChrisData, useSeoMeta, useSiteNav } from "@/hooks";
 
 export const App = () => {
   const { data, error } = useChrisData();
