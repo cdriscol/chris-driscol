@@ -39,13 +39,23 @@
 | Lives in `@/ui/organisms` | Lives in `@/pages/[Page]/sections` |
 | Example: SiteNav | Example: HeroSection, AboutSection |
 
+## Colocation
+
+Organisms should colocate their related files:
+- Component file (e.g., `SiteNav.tsx`)
+- Related hooks (e.g., `useSiteNav.ts`)
+- Related context (e.g., `SiteNavClickContext.tsx`)
+- Tests, stories, types, etc.
+
+This keeps all functionality together for better discoverability.
+
 ## Dependencies
 
 - ✅ Can import from `@/ui/atoms`
 - ✅ Can import from `@/ui/molecules`
 - ✅ Can import from `@/layout`
-- ✅ Can use hooks from `@/hooks`
-- ✅ Can use context from `@/context`
+- ✅ Can import from `@/graphql`
+- ✅ Can import from `@/utils`
 - ❌ **Never import from `@/pages`** (circular dependency)
 
 ## Not Organisms

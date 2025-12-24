@@ -9,7 +9,7 @@ This app uses a **hybrid approach** to component organization:
 - **UI System (`src/ui/`)** - Reusable components following ATOMIC Design
   - `atoms/` - Visual primitives (Button, Icons)
   - `molecules/` - Small atom combinations (future use)
-  - `organisms/` - Complex reusable blocks (SiteNav)
+  - `organisms/` - Complex reusable blocks (SiteNav with colocated hook & context)
 
 - **Layout (`src/layout/`)** - Structural components for spacing and constraints
   - Section, SiteContainer, SectionHeader, etc.
@@ -19,20 +19,27 @@ This app uses a **hybrid approach** to component organization:
   - `Landing/sections/` - HeroSection, AboutSection, ContactSection, etc.
   - `Landing/components/` - Page-specific helper components
 
+### Colocation Principle
+
+Files are **organized by function, not by type**:
+- Related hooks and context live **with their components**, not in separate folders
+- Example: `SiteNav/` contains `SiteNav.tsx`, `useSiteNav.ts`, and `SiteNavClickContext.tsx`
+
 ### Import Patterns
 
 ```typescript
-// UI system components (atoms, molecules, organisms)
-import { Button, IconGitHub, SiteNav } from '@/ui';
+// UI system (includes related hooks and context)
+import { Button, IconGitHub, SiteNav, useSiteNav, useNavClick } from '@/ui';
 
-// Layout components (structural)
+// Layout components
 import { Section, SiteContainer, SectionHeader } from '@/layout';
 
 // Page sections
 import { HeroSection, AboutSection } from '@/pages/Landing';
 
-// Other
-import { useChrisData } from '@/hooks';
+// App-level queries and hooks
+import { useAppQuery } from '@/useAppQuery';
+import { useSeoMeta } from '@/hooks';
 import { graphql } from '@/graphql/generated';
 ```
 
