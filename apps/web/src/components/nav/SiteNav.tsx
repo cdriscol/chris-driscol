@@ -24,7 +24,7 @@ const navLinkClass =
 const navLinkActiveClass =
   "rounded-[3px] bg-accent px-3 py-[6px] text-white hover:bg-accent-strong hover:text-white focus:bg-accent-strong";
 const navListClass =
-  "m-0 flex list-none flex-wrap items-center gap-4 p-0 font-heading text-[0.85rem] uppercase tracking-[1px] max-[767px]:hidden max-[767px]:w-full max-[767px]:flex-col max-[767px]:items-start max-[767px]:gap-[10px] max-[767px]:py-[10px] max-[767px]:pb-5";
+  "m-0 flex list-none flex-wrap items-center gap-4 p-0 font-heading text-[0.85rem] uppercase tracking-[1px] max-[767px]:w-full max-[767px]:flex-col max-[767px]:items-start max-[767px]:gap-[10px] max-[767px]:py-[10px] max-[767px]:pb-5";
 
 export const SiteNav = ({
   navSolid,
@@ -46,7 +46,7 @@ export const SiteNav = ({
           <a
             href="#top"
             onClick={onNavClick("top")}
-            className={`text-accent no-underline transition-[color,font-size] duration-300 ease-in-out ${navSolid ? "text-[24px] max-[767px]:text-[18px]" : ""}`}
+            className={`text-accent no-underline transition-[color,font-size] duration-300 ease-in-out ${navSolid ? "text-[24px]" : ""}`}
           >
             Chris Driscol
           </a>
@@ -62,7 +62,7 @@ export const SiteNav = ({
           <span className="block h-[3px] w-6 rounded-[2px] bg-white" />
           <span className="block h-[3px] w-6 rounded-[2px] bg-white" />
         </button>
-        <ul className={`${navListClass} ${navOpen ? "max-[767px]:flex" : ""}`}>
+        <ul className={`${navListClass} ${navOpen ? "" : "max-[767px]:hidden"}`}>
             <li>
               {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
@@ -114,7 +114,7 @@ export const SiteNav = ({
               </a>
             </li>
           </ul>
-        <ul className={`${navListClass} ${navOpen ? "max-[767px]:flex" : ""}`}>
+        <ul className={`${navListClass} ${navOpen ? "" : "max-[767px]:hidden"}`}>
           <li>
             <a
               href={socialData?.linkedIn ?? "#"}

@@ -59,7 +59,7 @@ export const AboutSection = ({ about }: AboutSectionProps) => {
           </div>
         </div>
         <div className="mt-[100px] text-center">
-          <p className="inline whitespace-nowrap text-base leading-[1.4] text-muted max-[767px]:whitespace-normal">
+          <p className="inline whitespace-nowrap text-lg leading-[1.4] text-muted max-[767px]:whitespace-normal">
             I <IconHeart /> working on <strong>Agile teams</strong> motivated by{" "}
             <strong>delivering customer value</strong> early and often.
           </p>
