@@ -18,3 +18,6 @@ apps/web/src/graphql/generated/
 # Claude Code
 .claude/settings.local.json
 .claude/hooks/node_modules/
+
+# Playwright MCP
+.playwright-mcp
