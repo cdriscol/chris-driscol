@@ -4,7 +4,7 @@ import { GraphiQL } from "graphiql";
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import "graphiql/style.css";
 import "./resume.css";
-import { graphqlUrl } from "./lib/api";
+import { graphqlUrl } from "./graphql/api";
 
 const fetcher = createGraphiQLFetcher({ url: graphqlUrl });
 

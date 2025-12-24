@@ -1,4 +1,4 @@
-import { graphqlUrl } from "../lib/api";
+import { graphqlUrl } from "./api";
 import type { TypedDocumentString } from "../graphql/generated/graphql";
 
 export async function execute<TResult, TVariables>(
