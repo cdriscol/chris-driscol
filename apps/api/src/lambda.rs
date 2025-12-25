@@ -6,6 +6,7 @@ mod schema;
 mod types;
 mod data;
 mod email;
+mod llms;
 
 use schema::AppSchema;
 
@@ -36,6 +37,22 @@ fn graphql_json_response(response: Response) -> Result<LambdaResponse<Body>, Err
 }
 
 async fn handler(schema: AppSchema, request: Request) -> Result<LambdaResponse<Body>, Error> {
+    // Handle /llms.txt route
+    if request.uri().path() == "/llms.txt" {
+        if request.method() == http::Method::GET {
+            let content = llms::generate_llms_txt();
+            return Ok(LambdaResponse::builder()
+                .status(200)
+                .header("content-type", "text/markdown; charset=utf-8")
+                .body(Body::Text(content))?);
+        } else {
+            return Ok(LambdaResponse::builder()
+                .status(405)
+                .body(Body::Text("Method Not Allowed".into()))?);
+        }
+    }
+
+    // GraphQL endpoint handling
     if let Ok(expected) = std::env::var("GRAPHQL_ORIGIN_SECRET") {
         let provided = request
             .headers()

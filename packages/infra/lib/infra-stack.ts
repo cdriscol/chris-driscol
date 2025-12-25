@@ -127,6 +127,19 @@ export class InfraStack extends Stack {
       },
     );
 
+    const llmsTxtCachePolicy = new cloudfront.CachePolicy(
+      this,
+      "LlmsTxtCachePolicy",
+      {
+        defaultTtl: Duration.hours(24),
+        maxTtl: Duration.hours(24),
+        minTtl: Duration.hours(24),
+        cookieBehavior: cloudfront.CacheCookieBehavior.none(),
+        headerBehavior: cloudfront.CacheHeaderBehavior.none(),
+        queryStringBehavior: cloudfront.CacheQueryStringBehavior.none(),
+      },
+    );
+
     const resumeRewriteFunction = new cloudfront.Function(this, "ResumeRewriteFunction", {
       code: cloudfront.FunctionCode.fromInline(`
 function handler(event) {
@@ -189,6 +202,13 @@ function handler(event) {
             allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
             cachePolicy: graphqlCachePolicy,
             originRequestPolicy: graphqlOriginRequestPolicy,
+            viewerProtocolPolicy:
+              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          },
+          "llms.txt": {
+            origin: graphqlOrigin,
+            allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
+            cachePolicy: llmsTxtCachePolicy,
             viewerProtocolPolicy:
               cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           },

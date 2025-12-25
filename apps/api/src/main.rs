@@ -1,12 +1,13 @@
 use async_graphql::{ErrorExtensionValues, Response, ServerError};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
-use axum::{http::HeaderMap, routing::post, Extension, Router};
+use axum::{http::HeaderMap, response::IntoResponse, routing::{get, post}, Extension, Router};
 use std::net::SocketAddr;
 
 mod schema;
 mod types;
 mod data;
 mod email;
+mod llms;
 
 use schema::AppSchema;
 
@@ -30,12 +31,21 @@ async fn graphql_handler(
     schema.execute(request.into_inner()).await.into()
 }
 
+async fn llms_handler() -> impl IntoResponse {
+    let content = llms::generate_llms_txt();
+    (
+        [("content-type", "text/markdown; charset=utf-8")],
+        content,
+    )
+}
+
 #[tokio::main]
 async fn main() {
     let schema = schema::build_schema();
 
     let app = Router::new()
         .route("/graphql", post(graphql_handler))
+        .route("/llms.txt", get(llms_handler))
         .layer(Extension(schema));
 
     let port = std::env::var("PORT")

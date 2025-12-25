@@ -38,6 +38,10 @@ export default defineConfig({
         target: "http://localhost:3000",
         changeOrigin: true,
       },
+      "/llms.txt": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
     },
   },
   resolve: {
