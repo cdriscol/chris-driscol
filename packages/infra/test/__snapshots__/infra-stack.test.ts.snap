@@ -612,6 +612,30 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
       },
       "Type": "AWS::CloudFront::OriginRequestPolicy",
     },
+    "LlmsTxtCachePolicy8896F788": {
+      "Properties": {
+        "CachePolicyConfig": {
+          "DefaultTTL": 86400,
+          "MaxTTL": 86400,
+          "MinTTL": 86400,
+          "Name": "TestStackLlmsTxtCachePolicy1B4633A5-us-east-1",
+          "ParametersInCacheKeyAndForwardedToOrigin": {
+            "CookiesConfig": {
+              "CookieBehavior": "none",
+            },
+            "EnableAcceptEncodingBrotli": false,
+            "EnableAcceptEncodingGzip": false,
+            "HeadersConfig": {
+              "HeaderBehavior": "none",
+            },
+            "QueryStringsConfig": {
+              "QueryStringBehavior": "none",
+            },
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::CachePolicy",
+    },
     "ResumeRewriteFunction4AD78491": {
       "Properties": {
         "AutoPublish": true,
@@ -720,6 +744,19 @@ function handler(event) {
                 "Ref": "GraphqlOriginRequestPolicy69110C39",
               },
               "PathPattern": "graphql",
+              "TargetOriginId": "TestStackSiteDistributionOrigin3B10B7480",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD",
+              ],
+              "CachePolicyId": {
+                "Ref": "LlmsTxtCachePolicy8896F788",
+              },
+              "Compress": true,
+              "PathPattern": "llms.txt",
               "TargetOriginId": "TestStackSiteDistributionOrigin3B10B7480",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
