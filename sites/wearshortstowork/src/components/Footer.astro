@@ -1,0 +1,55 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>
+      &copy; {currentYear} Chris Driscol. Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>.
+    </p>
+    <div class="footer-links">
+      <a href="/rss.xml">RSS</a>
+      <a href="https://chrisdriscol.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+
+  .footer-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer-content a {
+    color: var(--color-text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .footer-content a:hover {
+    color: var(--color-text);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+</style>

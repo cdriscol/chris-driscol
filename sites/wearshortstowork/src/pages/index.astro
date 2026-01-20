@@ -1,0 +1,88 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+
+<BaseLayout
+  title="Wear Shorts to Work"
+  description="Short-form ideas and thoughts on technology, remote work, and life."
+>
+  <Header />
+  <main class="container">
+    <section class="hero">
+      <h1>Wear Shorts to Work</h1>
+      <p>Short-form ideas and thoughts on technology, remote work, and life.</p>
+    </section>
+
+    <section class="posts">
+      <h2>Latest Posts</h2>
+      <div class="posts-grid">
+        {posts.map((post) => <BlogCard post={post} />)}
+      </div>
+      <a href="/blog" class="view-all">View all posts &rarr;</a>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .posts h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 1.5rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--color-link);
+    transition: color 0.15s ease;
+  }
+
+  .view-all:hover {
+    color: var(--color-link-hover);
+  }
+</style>

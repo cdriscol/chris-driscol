@@ -5,5 +5,6 @@ export { BuiltWithSection } from "./BuiltWithSection";
 export { SkillsSection, SkillsSectionFragment } from "./SkillsSection";
 export { ExperienceSection, ExperienceItemFragment } from "./ExperienceSection";
 export { PortfolioSection, PortfolioCardFragment, PortfolioModalFragment } from "./PortfolioSection";
+export { BlogSection } from "./BlogSection";
 export { ContactSection } from "./ContactSection";
 export { FooterSection, FooterSocialFragment } from "./FooterSection";

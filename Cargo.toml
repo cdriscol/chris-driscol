@@ -1,4 +1,4 @@
 [workspace]
-members = ["apps/api"]
+members = ["sites/chrisdriscol/api"]
 exclude = ["legacy"]
 resolver = "2"

@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import BlogCard from "../../components/BlogCard.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="All posts from Wear Shorts to Work.">
+  <Header />
+  <main class="container">
+    <section class="page-header">
+      <h1>All Posts</h1>
+      <p>{posts.length} {posts.length === 1 ? "post" : "posts"}</p>
+    </section>
+
+    <section class="posts">
+      <div class="posts-grid">
+        {posts.map((post) => <BlogCard post={post} />)}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

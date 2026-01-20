@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, World!",
+    "description": "The first post on Wear Shorts to Work. An introduction to what this blog is all about.",
+    "pubDate": "2025-01-20",
+    "tags": [
+      "meta",
+      "introduction"
+    ]
+  }
+]

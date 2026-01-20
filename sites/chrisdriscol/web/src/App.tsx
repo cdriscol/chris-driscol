@@ -1,5 +1,6 @@
 import {
   AboutSection,
+  BlogSection,
   BuiltWithSection,
   ContactSection,
   ExperienceSection,
@@ -37,6 +38,7 @@ export const App = () => {
           <SkillsSection skills={chris?.skills} />
           <ExperienceSection experience={chris?.experience} />
           <PortfolioSection work={chris?.work ?? null} />
+          <BlogSection />
           <ContactSection />
 
           <FooterSection social={chris?.social ?? null} />

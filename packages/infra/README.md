@@ -14,7 +14,7 @@ pnpm synth
 CDK does not compile the Rust API. Build the Lambda zip before deploying:
 
 ```
-pnpm -C apps/api build:lambda
+pnpm -C sites/chrisdriscol/api build:lambda
 ```
 
 This requires `cargo lambda` to be installed (`cargo install cargo-lambda`).

@@ -98,13 +98,13 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Build web
-        run: pnpm -C apps/web build
+        run: pnpm -C sites/chrisdriscol/web build
 
       - name: Build Lambda zip
         env:
           RUSTC_WRAPPER: ""
           SCCACHE_GHA_ENABLED: "false"
-        run: pnpm -C apps/api build:lambda
+        run: pnpm -C sites/chrisdriscol/api build:lambda
 
       - name: Save Turbo cache
         if: always() && steps.cache-turbo-restore.outputs.cache-hit != 'true'
@@ -133,7 +133,7 @@ jobs:
             echo "Web bucket output not found." >&2
             exit 1
           fi
-          aws s3 sync apps/web/dist "s3://$web_bucket" --delete
+          aws s3 sync sites/chrisdriscol/web/dist "s3://$web_bucket" --delete
 
       - name: Invalidate CloudFront
         shell: bash

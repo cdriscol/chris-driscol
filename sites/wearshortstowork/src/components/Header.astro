@@ -1,0 +1,65 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+];
+---
+
+<header class="header">
+  <nav class="nav">
+    <a href="/" class="logo">Wear Shorts to Work</a>
+    <ul class="nav-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} class:list={["nav-link", { active: Astro.url.pathname === link.href }]}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .logo:hover {
+    color: var(--color-link);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text);
+  }
+</style>

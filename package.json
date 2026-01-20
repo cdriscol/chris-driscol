@@ -4,16 +4,17 @@
   "packageManager": "pnpm@9.0.0",
   "scripts": {
     "dev": "turbo dev",
-    "dev:web": "pnpm -C apps/web dev",
-    "dev:api": "pnpm -C apps/api dev",
+    "dev:web": "pnpm -C sites/chrisdriscol/web dev",
+    "dev:api": "pnpm -C sites/chrisdriscol/api dev",
+    "dev:blog": "pnpm -C sites/wearshortstowork dev",
     "build": "turbo build",
-    "test:web": "pnpm -C apps/web test",
+    "test:web": "pnpm -C sites/chrisdriscol/web test",
     "test": "turbo test",
-    "lint:web": "pnpm -C apps/web lint",
+    "lint:web": "pnpm -C sites/chrisdriscol/web lint",
     "lint": "turbo lint",
-    "format:web": "pnpm -C apps/web format",
+    "format:web": "pnpm -C sites/chrisdriscol/web format",
     "format": "turbo format",
-    "typecheck:web": "pnpm -C apps/web typecheck",
+    "typecheck:web": "pnpm -C sites/chrisdriscol/web typecheck",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
