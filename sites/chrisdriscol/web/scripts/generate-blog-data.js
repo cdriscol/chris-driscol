@@ -65,12 +65,14 @@ async function generateBlogData() {
           description: frontmatter.description,
           pubDate: frontmatter.pubDate,
           tags: frontmatter.tags || [],
+          draft: frontmatter.draft === "true",
         };
       })
     );
 
     const validPosts = posts
       .filter(Boolean)
+      .filter((post) => !post.draft)
       .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
       .slice(0, 3);
 
