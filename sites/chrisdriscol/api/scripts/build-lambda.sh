@@ -3,7 +3,7 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(cd "$script_dir/.." && pwd)"
-repo_root="$(cd "$project_root/../.." && pwd)"
+repo_root="$(cd "$project_root/../../.." && pwd)"
 dist_dir="$repo_root/dist"
 dist_zip="$dist_dir/lambda.zip"
 target_root="$repo_root/target"
