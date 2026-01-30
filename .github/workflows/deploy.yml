@@ -105,6 +105,9 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Generate blog data
+        run: node sites/chrisdriscol/web/scripts/generate-blog-data.js
+
       - name: Build web
         run: pnpm -C sites/chrisdriscol/web build
 
