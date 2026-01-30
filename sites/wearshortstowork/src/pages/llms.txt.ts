@@ -18,7 +18,7 @@ export async function GET(context: APIContext) {
     "",
     "## About",
     "",
-    "A blog by Chris Driscol. Writing about technology, AI, motorsports, and life.",
+    "A blog by Chris Driscol. Writing about tech, AI, motorsports, and life.",
     "",
     "Author: Chris Driscol",
     "Website: https://chrisdriscol.com",

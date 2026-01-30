@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: "Wear Shorts to Work",
-    description: "Writing about technology, AI, motorsports, and life.",
+    description: "Writing about tech, AI, motorsports, and life.",
     site: context.site ?? "https://wearshortstowork.com",
     items: sortedPosts.map((post) => ({
       title: post.data.title,
