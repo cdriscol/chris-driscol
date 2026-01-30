@@ -10,7 +10,9 @@ const BLOG_CONTENT_DIR = join(
 const OUTPUT_FILE = join(__dirname, "../src/data/blogPosts.json");
 
 async function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  // Normalize line endings for cross-platform support
+  const normalized = content.replace(/\r\n/g, "\n");
+  const match = normalized.match(/^---\n([\s\S]*?)\n---/);
   if (!match) return null;
 
   const frontmatter = {};
