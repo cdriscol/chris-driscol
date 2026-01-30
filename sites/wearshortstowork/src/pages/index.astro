@@ -11,22 +11,22 @@ const posts = (await getCollection("blog"))
 ---
 
 <BaseLayout
-  title="Wear Shorts to Work"
+  title="Chris Driscol"
   description="Short-form ideas and thoughts on technology, remote work, and life."
 >
   <Header />
   <main class="container">
     <section class="hero">
-      <h1>Wear Shorts to Work</h1>
-      <p>Short-form ideas and thoughts on technology, remote work, and life.</p>
+      <h1>Hi, I'm Chris.</h1>
+      <p>These are things I've been thinking about.</p>
     </section>
 
     <section class="posts">
-      <h2>Latest Posts</h2>
+      <h2>Latest Thoughts</h2>
       <div class="posts-grid">
         {posts.map((post) => <BlogCard post={post} />)}
       </div>
-      <a href="/b" class="view-all">View all posts &rarr;</a>
+      <a href="/b" class="view-all">All my thoughts &rarr;</a>
     </section>
   </main>
   <Footer />
@@ -40,12 +40,12 @@ const posts = (await getCollection("blog"))
   }
 
   .hero {
+    padding: 3rem 0;
     text-align: center;
-    padding: 4rem 0;
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-heading);
     margin-bottom: 0.5rem;
@@ -53,7 +53,12 @@ const posts = (await getCollection("blog"))
 
   .hero p {
     font-size: 1.125rem;
+    font-style: italic;
     color: var(--color-text-muted);
+  }
+
+  .posts {
+    padding-top: 1rem;
   }
 
   .posts h2 {

@@ -10,12 +10,12 @@ const posts = (await getCollection("blog")).sort(
 );
 ---
 
-<BaseLayout title="Blog" description="All posts from Wear Shorts to Work.">
+<BaseLayout title="Thoughts" description="All thoughts from Chris Driscol.">
   <Header />
   <main class="container">
     <section class="page-header">
-      <h1>All Posts</h1>
-      <p>{posts.length} {posts.length === 1 ? "post" : "posts"}</p>
+      <h1>All Thoughts</h1>
+      <p>{posts.length} {posts.length === 1 ? "thought" : "thoughts"}</p>
     </section>
 
     <section class="posts">
