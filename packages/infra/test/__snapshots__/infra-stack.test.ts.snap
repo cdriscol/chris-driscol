@@ -44,19 +44,6 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
         ],
       },
     },
-    "HostedZoneNameServers3": {
-      "Value": {
-        "Fn::Join": [
-          ",",
-          {
-            "Fn::GetAtt": [
-              "AlternateHostedZone2A7C28BD8",
-              "NameServers",
-            ],
-          },
-        ],
-      },
-    },
     "StorybookBucketName": {
       "Value": {
         "Ref": "StorybookBucket39CEC964",
@@ -157,33 +144,6 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
       },
       "Type": "AWS::Route53::RecordSet",
     },
-    "AliasAAAAwearshortstoworkcomA553BA64": {
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "SiteDistribution3FF9535D",
-              "DomainName",
-            ],
-          },
-          "HostedZoneId": {
-            "Fn::FindInMap": [
-              "AWSCloudFrontPartitionHostedZoneIdMap",
-              {
-                "Ref": "AWS::Partition",
-              },
-              "zoneId",
-            ],
-          },
-        },
-        "HostedZoneId": {
-          "Ref": "AlternateHostedZone2A7C28BD8",
-        },
-        "Name": "wearshortstowork.com.",
-        "Type": "AAAA",
-      },
-      "Type": "AWS::Route53::RecordSet",
-    },
     "AliasAAAAwwwchrisdriscolcom77E70226": {
       "Properties": {
         "AliasTarget": {
@@ -234,33 +194,6 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
           "Ref": "AlternateHostedZone12DDE8289",
         },
         "Name": "www.driscolsoftware.com.",
-        "Type": "AAAA",
-      },
-      "Type": "AWS::Route53::RecordSet",
-    },
-    "AliasAAAAwwwwearshortstoworkcomF1DD01B9": {
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "SiteDistribution3FF9535D",
-              "DomainName",
-            ],
-          },
-          "HostedZoneId": {
-            "Fn::FindInMap": [
-              "AWSCloudFrontPartitionHostedZoneIdMap",
-              {
-                "Ref": "AWS::Partition",
-              },
-              "zoneId",
-            ],
-          },
-        },
-        "HostedZoneId": {
-          "Ref": "AlternateHostedZone2A7C28BD8",
-        },
-        "Name": "www.wearshortstowork.com.",
         "Type": "AAAA",
       },
       "Type": "AWS::Route53::RecordSet",
@@ -346,33 +279,6 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
       },
       "Type": "AWS::Route53::RecordSet",
     },
-    "AliasAwearshortstoworkcomB50D6163": {
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "SiteDistribution3FF9535D",
-              "DomainName",
-            ],
-          },
-          "HostedZoneId": {
-            "Fn::FindInMap": [
-              "AWSCloudFrontPartitionHostedZoneIdMap",
-              {
-                "Ref": "AWS::Partition",
-              },
-              "zoneId",
-            ],
-          },
-        },
-        "HostedZoneId": {
-          "Ref": "AlternateHostedZone2A7C28BD8",
-        },
-        "Name": "wearshortstowork.com.",
-        "Type": "A",
-      },
-      "Type": "AWS::Route53::RecordSet",
-    },
     "AliasAwwwchrisdriscolcomD178D37E": {
       "Properties": {
         "AliasTarget": {
@@ -427,42 +333,9 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
       },
       "Type": "AWS::Route53::RecordSet",
     },
-    "AliasAwwwwearshortstoworkcom1E7C687B": {
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "SiteDistribution3FF9535D",
-              "DomainName",
-            ],
-          },
-          "HostedZoneId": {
-            "Fn::FindInMap": [
-              "AWSCloudFrontPartitionHostedZoneIdMap",
-              {
-                "Ref": "AWS::Partition",
-              },
-              "zoneId",
-            ],
-          },
-        },
-        "HostedZoneId": {
-          "Ref": "AlternateHostedZone2A7C28BD8",
-        },
-        "Name": "www.wearshortstowork.com.",
-        "Type": "A",
-      },
-      "Type": "AWS::Route53::RecordSet",
-    },
     "AlternateHostedZone12DDE8289": {
       "Properties": {
         "Name": "driscolsoftware.com.",
-      },
-      "Type": "AWS::Route53::HostedZone",
-    },
-    "AlternateHostedZone2A7C28BD8": {
-      "Properties": {
-        "Name": "wearshortstowork.com.",
       },
       "Type": "AWS::Route53::HostedZone",
     },
@@ -511,8 +384,6 @@ exports[`InfraStack > matches the synthesized snapshot 1`] = `
             "https://api.chrisdriscol.com",
             "https://driscolsoftware.com",
             "https://www.driscolsoftware.com",
-            "https://wearshortstowork.com",
-            "https://www.wearshortstowork.com",
           ],
         },
         "TargetFunctionArn": {
@@ -683,20 +554,12 @@ function handler(event) {
               "Ref": "AlternateHostedZone12DDE8289",
             },
           },
-          {
-            "DomainName": "wearshortstowork.com",
-            "HostedZoneId": {
-              "Ref": "AlternateHostedZone2A7C28BD8",
-            },
-          },
         ],
         "SubjectAlternativeNames": [
           "www.chrisdriscol.com",
           "api.chrisdriscol.com",
           "driscolsoftware.com",
           "www.driscolsoftware.com",
-          "wearshortstowork.com",
-          "www.wearshortstowork.com",
         ],
         "Tags": [
           {
@@ -717,8 +580,6 @@ function handler(event) {
             "api.chrisdriscol.com",
             "driscolsoftware.com",
             "www.driscolsoftware.com",
-            "wearshortstowork.com",
-            "www.wearshortstowork.com",
           ],
           "CacheBehaviors": [
             {

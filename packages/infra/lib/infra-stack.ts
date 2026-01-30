@@ -21,9 +21,9 @@ export class InfraStack extends Stack {
     super(scope, id, props);
 
     const canonicalDomain = "chrisdriscol.com";
+    // wearshortstowork.com is managed separately via Cloudflare Pages
     const alternateDomains = [
       "driscolsoftware.com",
-      "wearshortstowork.com",
     ];
     const apiDomain = `api.${canonicalDomain}`;
     const allDomains = [
