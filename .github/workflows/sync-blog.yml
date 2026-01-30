@@ -1,0 +1,60 @@
+name: Sync Blog to Personal Site
+
+on:
+  push:
+    branches: ["main", "master"]
+    paths:
+      - "sites/wearshortstowork/src/content/blog/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: "9.0.0"
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Generate blog data
+        run: node sites/chrisdriscol/web/scripts/generate-blog-data.js
+
+      - name: Build web
+        run: pnpm -C sites/chrisdriscol/web build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload web assets
+        run: |
+          web_bucket="$(aws cloudformation describe-stacks \
+            --stack-name ChrisDriscolStack \
+            --query "Stacks[0].Outputs[?OutputKey=='WebBucketName'].OutputValue" \
+            --output text)"
+          aws s3 sync sites/chrisdriscol/web/dist "s3://$web_bucket" --delete
+
+      - name: Invalidate CloudFront
+        run: |
+          distribution_id="$(aws cloudformation describe-stacks \
+            --stack-name ChrisDriscolStack \
+            --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
+            --output text)"
+          aws cloudfront create-invalidation --distribution-id "$distribution_id" --paths "/*"
