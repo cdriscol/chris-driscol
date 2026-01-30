@@ -1,10 +1,55 @@
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#bg)"/>
-  <text x="50%" y="50%" font-family="system-ui, sans-serif" font-size="48" font-weight="600" fill="white" text-anchor="middle" dy=".3em">Hello, World!</text>
+  <!-- Terminal background -->
+  <rect width="100%" height="100%" fill="#1e293b"/>
+
+  <!-- Terminal window -->
+  <rect x="100" y="80" width="1000" height="470" rx="10" fill="#0f172a"/>
+
+  <!-- Title bar -->
+  <rect x="100" y="80" width="1000" height="40" rx="10" fill="#1e293b"/>
+  <rect x="100" y="110" width="1000" height="10" fill="#1e293b"/>
+
+  <!-- Window buttons -->
+  <circle cx="130" cy="100" r="7" fill="#ef4444"/>
+  <circle cx="155" cy="100" r="7" fill="#eab308"/>
+  <circle cx="180" cy="100" r="7" fill="#22c55e"/>
+
+  <!-- Terminal content -->
+  <!-- Line 1: echo command -->
+  <text x="140" y="170" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24">
+    <tspan fill="#22c55e">❯</tspan>
+    <tspan fill="#e2e8f0"> echo </tspan>
+    <tspan fill="#fbbf24">"Hello, World!"</tspan>
+  </text>
+
+  <!-- Line 2: echo output -->
+  <text x="140" y="210" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24" fill="#e2e8f0">Hello, World!</text>
+
+  <!-- Line 3: cat command -->
+  <text x="140" y="270" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24">
+    <tspan fill="#22c55e">❯</tspan>
+    <tspan fill="#e2e8f0"> cat </tspan>
+    <tspan fill="#60a5fa">HUMANS.md</tspan>
+  </text>
+
+  <!-- Line 4: cat output -->
+  <text x="140" y="310" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24" fill="#94a3b8">Writing about tech, AI, motorsports, and life.</text>
+
+  <!-- Line 5: whoami command -->
+  <text x="140" y="370" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24">
+    <tspan fill="#22c55e">❯</tspan>
+    <tspan fill="#e2e8f0"> whoami</tspan>
+  </text>
+
+  <!-- Line 6: whoami output -->
+  <text x="140" y="410" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24" fill="#e2e8f0">Chris Driscol</text>
+
+  <!-- Line 7: new prompt with cursor -->
+  <text x="140" y="470" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24">
+    <tspan fill="#22c55e">❯</tspan>
+    <tspan fill="#e2e8f0"> </tspan>
+  </text>
+
+  <!-- Blinking cursor -->
+  <rect x="165" y="450" width="14" height="28" fill="#e2e8f0" opacity="0.8"/>
 </svg>
