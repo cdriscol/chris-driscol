@@ -15,6 +15,9 @@ apps/**/vite.config.d.ts
 .devserver.*.log
 apps/web/src/graphql/generated/
 
+# Astro
+.astro/
+
 # Claude Code
 .claude/settings.local.json
 .claude/hooks/node_modules/
