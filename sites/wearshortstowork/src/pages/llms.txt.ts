@@ -33,7 +33,7 @@ export async function GET(context: APIContext) {
     ...sortedPosts.slice(0, 10).flatMap((post) => [
       `### ${post.data.title}`,
       `Published: ${post.data.pubDate.toISOString().split("T")[0]}`,
-      `URL: ${siteUrl}/blog/${post.id}/`,
+      `URL: ${siteUrl}/b/${post.id}/`,
       "",
       post.data.description,
       "",
@@ -41,7 +41,7 @@ export async function GET(context: APIContext) {
     "## Key Links",
     "",
     `- Home: ${siteUrl}`,
-    `- All Posts: ${siteUrl}/blog`,
+    `- All Posts: ${siteUrl}/b`,
     `- RSS Feed: ${siteUrl}/rss.xml`,
     `- Sitemap: ${siteUrl}/sitemap-index.xml`,
   ];
