@@ -5,9 +5,9 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import BlogCard from "../../components/BlogCard.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = (
+  await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout title="Thoughts" description="All thoughts from Chris Driscol.">
