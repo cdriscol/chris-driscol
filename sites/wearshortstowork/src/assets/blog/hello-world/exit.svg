@@ -1,0 +1,25 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Terminal background -->
+  <rect width="100%" height="100%" fill="#1e293b"/>
+
+  <!-- Terminal window -->
+  <rect x="50" y="30" width="700" height="140" rx="10" fill="#0f172a"/>
+
+  <!-- Title bar -->
+  <rect x="50" y="30" width="700" height="36" rx="10" fill="#1e293b"/>
+  <rect x="50" y="56" width="700" height="10" fill="#1e293b"/>
+
+  <!-- Window buttons -->
+  <circle cx="76" cy="48" r="6" fill="#ef4444"/>
+  <circle cx="98" cy="48" r="6" fill="#eab308"/>
+  <circle cx="120" cy="48" r="6" fill="#22c55e"/>
+
+  <!-- Terminal content -->
+  <text x="80" y="110" font-family="ui-monospace, SFMono-Regular, monospace" font-size="24">
+    <tspan fill="#22c55e">❯</tspan>
+    <tspan fill="#e2e8f0"> exit</tspan>
+  </text>
+
+  <!-- Cursor -->
+  <rect x="175" y="90" width="14" height="28" fill="#e2e8f0" opacity="0.8"/>
+</svg>
