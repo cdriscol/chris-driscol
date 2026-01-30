@@ -106,11 +106,11 @@ export const SiteNav = ({
             <li>
               {/* biome-ignore lint/a11y/useValidAnchor: in-page navigation */}
               <a
-                href="#contactme"
-                className={`${navLinkClass} ${activeSection === "contactme" ? navLinkActiveClass : ""}`}
-                onClick={onNavClick("contactme")}
+                href="#blog"
+                className={`${navLinkClass} ${activeSection === "blog" ? navLinkActiveClass : ""}`}
+                onClick={onNavClick("blog")}
               >
-                Say hi
+                Thoughts
               </a>
             </li>
           </ul>
