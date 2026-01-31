@@ -8,19 +8,90 @@ const navLinks = [
 <header class="header">
   <nav class="nav">
     <a href="/" class="logo">Chris Driscol</a>
-    <ul class="nav-links">
-      {
-        navLinks.map((link) => (
-          <li>
-            <a href={link.href} class:list={["nav-link", { active: Astro.url.pathname === link.href }]}>
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class:list={["nav-link", { active: Astro.url.pathname === link.href }]}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>
+
+<script>
+  function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle') as HTMLButtonElement | null;
+    if (!toggle) return;
+
+    function getEffectiveTheme(): 'light' | 'dark' {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark') return 'dark';
+      if (stored === 'light') return 'light';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function updateToggleState() {
+      const isDark = getEffectiveTheme() === 'dark';
+      toggle!.setAttribute('aria-pressed', String(isDark));
+      document.documentElement.classList.remove('theme-transitioning');
+    }
+
+    toggle.addEventListener('click', () => {
+      const currentTheme = getEffectiveTheme();
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      document.documentElement.classList.add('theme-transitioning');
+      localStorage.setItem('theme', newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
+
+      requestAnimationFrame(() => {
+        updateToggleState();
+      });
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'system') {
+        updateToggleState();
+      }
+    });
+
+    updateToggleState();
+  }
+
+  // Run on initial load
+  initThemeToggle();
+
+  // Re-run after Astro page transitions (View Transitions API)
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>
 
 <style>
   .header {
@@ -46,6 +117,12 @@ const navLinks = [
     color: var(--color-link);
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
   .nav-links {
     display: flex;
     gap: 1.5rem;
@@ -61,5 +138,73 @@ const navLinks = [
   .nav-link:hover,
   .nav-link.active {
     color: var(--color-text);
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-muted);
+    background-color: var(--color-surface);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle .icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+
+  /* Sun icon - visible in dark mode */
+  .theme-toggle .sun-icon {
+    display: none;
+  }
+
+  /* Moon icon - visible in light mode */
+  .theme-toggle .moon-icon {
+    display: block;
+  }
+
+  /* Dark mode: show sun, hide moon */
+  :global([data-theme="dark"]) .theme-toggle .sun-icon {
+    display: block;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle .moon-icon {
+    display: none;
+  }
+
+  /* System preference dark mode fallback */
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .theme-toggle .sun-icon {
+      display: block;
+    }
+
+    :global(:root:not([data-theme="light"])) .theme-toggle .moon-icon {
+      display: none;
+    }
+  }
+
+  /* Smooth theme transition */
+  :global(.theme-transitioning),
+  :global(.theme-transitioning) * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
   }
 </style>

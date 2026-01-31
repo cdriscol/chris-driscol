@@ -13,8 +13,21 @@
     Liberation Mono, monospace;
 }
 
+/* Dark theme - applied via data-theme attribute or system preference */
+[data-theme="dark"] {
+  --color-bg: #0a0a0a;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-heading: #f9fafb;
+  --color-link: #60a5fa;
+  --color-link-hover: #93c5fd;
+  --color-border: #374151;
+  --color-surface: #1f2937;
+}
+
+/* System preference fallback when no explicit theme is set */
 @media (prefers-color-scheme: dark) {
-  :root {
+  [data-theme="system"], :root:not([data-theme]) {
     --color-bg: #0a0a0a;
     --color-text: #e5e7eb;
     --color-text-muted: #9ca3af;
