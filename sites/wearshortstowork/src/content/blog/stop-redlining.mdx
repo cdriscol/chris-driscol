@@ -14,11 +14,11 @@ And there's teams that are moving very fast with AI. They're pinned in 6th gear,
 
 > **If you increase the flow, you must tune the backpressure.**
 
-In fluid dynamics, backpressure regulates the system. In motorcycle racing, it's the engine braking that settles the chassis before a corner. In software, backpressure is the quality gates that refuse to commit *AI slop* before it hits upstream. As [Geoff Huntley argues](https://ghuntley.com/pressure/), without capturing backpressure, engineers are fundamentally failing their craft—because humans aren't the ones doing the software development anymore.
+In fluid dynamics, backpressure regulates the system. In motorcycle racing, it's the engine braking that settles the chassis before a corner. In agentic software engineering, backpressure is the quality gates that refuse to commit *AI slop* before it hits upstream. As [Geoff Huntley argues](https://ghuntley.com/pressure/), without capturing backpressure, engineers are fundamentally failing their craft—because humans aren't the ones doing the software development anymore.
 
 ## The "False Neutral" of Modern Dev
 
-The current "beginner pace" for AI development is a dev copy-pasting prompts, waiting for a response, and then manually fixing linter errors. This is high-latency waste. It's the equivalent of hitting a **false neutral** mid-corner. You lose drive, your chassis becomes unstable, and you become a hazard on track, letting everyone past while you fumble for a gear.
+The current "beginner pace" for AI development is an engineer copy/pasting prompts, waiting for a response, and then manually fixing formatting or testing errors. This is high-latency waste. It's the equivalent of hitting a **false neutral** mid-corner. You lose drive, your chassis becomes unstable, and you become a hazard on track, letting everyone pass you as you fumble for a gear.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/gruJ5QgEmtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -28,22 +28,22 @@ If your backpressure (testing, linting, building) requires human intervention to
 
 ## Tuning the Rig: Feedback Loops
 
-Real backpressure isn't a vanity metric like 90% test coverage. It's more like a slipper clutch, a mechanism that allows a race bike to downshift aggressively without locking the rear wheel and high-siding the project. To build this for an AI agent, you must tighten the feedback loop.
+Real backpressure isn't a vanity metric like 90% test coverage. It's more like a slipper clutch, a mechanism that allows a race bike to downshift aggressively without locking the rear wheel and high-siding your project. To build this for an AI agent, you must tighten the feedback loop.
 
 ![The Pro Line: Speed without the chaos](../../assets/blog/stop-redlining/flow.jpg)
 <p style="text-align: center; font-size: 0.875rem; color: var(--color-text-muted); margin-top: -1rem; font-style: italic;">Racing my FS 450 at speed without any chaos.</p>
 
 * **Shift-Left Infrastructure:** If your AI has to wait for a 20-minute deploy to verify a change, your system is unbalanced. As [Banay.me notes](https://banay.me/dont-waste-your-backpressure), you can't waste your feedback on high-latency processes. You need local, ephemeral environments where the AI can loop until the fix is verified (ideally in seconds).
 
-* **Tools as a Sensor:** Don't give an agent a text box; give it a toolkit via Shell scripts or even the Model Context Protocol (MCP). An agent with a connected shell to run tests or an MCP to run the code in a browser isn't just guessing; it's also validating. It's the difference between a rider feeling the traction and a bike with real-time traction control sensors.
+* **Tools as a Sensor:** Don't just give an agent a text box; give it a toolkit via Shell scripts or even the Model Context Protocol (MCP). An agent with a connected shell to run tests or an MCP to run the code in a browser isn't just guessing; it's also validating. It's the difference between a rider feeling the traction and a bike with real-time traction control sensors.
 
 * **Agents as Quality Gates:** One LLM just writing code is a risk. Leveraging LLMs and agents to review requirements, specs, deep dive code patterns, and review code output is a true quality gate. This is [Spec-Driven Development](https://github.com/github/spec-kit/blob/main/spec-driven.md) in its purest form.
 
 ## The Meta-Gate: This Post is a Product of Backpressure
 
-I didn't ask an LLM to "write a blog post" here. I refuse to use LLMs as ghostwriters on this site.
+I didn't ask an LLM to write a blog post for me here. I refuse to use LLMs as ghostwriters on this site.
 
-However, I did create an AI agent designed for, and named, Thoughts Backpressure. I speak my raw ideas through this agent which is programmed to interrogate my metaphors, kill my fluff, and refuse to provide a draft all while picking at my thoughts. This is backpressure for my raw thoughts and unhoned writing skills. If you're not leveraging AI to critique and refine your work, you're creating a feedback loop of mediocrity.
+However, I did create an AI agent designed for, and named, Thoughts Backpressure. I speak my raw ideas through this agent which is programmed to interrogate my metaphors, kill my fluff, and refuse to provide a draft all while picking at my thoughts. This is backpressure for my raw thoughts and unhoned writing skills. If you're not leveraging AI to critique and refine your work, you're losing out on critical quality gates and fine tuning your own backpressure.
 
 ## Human Sensors
 
@@ -58,4 +58,4 @@ If you are using AI to increase your velocity but haven't automated and tuned yo
 ![What happens when you skip the quality gates](../../assets/blog/stop-redlining/highside.png)
 <p style="text-align: center; font-size: 0.875rem; color: var(--color-text-muted); margin-top: -1rem; font-style: italic;">Not enough backpressure. Too much throttle.</p>
 
-Don't measure lines of code, commits, or pull requests. Measure the rate and latency of your feedback loops. If your AI can't verify its own work in a local environment using tools before you ever see it, you're not shipping quality software, you're just delaying the high-side.
+Don't just measure lines of code, commits, or pull requests. Measure and refine the rate and latency of your feedback loops. If your AI can't verify its own work in a local environment using tools before you ever see it, you're not shipping quality software, you're just delaying the high-side.
