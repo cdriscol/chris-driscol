@@ -285,6 +285,55 @@ export default $config({
 
 ---
 
+## Additional Technical Details
+
+### No Automatic Rollback
+
+Unlike CloudFormation, SST Ion (Pulumi) does **not** automatically roll back failed deployments. If a deploy fails, Pulumi finishes in-flight operations and exits with an error. You must manually fix and redeploy.
+
+### State Management
+
+SST stores state locally in `.sst/` and backs it up to an S3 bucket in your AWS account. No Pulumi account is needed — SST uses only the open-source Pulumi engine. If you lose both local and S3 state, you lose track of what's deployed.
+
+### Resource Properties are Async
+
+All resource properties in SST are Pulumi `Output<T>` types, not plain strings. You must use `$interpolate`, `$resolve`, or `.apply()` to work with them in the config:
+
+```ts
+const apiUrl = $interpolate`${api.url}graphql`;
+```
+
+### Live Lambda Dev Mechanics
+
+When you run `sst dev`:
+1. Deploys stub Lambda functions (not your actual code)
+2. Starts a local WebSocket client via AWS AppSync Events
+3. Remote invocations hit the stub, which proxies the payload to your local machine
+4. Your function executes locally (with breakpoints, hot reload for Node.js)
+5. Response returns through the same WebSocket channel
+
+This works well for **Node.js and Go** but has limited support for **Rust** — the proxy mechanism uses Node.js Workers. For Rust, you would continue running `cargo run` locally.
+
+### Monorepo Structure Recommendation
+
+SST recommends splitting infra into separate files imported from `sst.config.ts`:
+
+```
+sst.config.ts        # imports from infra/
+infra/
+  storage.ts         # buckets, databases
+  api.ts             # Lambda functions
+  web.ts             # frontend sites
+```
+
+Currently only **one `sst.config.ts` per monorepo** is supported (feature request exists: sst/sst#5627).
+
+### astro-sst Adapter
+
+For Astro deployment, SST requires the `astro-sst` npm package as an adapter in `astro.config.mjs`. For static output, you could alternatively use `sst.aws.StaticSite` directly.
+
+---
+
 ## Key Risks and Concerns
 
 ### 1. CloudFront Complexity (HIGH RISK)
@@ -355,3 +404,22 @@ The migration is **feasible but not straightforward**, primarily because of the 
 6. **Keep the blog on Cloudflare Pages** — no reason to move it
 
 **Estimated effort:** 2-3 days for a working staging deployment, plus time for production cutover and validation.
+
+---
+
+## Sources
+
+- [SST v3 Announcement](https://sst.dev/blog/sst-v3/)
+- [Moving Away from CDK](https://sst.dev/blog/moving-away-from-cdk/)
+- [StaticSite Component](https://sst.dev/docs/component/aws/static-site/)
+- [Function Component](https://sst.dev/docs/component/aws/function/)
+- [Astro Component](https://sst.dev/docs/component/aws/astro/)
+- [Router Component](https://sst.dev/docs/component/aws/router)
+- [Email Component](https://sst.dev/docs/component/aws/email/)
+- [Components Overview](https://sst.dev/docs/components/)
+- [Config Reference](https://sst.dev/docs/reference/config/)
+- [Monorepo Setup](https://sst.dev/docs/set-up-a-monorepo/)
+- [Migrate from v2](https://sst.dev/docs/migrate-from-v2/)
+- [Live Lambda](https://sst.dev/docs/live/)
+- [Custom Domains](https://sst.dev/docs/custom-domains/)
+- [Live Lambda with provided.al2023 Issue](https://github.com/sst/sst/issues/4247)
